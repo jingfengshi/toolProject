@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+
     if (isset($_GET['url'])) {
         $urlRaw = strip_tags($_GET['url']);
         $urlRaw = explode('&', base64_decode($urlRaw));
@@ -56,3 +57,5 @@ Route::get('wechat_image', function () {
     }
 
 });
+
+Route::any('/wechat', 'WeChatController@serve');
