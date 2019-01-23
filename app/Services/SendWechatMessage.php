@@ -9,6 +9,7 @@ use EasyWeChat\Kernel\Messages\News;
 use EasyWeChat\Kernel\Messages\NewsItem;
 use EasyWeChat\Kernel\Messages\Text;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SendWechatMessage
 {
@@ -26,6 +27,7 @@ class SendWechatMessage
     {
         $app = app('wechat.official_account');
         $tasks=$this->getCurrentTask();
+        Log::info(json_encode($tasks));
         if(!$tasks->isEmpty()){
             foreach ($tasks as $task){
                 if($task->message_type==WechatTaskMessage::TYPE_WENZI){
