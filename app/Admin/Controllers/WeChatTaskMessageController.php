@@ -46,6 +46,17 @@ class WeChatTaskMessageController extends  Controller
         $form->setAction('/admin/wechat/wenzi');
         $form->datetime('task_time', '定时时间')->format('HH:mm')->required();
         $form->textarea('message_content','消息内容')->required();
+        $form->disableCreatingCheck();
+        $form->disableEditingCheck();
+        $form->disableViewCheck();
+        $form->setTitle('创建文字消息');
+        $form->tools(function (Form\Tools $tools){
+            $tools->disableList();
+            $tools->disableDelete();
+            $tools->disableView();
+
+            $tools->add('<a href="/admin/wechat/taskMessage" class="btn btn-sm btn-info"><i class="fa fa-list"></i>&nbsp;&nbsp;列表</a>');
+        });
         $form->model()->message_type=WechatTaskMessage::TYPE_WENZI;
         $form->model()->admin_user_id=Admin::user()->id;
         return $form;
@@ -68,6 +79,18 @@ class WeChatTaskMessageController extends  Controller
             $form->url('image_url', '图片url')->rules('required');
             $form->url('url', 'url')->rules('required');
         });
+        $form->disableCreatingCheck();
+        $form->disableEditingCheck();
+        $form->disableViewCheck();
+        $form->setTitle('创建图文消息');
+        $form->tools(function (Form\Tools $tools){
+            $tools->disableList();
+            $tools->disableDelete();
+            $tools->disableView();
+
+            $tools->add('<a href="/admin/wechat/taskMessage" class="btn btn-sm btn-info"><i class="fa fa-list"></i>&nbsp;&nbsp;列表</a>');
+        });
+
         $form->model()->message_type=WechatTaskMessage::TYPE_TUWEN;
         $form->model()->admin_user_id=Admin::user()->id;
         return $form;
@@ -88,6 +111,20 @@ class WeChatTaskMessageController extends  Controller
         $form->image('image_url','图片')->required()->help('图片大小 2M 以内，尺寸。。。。');
         $form->model()->message_type=WechatTaskMessage::TYPE_IMAGE;
         $form->model()->admin_user_id=Admin::user()->id;
+        $form->disableCreatingCheck();
+        $form->disableEditingCheck();
+        $form->disableViewCheck();
+        $form->setTitle('创建图片消息');
+        $form->tools(function (Form\Tools $tools){
+            $tools->disableList();
+            $tools->disableDelete();
+            $tools->disableView();
+
+            $tools->add('<a href="/admin/wechat/taskMessage" class="btn btn-sm btn-info"><i class="fa fa-list"></i>&nbsp;&nbsp;列表</a>');
+        });
+
+
+
         $form->saved(function(Form $form){
             $image_url=$form->model()->image_url;
             $app = app('wechat.official_account');

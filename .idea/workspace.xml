@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4892221f-6faf-44b5-9cef-de63f56432fb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/WeChatTaskMessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/WeChatTaskMessageController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +31,7 @@
           <entry key="env" value="40" />
           <entry key="gitignore" value="43" />
           <entry key="ini" value="2" />
-          <entry key="php" value="10079" />
+          <entry key="php" value="10178" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -39,7 +39,7 @@
           <entry key="Blade" value="295" />
           <entry key="HTML" value="32" />
           <entry key="Ini" value="2" />
-          <entry key="PHP" value="9771" />
+          <entry key="PHP" value="9870" />
           <entry key="PLAIN_TEXT" value="90" />
         </counts>
       </usages-collector>
@@ -50,7 +50,7 @@
           <entry key="ini" value="1" />
           <entry key="jpg" value="2" />
           <entry key="log" value="6" />
-          <entry key="php" value="161" />
+          <entry key="php" value="162" />
           <entry key="sql" value="1" />
           <entry key="sqls" value="4" />
         </counts>
@@ -60,7 +60,7 @@
           <entry key="Blade" value="4" />
           <entry key="Image" value="2" />
           <entry key="Ini" value="1" />
-          <entry key="PHP" value="157" />
+          <entry key="PHP" value="158" />
           <entry key="PLAIN_TEXT" value="16" />
           <entry key="SQL" value="1" />
         </counts>
@@ -69,13 +69,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Admin/Controllers/WeChatTaskMessageController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2442">
-              <caret line="176" column="37" selection-start-line="176" selection-start-column="37" selection-end-line="176" selection-end-column="37" />
+            <state relative-caret-position="419">
+              <caret line="57" column="59" selection-start-line="57" selection-start-column="59" selection-end-line="57" selection-end-column="59" />
               <folding>
                 <element signature="e#125#167#0#PHP" expanded="true" />
+                <element signature="e#60#66#0" expanded="true" />
+                <element signature="e#66#72#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/encore/laravel-admin/src/Form.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="1266" column="20" selection-start-line="1266" selection-start-column="20" selection-end-line="1266" selection-end-column="20" />
+              <folding>
+                <element signature="e#32#44#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -84,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Services/SendWechatMessage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+            <state relative-caret-position="-813">
+              <caret line="27" column="46" lean-forward="true" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
               <folding>
                 <element signature="e#32#65#0#PHP" expanded="true" />
               </folding>
@@ -93,7 +107,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/storage/logs/laravel-2019-01-23.log">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-29381" />
@@ -114,18 +128,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="364">
               <caret line="122" column="22" selection-start-line="122" selection-start-column="22" selection-end-line="122" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
-              <folding>
-                <element signature="e#33#67#0#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -218,12 +220,12 @@
         <option value="$PROJECT_DIR$/app/Admin/Extensions/tools/editButton.php" />
         <option value="$PROJECT_DIR$/app/Admin/routes.php" />
         <option value="$PROJECT_DIR$/app/Admin/Extensions/tools/modifyTaskMessageStatus.php" />
-        <option value="$PROJECT_DIR$/app/Admin/Controllers/WeChatTaskMessageController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/taskMessage/tuwen.blade.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
         <option value="$PROJECT_DIR$/public/.sqls" />
         <option value="$PROJECT_DIR$/app/Services/SendWechatMessage.php" />
+        <option value="$PROJECT_DIR$/app/Admin/Controllers/WeChatTaskMessageController.php" />
       </list>
     </option>
   </component>
@@ -526,12 +528,12 @@
       <workItem from="1547434693373" duration="47136000" />
       <workItem from="1547716978114" duration="15450000" />
       <workItem from="1547794171900" duration="7596000" />
-      <workItem from="1548034686957" duration="60629000" />
+      <workItem from="1548034686957" duration="61966000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130811000" />
+    <option name="totallyTimeSpent" value="132148000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -544,6 +546,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49728554" visible="true" weight="0.25746268" />
       <window_info id="Structure" order="1" sideWeight="0.50271446" side_tool="true" weight="0.16791044" />
@@ -849,16 +852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/encore/laravel-admin/src/Form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="526" column="20" selection-start-line="526" selection-start-column="20" selection-end-line="526" selection-end-column="20" />
-          <folding>
-            <element signature="e#32#44#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="404">
@@ -900,16 +893,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Admin/Controllers/WeChatTaskMessageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2442">
-          <caret line="176" column="37" selection-start-line="176" selection-start-column="37" selection-end-line="176" selection-end-column="37" />
-          <folding>
-            <element signature="e#125#167#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -945,19 +928,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/storage/logs/laravel-2019-01-23.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-29381" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Services/SendWechatMessage.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+        <state relative-caret-position="-813">
+          <caret line="27" column="46" lean-forward="true" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
           <folding>
             <element signature="e#32#65#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storage/logs/laravel-2019-01-23.log">
+    <entry file="file://$PROJECT_DIR$/vendor/encore/laravel-admin/src/Form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-29381" />
+        <state relative-caret-position="176">
+          <caret line="1266" column="20" selection-start-line="1266" selection-start-column="20" selection-end-line="1266" selection-end-column="20" />
+          <folding>
+            <element signature="e#32#44#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Admin/Controllers/WeChatTaskMessageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="57" column="59" selection-start-line="57" selection-start-column="59" selection-end-line="57" selection-end-column="59" />
+          <folding>
+            <element signature="e#125#167#0#PHP" expanded="true" />
+            <element signature="e#60#66#0" expanded="true" />
+            <element signature="e#66#72#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>
