@@ -17,7 +17,7 @@ class SendWechatMessage
     {
         $time=Carbon::now()->second(0)->format('H:i:s');
         return WechatTaskMessage::where([
-            //'task_time'=>$time,
+            'task_time'=>$time,
             'status'=>1
             ])->get();
     }
