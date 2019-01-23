@@ -27,7 +27,6 @@ class SendWechatMessage
     {
         $app = app('wechat.official_account');
         $tasks=$this->getCurrentTask();
-        Log::info(json_encode($tasks));
         if(!$tasks->isEmpty()){
             foreach ($tasks as $task){
                 if($task->message_type==WechatTaskMessage::TYPE_WENZI){
