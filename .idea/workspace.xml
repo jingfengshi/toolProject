@@ -12,6 +12,7 @@
       <change afterPath="$PROJECT_DIR$/resources/views/admin/taskMessage/tab.blade.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/views/admin/taskMessage/tuwen.blade.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/views/admin/tools/button.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/toolsProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/toolsProject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -50,9 +51,9 @@
           <entry key="PHP Console" value="19" />
           <entry key="dummy" value="7" />
           <entry key="env" value="40" />
-          <entry key="gitignore" value="19" />
+          <entry key="gitignore" value="43" />
           <entry key="ini" value="2" />
-          <entry key="php" value="10002" />
+          <entry key="php" value="10016" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -60,18 +61,18 @@
           <entry key="Blade" value="295" />
           <entry key="HTML" value="32" />
           <entry key="Ini" value="2" />
-          <entry key="PHP" value="9694" />
-          <entry key="PLAIN_TEXT" value="66" />
+          <entry key="PHP" value="9708" />
+          <entry key="PLAIN_TEXT" value="90" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="env" value="3" />
-          <entry key="gitignore" value="1" />
+          <entry key="gitignore" value="2" />
           <entry key="ini" value="1" />
           <entry key="jpg" value="2" />
           <entry key="log" value="4" />
-          <entry key="php" value="156" />
+          <entry key="php" value="157" />
           <entry key="sql" value="1" />
           <entry key="sqls" value="4" />
         </counts>
@@ -81,8 +82,8 @@
           <entry key="Blade" value="4" />
           <entry key="Image" value="2" />
           <entry key="Ini" value="1" />
-          <entry key="PHP" value="152" />
-          <entry key="PLAIN_TEXT" value="12" />
+          <entry key="PHP" value="153" />
+          <entry key="PLAIN_TEXT" value="13" />
           <entry key="SQL" value="1" />
         </counts>
       </usages-collector>
@@ -90,18 +91,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Services/SendWechatMessage.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1232">
-              <caret line="56" column="62" selection-start-line="56" selection-start-column="62" selection-end-line="56" selection-end-column="62" />
-              <folding>
-                <element signature="e#32#65#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Admin/Controllers/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -132,11 +121,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/taskMessage/tuwen.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="710">
+            <state relative-caret-position="195">
               <caret line="122" column="22" selection-start-line="122" selection-start-column="22" selection-end-line="122" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="678">
+              <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+              <folding>
+                <element signature="e#33#67#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -154,15 +164,6 @@
               <folding>
                 <element signature="e#32#44#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Admin/Extensions/tools/editButton.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -210,7 +211,6 @@
         <option value="$PROJECT_DIR$/config/filesystems.php" />
         <option value="$PROJECT_DIR$/app/Admin/Controllers/CompressSitesController.php" />
         <option value="$PROJECT_DIR$/app/Admin/Controllers/ToolsController.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/app/Admin/Controllers/HomeController.php" />
         <option value="F:/phpStudy/PHPTutorial/php/php-7.2.1-nts/php.ini" />
@@ -225,7 +225,6 @@
         <option value="$PROJECT_DIR$/resources/views/admin/tools/wenzi.blade.php" />
         <option value="$PROJECT_DIR$/app/Admin/Extensions/tools/WenZiButton.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_01_21_154736_create_wechat_task_messages_table.php" />
-        <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
         <option value="$PROJECT_DIR$/app/Models/Traits/SendWechatMessage.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/SendWechatMessage.php" />
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
@@ -240,6 +239,8 @@
         <option value="$PROJECT_DIR$/public/.sqls" />
         <option value="$PROJECT_DIR$/app/Admin/Controllers/WeChatTaskMessageController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/taskMessage/tuwen.blade.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
       </list>
     </option>
   </component>
@@ -439,6 +440,12 @@
               <item name="toolsProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="toolsProject" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Providers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toolsProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toolsProject" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Services" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -564,12 +571,12 @@
       <workItem from="1547434693373" duration="47136000" />
       <workItem from="1547716978114" duration="15450000" />
       <workItem from="1547794171900" duration="7596000" />
-      <workItem from="1548034686957" duration="55769000" />
+      <workItem from="1548034686957" duration="56120000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125951000" />
+    <option name="totallyTimeSpent" value="126302000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -598,7 +605,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5021322" side_tool="true" weight="0.30184582" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.12703583" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.44299674" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -629,13 +636,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3828">
-          <caret line="182" column="49" selection-start-line="182" selection-start-column="49" selection-end-line="182" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -816,16 +816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
-          <folding>
-            <element signature="e#33#67#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/User.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -991,8 +981,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/taskMessage/tuwen.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
+        <state relative-caret-position="195">
           <caret line="122" column="22" selection-start-line="122" selection-start-column="22" selection-end-line="122" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="678">
+          <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+          <folding>
+            <element signature="e#33#67#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

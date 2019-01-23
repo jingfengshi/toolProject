@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        if(app()->isLocale()){
+        if(app()->environment()=='local'){
             DB::listen(function ($query) {
                 $sql = $query->sql;
                 $bindings = $query->bindings;
