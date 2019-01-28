@@ -26,6 +26,7 @@ class CreateWechatTaskMessagesTable extends Migration
             $table->unsignedInteger('admin_user_id');
             $table->tinyInteger('status')->default(0);
             $table->dateTime('task_time');
+            $table->string('media_id')->nullable();
             $table->timestamps();
         });
     }

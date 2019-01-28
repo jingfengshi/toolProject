@@ -128,7 +128,7 @@ class WeChatTaskMessageController extends  Controller
         $form->saved(function(Form $form){
             $image_url=$form->model()->image_url;
             $app = app('wechat.official_account');
-            $result = $app->material->uploadImage(public_path().'/upload/'.$image_url);
+            $result = $app->material->uploadImage($image_url);
             if(isset($result['errcode']) && !empty($result['errcode'])){
                 $form->destroy($form->model()->id);
                 admin_toastr('上传素材失败', 'error');

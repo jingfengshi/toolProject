@@ -130,7 +130,6 @@ return [
 
         // Disk in `config/filesystem.php`.
         'disk' => 'admin',
-
         // Image and file upload path under the disk above.
         'directory' => [
             'image' => 'images',
@@ -262,7 +261,7 @@ return [
     | each page
     |
     */
-    'show_version' => true,
+    'show_version' => false,
 
     /*
     |--------------------------------------------------------------------------

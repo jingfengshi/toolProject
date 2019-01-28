@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTuwensTable extends Migration
+class CreateJuhesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateTuwensTable extends Migration
      */
     public function up()
     {
-        Schema::create('tuwens', function (Blueprint $table) {
+        Schema::create('juhes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->text('desc');
-            $table->text('image_url');
-            $table->text('url');
-            $table->unsignedInteger('task_message_id');
-            $table->string('media_id')->nullable();
+            $table->string('url');
+            $table->unsignedInteger('admin_user_id');
+            $table->string('type');
+            $table->text('images');
+            $table->string('site_url')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateTuwensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tuwens');
+        Schema::dropIfExists('juhes');
     }
 }
