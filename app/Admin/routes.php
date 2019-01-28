@@ -24,6 +24,7 @@ Route::group([
     $router->get('juhe', 'JuheController@index');
     $router->get('juhe/create', 'JuheController@create');
     $router->post('juhe', 'JuheController@store');
+    $router->delete('juhe/{id}', 'JuheController@destroy');
 
 
     //公众号管理

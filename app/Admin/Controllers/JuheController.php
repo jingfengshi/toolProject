@@ -75,7 +75,7 @@ class JuheController extends Controller
         $form = new Form(new Juhe());
         $form->select('type','类型')->options(['ad' => '单图广告', 'juhe' => '聚合页'])->required();
         $form->url('url','链接地址')->required();
-        $form->multipleImage('images', '配图')->required();
+        $form->multipleImage('images', '配图')->required()->move('images/'.date("Ym/d", time()));
         $form->model()->admin_user_id=Admin::user()->id;
         $form->disableViewCheck();
         $form->disableEditingCheck();
@@ -91,6 +91,14 @@ class JuheController extends Controller
         });
         return $form;
     }
+
+
+    public function destroy($id)
+    {
+        $this->form()->destroy($id);
+        return redirect('/admin/wechat/taskMessage');
+    }
+
 
 
 
