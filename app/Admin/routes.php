@@ -20,6 +20,12 @@ Route::group([
     $router->post('compress', 'CompressSitesController@store');
 
 
+    //聚合页
+    $router->get('juhe', 'JuheController@index');
+    $router->get('juhe/create', 'JuheController@create');
+    $router->post('juhe', 'JuheController@store');
+
+
     //公众号管理
     $router->get('wechat/taskMessage', 'WeChatTaskMessageController@index');
     $router->post('wechat/taskMessage', 'WeChatTaskMessageController@store');

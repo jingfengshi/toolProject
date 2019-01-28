@@ -76,6 +76,20 @@ return [
             'url' => env('APP_URL').'/upload/sites/',
         ],
 
+        'qiniu' => [
+            'driver'  => 'qiniu',
+            'domains' => [
+                'default'   => env('QINIU_DOMAIN', 'xxx.clouddn.com'), //你的七牛域名
+                'https'     => '',         //你的HTTPS域名
+                'custom'    => '',                //你的自定义域名
+            ],
+            'access_key'=>  env('QINIU_ACCESS_KEY', 'xxxxxxxxxxxxxxxx'),  //AccessKey
+            'secret_key'=> env('QINIU_SECRET_KEY', 'xxxxxxxxxxxxxxxx'),  //SecretKey
+            'bucket'    =>  env('QINIU_BUCKET', 'test'),  //Bucket名字
+            'notify_url'=> '',  //持久化处理回调地址
+            'url'       => '',  // 填写文件访问根url
+        ],
+
 
     ],
 
