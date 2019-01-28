@@ -19,7 +19,7 @@
 <body>
 <div class="vertical-layout">
     @foreach($images as $image)
-        '<img src="{{URL::asset('upload/'.$image)}}" >'
+        <img src="{{URL::asset('upload/'.$image)}}" >
     @endforeach
 </div>
 </body>
