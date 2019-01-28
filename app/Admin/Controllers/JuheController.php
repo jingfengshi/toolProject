@@ -96,7 +96,6 @@ class JuheController extends Controller
     public function destroy($id)
     {
         $this->form()->destroy($id);
-        return redirect('/admin/wechat/taskMessage');
     }
 
 
