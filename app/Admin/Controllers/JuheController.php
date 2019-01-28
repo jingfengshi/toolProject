@@ -51,7 +51,9 @@ class JuheController extends Controller
          $grid->column('type','类型')->display(function($type){
              return Juhe::$typeMap[$type];
          });
-         $grid->url('跳转链接');
+         $grid->url('跳转链接')->display(function($url){
+             return "<input readonly value=".$url.">";
+         });
          $grid->column('site_url','页面url')->display(function($site_url){
              return "<input readonly value=".$site_url." id='s_url'>"."<button style='display: inline-block' class='btn-primary copy'>复制</button>";
          });

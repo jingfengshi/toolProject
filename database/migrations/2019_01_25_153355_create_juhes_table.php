@@ -15,7 +15,7 @@ class CreateJuhesTable extends Migration
     {
         Schema::create('juhes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url');
+            $table->text('url');
             $table->unsignedInteger('admin_user_id');
             $table->string('type');
             $table->text('images');
