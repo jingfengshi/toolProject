@@ -67,6 +67,7 @@ class JuheController extends Controller
                 $(this).prev().select();
                 document.execCommand(\"Copy\"); // 执行浏览器复制命令
         })");
+         $grid->model()->orderBy('id','desc');
          return $grid;
      }
 
