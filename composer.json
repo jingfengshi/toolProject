@@ -12,9 +12,12 @@
         "encore/laravel-admin": "^1.6",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "~6.3",
+        "guzzlehttp/psr7": "^1.5",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "overtrue/laravel-wechat": "~4.0",
+        "php-http/curl-client": "^1.7",
+        "sentry/sentry-laravel": "1.0.0-beta1",
         "zgldh/qiniu-laravel-storage": "^0.10.0"
     },
     "require-dev": {
