@@ -61,4 +61,13 @@ Route::group([
     //修改消息状态
     $router->put('wechat/taskMessage/status/{id}', 'WeChatTaskMessageController@status');
 
+    //游戏攻略
+    $router->get('gamestrategy', 'GameStrategyController@index');
+    $router->post('gamestrategy', 'GameStrategyController@store');
+    $router->get('gamestrategy/create', 'GameStrategyController@create');
+    $router->get('gamestrategy/{id}', 'GameStrategyController@show');
+    $router->get('gamestrategy/{id}/edit', 'GameStrategyController@edit');
+    $router->put('gamestrategy/{id}', 'GameStrategyController@update');
+    $router->delete('gamestrategy/{id}', 'GameStrategyController@destroy');
+
 });

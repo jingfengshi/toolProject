@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//游戏攻略所有条目
+Route::get('/gamestrategy','GameStrategyController@showlists');
