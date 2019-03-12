@@ -70,4 +70,31 @@ Route::group([
     $router->put('gamestrategy/{id}', 'GameStrategyController@update');
     $router->delete('gamestrategy/{id}', 'GameStrategyController@destroy');
 
+    //游戏banner图片
+    $router->get('gamebanner', 'GameBannerController@index');
+    $router->post('gamebanner', 'GameBannerController@store');
+    $router->get('gamebanner/create', 'GameBannerController@create');
+    $router->get('gamebanner/{id}', 'GameBannerController@show');
+    $router->get('gamebanner/{id}/edit', 'GameBannerController@edit');
+    $router->put('gamebanner/{id}', 'GameBannerController@update');
+    $router->delete('gamebanner/{id}', 'GameBannerController@destroy');
+
+    //游戏分类
+    $router->get('gametype', 'GameTypeController@index');
+    $router->post('gametype', 'GameTypeController@store');
+    $router->get('gametype/create', 'GameTypeController@create');
+    $router->get('gametype/{id}', 'GameTypeController@show');
+    $router->get('gametype/{id}/edit', 'GameTypeController@edit');
+    $router->put('gametype/{id}', 'GameTypeController@update');
+    $router->delete('gametype/{id}', 'GameTypeController@destroy');
+
+    //游戏详情
+    $router->get('games', 'GamesController@index');
+    $router->post('games', 'GamesController@store');
+    $router->get('games/create', 'GamesController@create');
+    $router->get('games/{id}', 'GamesController@show');
+    $router->get('games/{id}/edit', 'GamesController@edit');
+    $router->put('games/{id}', 'GamesController@update');
+    $router->delete('games/{id}', 'GamesController@destroy');
+
 });
