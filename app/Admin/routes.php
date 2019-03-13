@@ -61,6 +61,15 @@ Route::group([
     //修改消息状态
     $router->put('wechat/taskMessage/status/{id}', 'WeChatTaskMessageController@status');
 
+    //游戏过审状态
+    $router->get('wechatapplet', 'WechatAppletController@index');
+    $router->post('wechatapplet', 'WechatAppletController@store');
+    $router->get('wechatapplet/create', 'WechatAppletController@create');
+    $router->get('wechatapplet/{id}', 'WechatAppletController@show');
+    $router->get('wechatapplet/{id}/edit', 'WechatAppletController@edit');
+    $router->put('wechatapplet/{id}', 'WechatAppletController@update');
+    $router->delete('wechatapplet/{id}', 'WechatAppletController@destroy');
+
     //游戏攻略
     $router->get('gamestrategy', 'GameStrategyController@index');
     $router->post('gamestrategy', 'GameStrategyController@store');

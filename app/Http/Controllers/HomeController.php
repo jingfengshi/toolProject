@@ -70,14 +70,14 @@ class HomeController extends Controller
     public function extraDatas()
     {
         $insideData = [
-            'aliPayCode' => 'nothing',
-            'contact' => 'nothing',
-            'shareLogo' => 'nothing',
+            'aliPayCode' => null,
+            'contact' => null,
+            'shareLogo' => null,
             'qRCodeLogo' => 'https://api.dafanjia.com/chao_hui_wan_tui_jian.png',
             'followLogo' => 'http://p8c9lk5xz.bkt.clouddn.com/%E7%BB%843@2x.png',
-            'xcxShare' => 'nothing',
+            'xcxShare' => null,
             'showAdvert' => 0,
-            'advertValue' => 'nothing',
+            'advertValue' => null,
             'xcxTitle' => '游戏盒子'
         ];
         $data = [
