@@ -23,3 +23,7 @@ Route::get('/gamestrategy/{appletId}','GameStrategyController@getItemByAppletId'
 
 //游戏攻略首页
 Route::get('/gamehome','HomeController@getHomeDatas');
+
+//过审状态
+Route::get('/wechatapplet','WechatAppletController@showLists');
+Route::post('/wechatapplet/getitem','WechatAppletController@getItemByAppid');
