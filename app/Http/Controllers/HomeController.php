@@ -85,7 +85,7 @@ class HomeController extends Controller
     {
         $insideData = [
             'aliPayCode' => null,
-            'contact' => null,
+            'contact' => " ",
             'shareLogo' => null,
             'qRCodeLogo' => 'https://api.dafanjia.com/chao_hui_wan_tui_jian.png',
             'followLogo' => 'http://p8c9lk5xz.bkt.clouddn.com/%E7%BB%843@2x.png',
