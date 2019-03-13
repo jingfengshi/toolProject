@@ -77,7 +77,8 @@ class HomeController extends Controller
             'followLogo' => 'http://p8c9lk5xz.bkt.clouddn.com/%E7%BB%843@2x.png',
             'xcxShare' => 'nothing',
             'showAdvert' => 0,
-            'advertValue' => 'nothing'
+            'advertValue' => 'nothing',
+            'xcxTitle' => '游戏盒子'
         ];
         $data = [
             'code' => 100,
