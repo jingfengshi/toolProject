@@ -24,9 +24,9 @@ class HomeController extends Controller
         $arr = ['id', 'type', 'typeValue', 'typeLogo'];
         $data = GameType::all($arr);
         foreach ($data as $key => $value) {
-            if ($value['type']) {
-                $gameDatas = $this->getGamesByType($value['type']);
-                switch ($value['type']) {
+            if ($value['typeValue']) {
+                $gameDatas = $this->getGamesByType($value['typeValue']);
+                switch ($value['typeValue']) {
                     case 1 :
                         $value['typeValue'] = '小游戏精选';
                         break;
