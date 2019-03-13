@@ -26,6 +26,20 @@ class HomeController extends Controller
         foreach ($data as $key => $value) {
             if ($value['type']) {
                 $gameDatas = $this->getGamesByType($value['type']);
+                switch ($value['type']) {
+                    case 1 :
+                        $value['typeValue'] = '小游戏精选';
+                        break;
+                    case 2:
+                        $value['typeValue'] = '热门小游戏';
+                        break;
+                    case 3:
+                        $value['typeValue'] = '独家代理';
+                        break;
+                    case 4:
+                        $value['typeValue'] = '热门游戏推荐';
+                        break;
+                }
                 if (!$gameDatas->isEmpty()) {
                     $value['lists'] = $gameDatas;
                 } else {

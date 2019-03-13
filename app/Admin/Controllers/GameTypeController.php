@@ -84,7 +84,18 @@ class GameTypeController extends Controller
 
         $grid->id('Id');
         $grid->type('Type');
-        $grid->typeValue('TypeValue');
+        $grid->typeValue('TypeValue')->display(function ($typeValue) {
+            switch ($typeValue) {
+                case 1 :
+                    return '小游戏精选';
+                case 2:
+                    return '热门小游戏';
+                case 3:
+                    return '独家代理';
+                case 4:
+                    return '热门游戏推荐';
+            }
+        });
         $grid->typeLogo('TypeLogo');
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');
