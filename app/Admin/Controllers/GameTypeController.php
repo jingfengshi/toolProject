@@ -24,8 +24,8 @@ class GameTypeController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('类别')
+            ->description('游戏类别')
             ->body($this->grid());
     }
 
@@ -97,8 +97,8 @@ class GameTypeController extends Controller
             }
         });
         $grid->typeLogo('TypeLogo');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+//        $grid->created_at('Created at');
+//        $grid->updated_at('Updated at');
 
         return $grid;
     }
@@ -143,9 +143,9 @@ class GameTypeController extends Controller
     {
         $form = new Form(new GameType);
 
-        $form->text('type', 'Type');
-        $form->select('typeValue')->options(['1' => '小游戏精选', '2' => '热门小游戏', '3' => '独家代理', '4' => '热门游戏推荐']);
-        $form->text('typeLogo', 'TypeLogo');
+        $form->text('type', 'Type')->required(true);
+        $form->select('typeValue')->options(['1' => '小游戏精选', '2' => '热门小游戏', '3' => '独家代理', '4' => '热门游戏推荐'])->required(true);
+        $form->text('typeLogo', 'TypeLogo')->required(true);
 
         return $form;
     }

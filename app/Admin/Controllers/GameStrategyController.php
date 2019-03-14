@@ -29,8 +29,8 @@ class GameStrategyController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('攻略')
+            ->description('游戏攻略')
             ->body($this->grid());
     }
 
@@ -89,11 +89,23 @@ class GameStrategyController extends Controller
 
         $grid->id('Id');
         $grid->appletId('AppletId');
-        $grid->titleImg('TitleImg');
+        $grid->titleImg('TitleImg')->display(function ($url) {
+            if ($url && strlen($url) > 15) {
+                return substr($url, 0, 12).'...';
+            } else {
+                return $url;
+            }
+        });;
         $grid->titleName('TitleName');
-        $grid->content('Content');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+        $grid->content('Content')->display(function ($content) {
+            if ($content && mb_strlen($content) > 15) {
+                return mb_substr($content, 0, 12).'...';
+            } else {
+                return $content;
+            }
+        });
+//        $grid->created_at('Created at');
+//        $grid->updated_at('Updated at');
 
         return $grid;
     }
@@ -129,8 +141,8 @@ class GameStrategyController extends Controller
         $form = new Form(new GameStrategy);
 
         $form->text('appletId', 'AppletId');
-        $form->text('titleImg', 'TitleImg');
-        $form->text('titleName', 'TitleName');
+        $form->text('titleImg', 'TitleImg')->required(true);
+        $form->text('titleName', 'TitleName')->required(true);
         $form->textarea('content', 'Content');
 
         return $form;

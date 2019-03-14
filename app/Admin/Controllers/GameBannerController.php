@@ -24,8 +24,8 @@ class GameBannerController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('轮播图')
+            ->description('轮播图')
             ->body($this->grid());
     }
 
@@ -83,25 +83,49 @@ class GameBannerController extends Controller
         $grid = new Grid(new GameBanner);
 
         $grid->id('Id');
-        $grid->url('Url');
+        $grid->url('Url')->display(function ($url) {
+            if ($url && strlen($url) > 15) {
+                return substr($url, 0, 12).'...';
+            } else {
+                return $url;
+            }
+        });
         $grid->jumpId('JumpId');
         $grid->ghId('GhId');
-        $grid->jumpUrl('JumpUrl');
+        $grid->jumpUrl('JumpUrl')->display(function ($url) {
+            if ($url && strlen($url) > 15) {
+                return substr($url, 0, 12).'...';
+            } else {
+                return $url;
+            }
+        });
         $grid->jumpAppId('JumpAppId');
-        $grid->bannerUrl('BannerUrl');
+        $grid->bannerUrl('BannerUrl')->display(function ($url) {
+            if ($url && strlen($url) > 15) {
+                return substr($url, 0, 12).'...';
+            } else {
+                return $url;
+            }
+        });
         $grid->introduce('Introduce');
         $grid->jumpType('JumpType');
         $grid->jumpName('JumpName');
         $grid->display('Display');
         $grid->extraData('ExtraData');
         $grid->clickNub('ClickNub');
-        $grid->logo('Logo');
+        $grid->logo('Logo')->display(function ($url) {
+            if ($url && strlen($url) > 15) {
+                return substr($url, 0, 12).'...';
+            } else {
+                return $url;
+            }
+        });
         $grid->clickRate('ClickRate');
         $grid->tabLogo('TabLogo');
         $grid->sort('Sort');
         $grid->jumpGhId('JumpGhId');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+//        $grid->created_at('Created at');
+//        $grid->updated_at('Updated at');
 
         return $grid;
     }
@@ -149,23 +173,23 @@ class GameBannerController extends Controller
     {
         $form = new Form(new GameBanner);
 
-        $form->url('url', 'Url');
-        $form->text('jumpId', 'JumpId');
-        $form->text('ghId', 'GhId');
+        $form->url('url', 'Url')->required(true);
+        $form->text('jumpId', 'JumpId')->required(true);
+        $form->text('ghId', 'GhId')->required(true);
         $form->text('jumpUrl', 'JumpUrl');
-        $form->text('jumpAppId', 'JumpAppId');
-        $form->text('bannerUrl', 'BannerUrl');
+        $form->text('jumpAppId', 'JumpAppId')->required(true);
+        $form->text('bannerUrl', 'BannerUrl')->required(true);
         $form->textarea('introduce', 'Introduce');
-        $form->text('jumpType', 'JumpType');
-        $form->text('jumpName', 'JumpName');
-        $form->text('display', 'Display');
+        $form->text('jumpType', 'JumpType')->required(true);
+        $form->text('jumpName', 'JumpName')->required(true);
+        $form->text('display', 'Display')->required(true);
         $form->text('extraData', 'ExtraData');
-        $form->text('clickNub', 'ClickNub');
-        $form->text('logo', 'Logo');
-        $form->text('clickRate', 'ClickRate');
+        $form->text('clickNub', 'ClickNub')->required(true);
+        $form->text('logo', 'Logo')->required(true);
+        $form->text('clickRate', 'ClickRate')->required(true);
         $form->text('tabLogo', 'TabLogo');
         $form->text('sort', 'Sort');
-        $form->text('jumpGhId', 'JumpGhId');
+        $form->text('jumpGhId', 'JumpGhId')->required(true);
 
         return $form;
     }

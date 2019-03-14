@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\WechatApplet;
-use function EasyWeChat\Kernel\data_to_array;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;

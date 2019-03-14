@@ -24,8 +24,8 @@ class GamesController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('游戏')
+            ->description('游戏列表')
             ->body($this->grid());
     }
 
@@ -91,14 +91,20 @@ class GamesController extends Controller
         $grid->jumpAppId('JumpAppId');
         $grid->clickNub('ClickNub');
         $grid->introduce('Introduce');
-        $grid->logo('Logo');
+        $grid->logo('Logo')->display(function ($content) {
+            if ($content && mb_strlen($content) > 15) {
+                return mb_substr($content, 0, 12).'...';
+            } else {
+                return $content;
+            }
+        });
         $grid->jumpName('JumpName');
         $grid->aliasName('AliasName');
         $grid->jumpType('JumpType');
         $grid->extraData('ExtraData');
         $grid->jumpGhId('JumpGhId');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+//        $grid->created_at('Created at');
+//        $grid->updated_at('Updated at');
 
         return $grid;
     }
@@ -154,20 +160,20 @@ class GamesController extends Controller
     {
         $form = new Form(new Games);
 
-        $form->text('location_index', 'Location index');
-        $form->select('type')->options(['1' => '小游戏精选', '2' => '热门小游戏', '3' => '独家代理', '4' => '热门游戏推荐']);
-        $form->text('ghId', 'GhId');
-        $form->text('jumpId', 'JumpId');
-        $form->text('typeId','TypeId');
-        $form->text('jumpAppId', 'JumpAppId');
-        $form->text('clickNub', 'ClickNub');
+        $form->text('location_index', 'Location index')->required(true);
+        $form->select('type')->options(['1' => '小游戏精选', '2' => '热门小游戏', '3' => '独家代理', '4' => '热门游戏推荐'])->required(true);
+        $form->text('ghId', 'GhId')->required(true);
+        $form->text('jumpId', 'JumpId')->required(true);
+        $form->text('typeId','TypeId')->required(true);
+        $form->text('jumpAppId', 'JumpAppId')->required(true);
+        $form->text('clickNub', 'ClickNub')->required(true);
         $form->textarea('introduce', 'Introduce');
-        $form->text('logo', 'Logo');
-        $form->text('jumpName', 'JumpName');
-        $form->text('aliasName', 'AliasName');
-        $form->text('jumpType', 'JumpType');
+        $form->text('logo', 'Logo')->required(true);
+        $form->text('jumpName', 'JumpName')->required(true);
+        $form->text('aliasName', 'AliasName')->required(true);
+        $form->text('jumpType', 'JumpType')->required(true);
         $form->textarea('extraData', 'ExtraData');
-        $form->text('jumpGhId', 'JumpGhId');
+        $form->text('jumpGhId', 'JumpGhId')->required(true);
 
         return $form;
     }

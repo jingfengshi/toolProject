@@ -23,8 +23,8 @@ class WechatAppletController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('过审')
+            ->description('过审状态')
             ->body($this->grid());
     }
 
@@ -136,8 +136,8 @@ class WechatAppletController extends Controller
     {
         $form = new Form(new WechatApplet);
 
-        $form->text('appid', 'Appid');
-        $form->text('name', 'Name');
+        $form->text('appid', 'Appid')->required(true);
+        $form->text('name', 'Name')->required(true);
         $form->switch('status', 'Status');
 
         return $form;
