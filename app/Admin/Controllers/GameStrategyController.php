@@ -99,7 +99,7 @@ class GameStrategyController extends Controller
         $grid->titleName('TitleName');
         $grid->content('Content')->display(function ($content) {
             if ($content && mb_strlen($content) > 15) {
-                return mb_substr($content, 0, 12).'...';
+                return htmlspecialchars(mb_substr($content, 0, 12)).'...';
             } else {
                 return $content;
             }

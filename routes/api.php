@@ -27,6 +27,3 @@ Route::get('/gamehome','HomeController@getHomeDatas');
 //过审状态
 Route::get('/wechatapplet','WechatAppletController@showLists');
 Route::post('/wechatapplet/getitem','WechatAppletController@getItemByAppid');
-
-//图片获取
-Route::get('/imgsys/{name}','ImgsysController@getImg');

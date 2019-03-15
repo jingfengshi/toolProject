@@ -18,7 +18,8 @@
         "overtrue/laravel-wechat": "~4.0",
         "php-http/curl-client": "^1.7",
         "sentry/sentry-laravel": "1.0.0-beta1",
-        "zgldh/qiniu-laravel-storage": "^0.10.0"
+        "zgldh/qiniu-laravel-storage": "^0.10.0",
+        "ext-curl": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
