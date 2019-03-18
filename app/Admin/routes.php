@@ -106,4 +106,8 @@ Route::group([
     $router->put('games/{id}', 'GamesController@update');
     $router->delete('games/{id}', 'GamesController@destroy');
 
+    //微信短连接
+    $router->get('wxshortdomain', 'WxShortDomainController@wxShortDomain');
+    $router->post('wxshortdomain', 'WxShortDomainController@store');
+
 });
