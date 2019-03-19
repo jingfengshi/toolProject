@@ -138,7 +138,7 @@ class WxShortDomainController extends Controller
 
     public function wxShortDomain(Request $request, Content $content)
     {
-        $content->header('短域名管理');
+        $content->header('微信短域名管理');
         $content->description('将长域名转为短域名');
         $content->body($this->form($request));
         return $content->body($this->grid());
