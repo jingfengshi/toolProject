@@ -195,7 +195,7 @@ class WxShortDomainController extends Controller
         $form->saving(function (Form $form) use ($request) {
             $app = app('wechat.official_account');
             for ($i = 0; $i < $form->generate_number; $i++) {
-                $res = $app->url->shorten('https://easywechat.com');
+                $res = $app->url->shorten($form->origin_url);
                 $form->short_url .= $res['short_url'] . ',';
             }
             $form->short_url = mb_substr($form->short_url, 0, mb_strlen($form->short_url) - 1);
