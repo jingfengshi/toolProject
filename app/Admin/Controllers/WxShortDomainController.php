@@ -193,12 +193,9 @@ class WxShortDomainController extends Controller
         $form->disableEditingCheck();
         $form->disableCreatingCheck();
         $form->saving(function (Form $form) use ($request) {
-            $access_token = $this->getAccessToken();
-            $data = '{"action":"long2short","long_url":' . '"' . $form->origin_url . '"}';
-            $url = "https://api.weixin.qq.com/cgi-bin/shorturl?access_token={$access_token}";
-
+            $app = app('wechat.official_account');
             for ($i = 0; $i < $form->generate_number; $i++) {
-                $res = $this->requestPost($url, $data);
+                $res = $app->url->shorten('https://easywechat.com');
                 $form->short_url .= $res['short_url'] . ',';
             }
             $form->short_url = mb_substr($form->short_url, 0, mb_strlen($form->short_url) - 1);
@@ -208,77 +205,5 @@ class WxShortDomainController extends Controller
         });
 
         return $form;
-    }
-
-    /**
-     * 获取access_token
-     * @param string $token_file
-     * @return bool|false|string
-     */
-    public function getAccessToken($token_file = './access_token')
-    {
-        // 考虑过期问题，将获取的access_token存储到某个文件中
-        $life_time = 7200;
-        if (file_exists($token_file) && time() - filemtime($token_file) < $life_time) {
-            // 存在有效的access_token
-            return file_get_contents($token_file);
-        }
-        // 目标URL：
-        $wechat = config('wechat.official_account.default');
-        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$wechat['app_id']}&secret={$wechat['secret']}";
-
-        //向该URL，发送GET请求
-        $result = $this->requestGet($url);
-        if (!$result) {
-            return false;
-        }
-
-        // 写入
-        file_put_contents($token_file, $result['access_token']);
-        return $result->access_token;
-    }
-
-    /**
-     * 获取post请求数据
-     * @param $url
-     * @param $params
-     * @return mixed
-     */
-    public function requestPost($url, $params)
-    {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 60);
-        // https请求 不验证证书和hosts
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length:' . strlen($params)));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($ch);
-        curl_close($ch);
-        return json_decode($output, true);
-    }
-
-    /**
-     * get请求
-     * @param string $url
-     * @return mixed
-     */
-    private function requestGet(string $url)
-    {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        $res = curl_exec($ch);
-        return json_decode($res, true);
     }
 }
