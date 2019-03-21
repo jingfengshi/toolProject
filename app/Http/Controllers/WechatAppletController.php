@@ -26,9 +26,44 @@ class WechatAppletController extends Controller
      */
     public function getItemByAppid()
     {
+        $appSecret = env(ACCOUNT_SECRET, '');
         $arr = ['appid', 'name', 'status'];
         $appid = Input::get('appid');
-        $data = DB::table('wechat_applet')->where('appid', $appid)->select($arr)->first();
+        $params = array(
+            "appid" => $appid,
+            "timestamp" => Input::get('timestamp'),
+        );
+
+        if ($this->signature($params, $appSecret) == Input::get('sign')) {
+            $data = DB::table('wechat_applet')->where('appid', $appid)->select($arr)->first();
+            if ($data['status']) {
+                $data['url'] = 'https://m.bosijuu.com/detail/4779/1132123/2967/1.html';
+                $data['imgUrl'] = 'https://toolproject.jinhuyingke03.com/image/xiaoshuo.jpg';
+            }
+        } else {
+            $data = array(
+                'msg'=>'签名验证失败'
+            );
+        }
+
         return response()->json($data);
+    }
+
+    /**
+     * 签名
+     * @param $params
+     * @param $accessSecret
+     * @return string
+     */
+    public static function signature($params, $accessSecret)
+    {
+        ksort($params);
+        $stringToSign = '';
+
+        foreach ($params as $key => $val) {
+            $stringToSign .= $val;
+        }
+        $stringToSign .= $accessSecret;
+        return md5($stringToSign, false);
     }
 }
