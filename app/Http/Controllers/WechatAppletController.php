@@ -33,11 +33,11 @@ class WechatAppletController extends Controller
             "appid" => $appid,
             "timestamp" => Input::get('timestamp'),
         );
-
         if ($this->signature($params, $appSecret) == Input::get('sign')) {
-            $data = DB::table('wechat_applet')->where('appid', $appid)->select($arr)->first();
+            $data = DB::table('wechat_applet')->where('appid', 'wx1563d1fe8a291349')->select($arr)->first();
+
             if (!is_array($data)) {
-                $data = json_decode($data);
+                $data = get_object_vars($data);
             }
 
             if ($data['status']) {
