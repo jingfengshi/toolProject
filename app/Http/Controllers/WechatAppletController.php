@@ -36,6 +36,10 @@ class WechatAppletController extends Controller
 
         if ($this->signature($params, $appSecret) == Input::get('sign')) {
             $data = DB::table('wechat_applet')->where('appid', $appid)->select($arr)->first();
+            if (!is_array($data)) {
+                $data = json_decode($data);
+            }
+
             if ($data['status']) {
                 $data['url'] = 'https://m.bosijuu.com/detail/4779/1132123/2967/1.html';
                 $data['imgUrl'] = 'https://toolproject.jinhuyingke03.com/image/xiaoshuo.jpg';
