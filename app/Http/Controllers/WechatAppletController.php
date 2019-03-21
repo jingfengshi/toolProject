@@ -26,7 +26,7 @@ class WechatAppletController extends Controller
      */
     public function getItemByAppid()
     {
-        $appSecret = env(ACCOUNT_SECRET, '');
+        $appSecret = env('ACCOUNT_SECRET', '');
         $arr = ['appid', 'name', 'status'];
         $appid = Input::get('appid');
         $params = array(
