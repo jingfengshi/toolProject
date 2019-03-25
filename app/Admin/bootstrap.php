@@ -18,4 +18,14 @@
  *
  */
 
+use Encore\Admin\Admin;
+
 Encore\Admin\Form::forget(['map', 'editor']);
+
+Admin::js('/vendor/jcrop/js/jquery.color.js');
+Admin::js('/vendor/jcrop/js/jquery.Jcrop.js');
+Admin::css('/vendor/jcrop/css/jquery.Jcrop.css');
+
+
+Admin::js('/vendor/layui-v2.4.5/layui/layui.js');
+Admin::css('/vendor/layui-v2.4.5/layui/css/layui.css');

@@ -110,4 +110,18 @@ Route::group([
     $router->get('wxshortdomain', 'WxShortDomainController@wxShortDomain');
     $router->post('wxshortdomain', 'WxShortDomainController@store');
 
+
+
+    //图片处理
+    $router->get('/template/allTemplates','TemplatesController@allTemplates');
+    $router->resource('/template','TemplatesController');
+
+    $router->get('/poster/download/{id}','PosterController@download');
+
+    $router->resource('/poster','PosterController');
+
+    $router->resource('/code','CodesController');
+
+
+
 });

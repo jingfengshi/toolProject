@@ -59,3 +59,8 @@ Route::get('wechat_image', function () {
 });
 
 Route::any('/wechat', 'WeChatController@serve');
+Route::any('/qrcode', function(){
+    return \SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->generate('aaa','./1.png');
+});
+
+
