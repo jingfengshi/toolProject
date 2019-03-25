@@ -27,3 +27,6 @@ Route::get('/gamehome','HomeController@getHomeDatas');
 //过审状态
 Route::get('/wechatapplet','WechatAppletController@showLists');
 Route::post('/wechatapplet/getitem','WechatAppletController@getItemByAppid');
+
+//微信小程序
+Route::get('/wechatverify','WechartVerifyController@valid');
