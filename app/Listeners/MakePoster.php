@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
-class MakePoster implements ShouldQueue
+class MakePoster
 {
     /**
      * Create the event listener.
