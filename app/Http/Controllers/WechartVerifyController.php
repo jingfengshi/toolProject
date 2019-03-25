@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use EasyWeChat\Kernel\Messages\Image;
 use Illuminate\Http\Request;
 
 class WechartVerifyController extends Controller
@@ -9,12 +10,20 @@ class WechartVerifyController extends Controller
     //用于小程序后台第一步验证返回，验证成功后便可注释
     public function valid()
     {
-//        $appid = 'wxbb67ce9bccb96eb3';
-//        $AppSecret = ' 26746350f5fd21c1a0d14d8f231dee6f';
-        $echoStr = $_GET["echostr"];
-        if ($this->checkSignature()) {
-            echo $echoStr;
-            exit;
+//        $echoStr = $_GET["echostr"];
+//        if ($this->checkSignature()) {
+//            echo $echoStr;
+//            exit;
+//        }
+
+        if (isset($_GET['echostr'])) {
+            $echoStr = $_GET["echostr"];
+            if ($this->checkSignature()) {
+                echo $echoStr;
+                exit;
+            }
+        } else {
+            $this->responseMsg();
         }
     }
 
@@ -34,5 +43,28 @@ class WechartVerifyController extends Controller
         } else {
             return false;
         }
+    }
+
+    public function responseMsg()
+    {
+        // {
+        //    "media_id":MEDIA_ID,
+        //    "url":URL
+        // }
+        $app = app('wechat.official_account');
+        $app->server->push(function ($message) use ($app) {
+
+            //上传图片
+            $result = $app->material->uploadImage("/public/image/xcxqrcode.png");
+            if ($result && $result['media-id']) {
+                return new Image($result['media-id']);
+            } else {
+                return '';
+            }
+        });
+
+        // 在 laravel 中：
+        $response = $app->server->serve();
+        return $response;
     }
 }
