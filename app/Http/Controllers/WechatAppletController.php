@@ -15,7 +15,7 @@ class WechatAppletController extends Controller
      */
     public function showLists()
     {
-        $arr = ['appid', 'name', 'status'];
+        $arr = ['appid', 'name', 'status', 'alias', 'domain'];
         $data = WechatApplet::all($arr);
         return response()->json($data);
     }
@@ -27,7 +27,7 @@ class WechatAppletController extends Controller
     public function getItemByAppid()
     {
         $appSecret = env('ACCOUNT_SECRET', '');
-        $arr = ['appid', 'name', 'status', 'alias'];
+        $arr = ['appid', 'name', 'status', 'alias', 'domain'];
         $appid = Input::get('appid');
         $params = array(
             "appid" => $appid,
@@ -46,7 +46,7 @@ class WechatAppletController extends Controller
             }
         } else {
             $data = array(
-                'msg'=>'签名验证失败'
+                'msg' => '签名验证失败'
             );
         }
 
