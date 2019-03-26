@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Models\GameStrategy;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
+use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
@@ -143,7 +144,8 @@ class GameStrategyController extends Controller
         $form->text('appletId', 'AppletId');
         $form->image('titleImg', 'TitleImg')->required(true);
         $form->text('titleName', 'TitleName')->required(true);
-        $form->summernote('content');
+       // $form->summernote('content')->attribute(['id'=>'myid']);
+        $form->ueditor('content', 'content');
         return $form;
     }
 
@@ -167,4 +169,6 @@ class GameStrategyController extends Controller
         $this->form()->destroy($id);
         return redirect('/admin/gamestrategy');
     }
+
+
 }

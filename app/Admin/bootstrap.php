@@ -18,10 +18,15 @@
  *
  */
 
+use App\Admin\Extensions\UEditor;
 use Encore\Admin\Admin;
+use Encore\Admin\Form;
+
 
 Encore\Admin\Form::forget(['map', 'editor']);
 
+
+Form::extend('ueditor', UEditor::class);
 Admin::js('/vendor/jcrop/js/jquery.color.js');
 Admin::js('/vendor/jcrop/js/jquery.Jcrop.js');
 Admin::css('/vendor/jcrop/css/jquery.Jcrop.css');
