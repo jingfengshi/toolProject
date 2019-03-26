@@ -29,4 +29,4 @@ Route::get('/wechatapplet','WechatAppletController@showLists');
 Route::post('/wechatapplet/getitem','WechatAppletController@getItemByAppid');
 
 //微信小程序
-Route::get('/wechatverify','WechartVerifyController@valid');
+Route::any('/wechatverify','WechartVerifyController@valid');
