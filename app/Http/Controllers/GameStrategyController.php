@@ -18,20 +18,22 @@ class GameStrategyController extends Controller
      * 获取所有游戏攻略
      * @return \Illuminate\Http\JsonResponse
      */
-    public function showlists() {
-        $arr = ['appletId','titleImg','titleName','content'];
+    public function showlists()
+    {
+        $arr = ['id', 'appletId', 'titleImg', 'titleName', 'content'];
         $data = GameStrategy::all($arr);
         return response()->json($data);
     }
 
     /**
      *根据appletId获取单条数据
-     * @param $appletId
+     * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getItemByAppletId($appletId) {
-        $arr = ['appletId','titleImg','titleName','content'];
-        $data = DB::table('game_strategy')->where('appletId',$appletId)->select($arr)
+    public function getItemById($id)
+    {
+        $arr = ['id', 'appletId', 'titleImg', 'titleName', 'content'];
+        $data = DB::table('game_strategy')->where('id', $id)->select($arr)
             ->first();
         return response()->json($data);
     }
