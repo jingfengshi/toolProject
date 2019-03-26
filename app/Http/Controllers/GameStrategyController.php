@@ -22,6 +22,7 @@ class GameStrategyController extends Controller
     {
         $arr = ['id', 'appletId', 'titleImg', 'titleName', 'content'];
         $data = GameStrategy::all($arr);
+
         return response()->json($data);
     }
 
