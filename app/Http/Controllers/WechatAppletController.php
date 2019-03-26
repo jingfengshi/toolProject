@@ -42,7 +42,7 @@ class WechatAppletController extends Controller
 
             if ($data['status']) {
                 $data['url'] = 'https://m.zhenzumei.com/detail/4779/1135310/9578/1.html';
-                $data['imgUrl'] = 'https://toolproject.jinhuyingke03.com/image/xiaoshuo.jpg';
+                $data['imgUrl'] = 'https://toolproject.jinhuyingke03.com/image/xiaoshuo01.jpg';
             }
         } else {
             $data = array(
