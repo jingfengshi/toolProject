@@ -11,6 +11,10 @@
 |
 */
 
+use EasyWeChat\Factory;
+use EasyWeChat\Kernel\Messages\Message;
+use EasyWeChat\Kernel\Messages\Text;
+
 Route::get('/', function () {
 
     if (isset($_GET['url'])) {
@@ -60,6 +64,17 @@ Route::get('wechat_image', function () {
 
 Route::any('/wechat', 'WeChatController@serve');
 Route::any('/qrcode', function(){
+    $this->app = Factory::miniProgram($config);
+    $server = $this->app->server;
+    $app = $this->app;
+
+    $server->push(function ($message) use ($app) {
+        $resp = new Text('你好');
+
+        return $resp;
+    }, Message::ALL);
+
+    $server->serve()->send();
     return \SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->generate('aaa','./1.png');
 });
 

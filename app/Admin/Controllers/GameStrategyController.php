@@ -141,10 +141,9 @@ class GameStrategyController extends Controller
         $form = new Form(new GameStrategy);
 
         $form->text('appletId', 'AppletId');
-        $form->text('titleImg', 'TitleImg')->required(true);
+        $form->image('titleImg', 'TitleImg')->required(true);
         $form->text('titleName', 'TitleName')->required(true);
-        $form->textarea('content', 'Content');
-
+        $form->summernote('content');
         return $form;
     }
 

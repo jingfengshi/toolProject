@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use EasyWeChat;
+use EasyWeChat\Kernel\Messages\Text;
+
 class WeChatController extends Controller
 {
 
@@ -10,7 +12,8 @@ class WeChatController extends Controller
     {
         $app = app('wechat.official_account');
         $app->server->push(function($message){
-            return "欢迎关注！";
+            $text = new Text('dfsafsdfsdf');
+            return $text;
         });
 
         return $app->server->serve();
