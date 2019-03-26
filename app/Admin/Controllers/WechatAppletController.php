@@ -38,8 +38,8 @@ class WechatAppletController extends Controller
     public function show($id, Content $content)
     {
         return $content
-            ->header('Detail')
-            ->description('description')
+            ->header('过审')
+            ->description('过审状态')
             ->body($this->detail($id));
     }
 
@@ -53,8 +53,8 @@ class WechatAppletController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Edit')
-            ->description('description')
+            ->header('过审状态')
+            ->description('过审状态')
             ->body($this->form()->edit($id));
     }
 
@@ -67,8 +67,8 @@ class WechatAppletController extends Controller
     public function create(Content $content)
     {
         return $content
-            ->header('Create')
-            ->description('description')
+            ->header('过审状态')
+            ->description('过审状态')
             ->body($this->form());
     }
 
@@ -84,6 +84,8 @@ class WechatAppletController extends Controller
         $grid->id('Id');
         $grid->appid('Appid');
         $grid->name('名字');
+        $grid->alias('别名');
+        $grid->domain('域名');
         $grid->status('过审')->display(
             function ($status) {
                 if ($status) {
@@ -111,6 +113,8 @@ class WechatAppletController extends Controller
 
         $show->id('Id');
         $show->appid('Appid');
+        $show->alias('别名');
+        $show->domain('域名');
         $show->name('名字');
         $show->status('过审')->as(
             function ($status) {
@@ -137,7 +141,9 @@ class WechatAppletController extends Controller
         $form = new Form(new WechatApplet);
 
         $form->text('appid', 'Appid')->required(true);
-        $form->text('name', 'Name')->required(true);
+        $form->text('name', '名字')->required(true);
+        $form->text('alias', '别名')->required(true);
+        $form->text('domain', '域名')->required(true);
         $form->switch('status', 'Status');
 
         return $form;

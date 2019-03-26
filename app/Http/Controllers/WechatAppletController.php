@@ -15,7 +15,7 @@ class WechatAppletController extends Controller
      */
     public function showLists()
     {
-        $arr = ['appid', 'name', 'status'];
+        $arr = ['appid', 'name', 'status', 'alias', 'domain'];
         $data = WechatApplet::all($arr);
         return response()->json($data);
     }
@@ -27,7 +27,7 @@ class WechatAppletController extends Controller
     public function getItemByAppid()
     {
         $appSecret = env('ACCOUNT_SECRET', '');
-        $arr = ['appid', 'name', 'status', 'alias'];
+        $arr = ['appid', 'name', 'status', 'alias', 'domain'];
         $appid = Input::get('appid');
         $params = array(
             "appid" => $appid,
@@ -41,12 +41,12 @@ class WechatAppletController extends Controller
             }
 
             if ($data['status']) {
-                $data['url'] = 'https://m.bosijuu.com/detail/4779/1132123/2967/1.html';
-                $data['imgUrl'] = 'https://toolproject.jinhuyingke03.com/image/xiaoshuo.jpg';
+                $data['url'] = 'https://m.zhenzumei.com/detail/4779/1135310/9578/1.html';
+                $data['imgUrl'] = 'https://toolproject.jinhuyingke03.com/image/xiaoshuo02.jpg';
             }
         } else {
             $data = array(
-                'msg'=>'签名验证失败'
+                'msg' => '签名验证失败'
             );
         }
 
