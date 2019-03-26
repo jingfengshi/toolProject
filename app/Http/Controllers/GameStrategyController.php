@@ -31,10 +31,10 @@ class GameStrategyController extends Controller
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getItemById($id)
+    public function getItemByAppletId($appletId)
     {
         $arr = ['id', 'appletId', 'titleImg', 'titleName', 'content'];
-        $data = DB::table('game_strategy')->where('id', $id)->select($arr)
+        $data = DB::table('game_strategy')->where('appletId', $appletId)->select($arr)
             ->first();
         return response()->json($data);
     }

@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //游戏攻略过审首页
 Route::get('/gamestrategy','GameStrategyController@showlists');
-Route::get('/gamestrategy/{id}','GameStrategyController@getItemById');
+Route::get('/gamestrategy/{appletId}','GameStrategyController@getItemByAppletId');
 
 //游戏攻略首页
 Route::get('/gamehome','HomeController@getHomeDatas');
