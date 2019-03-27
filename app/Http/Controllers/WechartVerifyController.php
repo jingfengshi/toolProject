@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use EasyWeChat\Kernel\Messages\Image;
 use Illuminate\Http\Request;
-
+use EasyWeChat\Kernel\Messages\Text;
+use EasyWeChat\Kernel\Messages\Link;
 class WechartVerifyController extends Controller
 {
     //用于小程序后台第一步验证返回，验证成功后便可注释
@@ -51,16 +52,15 @@ class WechartVerifyController extends Controller
         //    "media_id":MEDIA_ID,
         //    "url":URL
         // }
-        $app = app('wechat.official_account');
+        $app = app('wechat.mini_program');
         $app->server->push(function ($message) use ($app) {
-
-            //上传图片
-            $result = $app->material->uploadImage("/public/image/xcxqrcode.png");
-            if ($result && $result['media-id']) {
-                return new Image($result['media-id']);
-            } else {
-                return '';
-            }
+                $resp = new Link([
+                     'title' => '欢迎点击查看全文',
+                      'description' => '关注【浩然书城】公众号，查看更多免费小数',
+                       'thumb_url'=>'https://toolproject.jinhuyingke03.com/image/qrcodethumb.jpg',
+                      'url' => 'https://toolproject.jinhuyingke03.com/image/erweima.jpg']);
+               return $app->customer_service->message($resp)->to($message['FromUserName'])->send();  
+               return $resp;
         });
 
         // 在 laravel 中：
