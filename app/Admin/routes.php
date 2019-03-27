@@ -106,6 +106,15 @@ Route::group([
     $router->put('games/{id}', 'GamesController@update');
     $router->delete('games/{id}', 'GamesController@destroy');
 
+    //消息管理
+    $router->get('messagetemplate', 'MessageTemplateController@index');
+    $router->post('messagetemplate', 'MessageTemplateController@store');
+    $router->get('messagetemplate/create', 'MessageTemplateController@create');
+    $router->get('messagetemplate/{id}', 'MessageTemplateController@show');
+    $router->get('messagetemplate/{id}/edit', 'MessageTemplateController@edit');
+    $router->put('messagetemplate/{id}', 'MessageTemplateController@update');
+    $router->delete('messagetemplate/{id}', 'MessageTemplateController@destroy');
+
     //微信短连接
     $router->get('wxshortdomain', 'WxShortDomainController@wxShortDomain');
     $router->post('wxshortdomain', 'WxShortDomainController@store');
