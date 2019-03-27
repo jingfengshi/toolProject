@@ -82,7 +82,12 @@ class WechatAppletController extends Controller
         $grid = new Grid(new WechatApplet);
 
         $grid->id('Id');
+        $grid->gh_id('Ghid');
         $grid->appid('Appid');
+        $grid->appsecret('Appsecret');
+        $grid->aeskey('Aeskey');
+        $grid->token('Token');
+
         $grid->name('名字');
         $grid->alias('别名');
         $grid->domain('域名');
@@ -95,8 +100,8 @@ class WechatAppletController extends Controller
                 }
             }
         );
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+//        $grid->created_at('Created at');
+//        $grid->updated_at('Updated at');
 
         return $grid;
     }
@@ -111,8 +116,11 @@ class WechatAppletController extends Controller
     {
         $show = new Show(WechatApplet::findOrFail($id));
 
-        $show->id('Id');
+        $show->gh_id('Ghid');
         $show->appid('Appid');
+        $show->appsecret('Appsecret');
+        $show->aeskey('Aeskey');
+        $show->token('Token');
         $show->alias('别名');
         $show->domain('域名');
         $show->name('名字');
@@ -125,8 +133,8 @@ class WechatAppletController extends Controller
                 }
             }
         );
-        $show->created_at('Created at');
-        $show->updated_at('Updated at');
+//        $show->created_at('Created at');
+//        $show->updated_at('Updated at');
 
         return $show;
     }
@@ -140,7 +148,11 @@ class WechatAppletController extends Controller
     {
         $form = new Form(new WechatApplet);
 
+        $form->text('gh_id', 'Ghid')->required(true);
         $form->text('appid', 'Appid')->required(true);
+        $form->text('appsecret', 'Appsecret')->required(true);
+        $form->text('aeskey', 'Aeskey')->required(true);
+        $form->text('token', 'Token')->required(true);
         $form->text('name', '名字')->required(true);
         $form->text('alias', '别名')->required(true);
         $form->text('domain', '域名')->required(true);
