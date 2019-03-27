@@ -142,7 +142,7 @@ class GameStrategyController extends Controller
         $form = new Form(new GameStrategy);
 
         $form->text('appletId', 'AppletId');
-        $form->image('titleImg', 'TitleImg')->required(true);
+        $form->image('titleImg', 'TitleImg');
         $form->text('titleName', 'TitleName')->required(true);
        // $form->summernote('content')->attribute(['id'=>'myid']);
         $form->ueditor('content', 'content');
