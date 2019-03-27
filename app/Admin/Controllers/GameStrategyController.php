@@ -88,7 +88,7 @@ class GameStrategyController extends Controller
     {
         $grid = new Grid(new GameStrategy);
 
-        $grid->id('Id');
+        $grid->id('Id')->sortable();
         $grid->appletId('AppletId');
         $grid->titleImg('TitleImg')->display(function ($url) {
             if ($url && strlen($url) > 15) {
@@ -107,7 +107,7 @@ class GameStrategyController extends Controller
         });
 //        $grid->created_at('Created at');
 //        $grid->updated_at('Updated at');
-
+        $grid->model()->orderBy('id','desc');
         return $grid;
     }
 
