@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use EasyWeChat\Factory;
 use EasyWeChat\Kernel\Messages\Image;
 use EasyWeChat\Kernel\Messages\MiniProgramPage;
 use Illuminate\Http\Request;
