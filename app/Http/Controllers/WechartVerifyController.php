@@ -82,8 +82,8 @@ class WechartVerifyController extends Controller
                 $resp = new Link([
                     'title' => '欢迎点击查看全文',
                     'description' => '关注【浩然书城】公众号，查看更多免费小数',
-                    'thumb_url'=>'https://toolproject.jinhuyingke03.com/image/qrcodethumb.jpg',
-                    'url' => 'https://toolproject.jinhuyingke03.com/image/erweima.jpg']);
+                    'thumb_url' => 'https://toolproject.jinhuyingke03.com/image/qrcodethumb.jpg',
+                    'url' => 'https://toolproject.jinhuyingke03.com/image/qrcode.jpg']);
             } else {
                 $data = get_object_vars($data);
                 switch ($data['type']) {
