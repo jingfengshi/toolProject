@@ -131,6 +131,9 @@ Route::group([
 
     $router->resource('/code','CodesController');
 
+    //域名购买
+    $router->get('domainregistration', 'DomainRegistrationController@domainRegistration');
+    $router->post('domainregistration', 'DomainRegistrationController@store');
 
 
 });
