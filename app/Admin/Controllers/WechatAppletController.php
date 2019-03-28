@@ -100,6 +100,7 @@ class WechatAppletController extends Controller
                 }
             }
         );
+        $grid->expandFilter();
 //        $grid->created_at('Created at');
 //        $grid->updated_at('Updated at');
         $grid->filter(function($filter){
@@ -109,8 +110,15 @@ class WechatAppletController extends Controller
 
             // 在这里添加字段过滤器
             $filter->like('name', '小程序名字');
-            $filter->scope('status', '已过审')->where('status', 1);
-            $filter->scope('status', '未过审')->where('status', 1);
+//            $filter->scope('status', '已过审')->where('status', 1);
+//            $filter->scope('status', '未过审')->where('status', 1);
+//            $filter->equal('status', '过审状态')->select([0 => '未过审', 1=>'已过审']);
+
+            $filter->equal('status', '过审状态')->radio([
+                '' => '所有',
+                0    => '未过审',
+                1    => '已过审',
+            ]);
 
         });
 
