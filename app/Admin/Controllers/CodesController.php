@@ -86,8 +86,7 @@ class CodesController extends Controller
     protected function grid()
     {
         $grid = new Grid(new Code);
-        $grid->id('ID')->sortable();
-        $grid->urls()->expand(function($model){
+        $grid->id('ID')->sortable()->expand(function($model){
             $code_items=new CodeItem();
             $items=$code_items->where('code_id',$model->id)->get()->map(function($codeItem){
                 return collect($codeItem)->map(function($item,$key){
@@ -102,7 +101,12 @@ class CodesController extends Controller
             });
             return new Table(['ID', '域名', '二维码链接','创建时间'], $items->toArray());
         });
-        $grid->column('code_images','二维码包');
+        $grid->urls()->display(function($url){
+            return "<textarea>$url </textarea>";
+        });;
+        $grid->column('code_images','二维码包')->display(function($code_images){
+            return "<textarea>$code_images </textarea>";
+        });
         $grid->created_at('创建时间');
         $grid->updated_at('修改时间');
         $grid->disableExport();
