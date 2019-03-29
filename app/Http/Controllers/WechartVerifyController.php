@@ -79,11 +79,25 @@ class WechartVerifyController extends Controller
             $where = array('gh_id' => $message['ToUserName'], 'status' => 1);
             $data = DB::table('message_template')->where($where)->select()->first();
             if (!$data) {
-                $resp = new Link([
-                    'title' => '欢迎点击查看全文',
-                    'description' => '关注【浩然书城】公众号，查看更多免费小数',
-                    'thumb_url' => 'https://toolproject.jinhuyingke03.com/image/qrcodethumb.jpg',
-                    'url' => 'https://toolproject.jinhuyingke03.com/image/qrcode.jpg']);
+                $data = DB::table('message_template')->select()->first();
+                $domain = 'https://toolproject.jinhuyingke03.com/upload/';
+                if (!$data) {
+                    $resp = new Link([
+                        'title' => '欢迎点击查看全文',
+                        'description' => '关注【浩然书城】公众号，查看更多免费小数',
+                        'thumb_url' => 'https://toolproject.jinhuyingke03.com/image/qrcodethumb.jpg',
+                        'url' => 'https://toolproject.jinhuyingke03.com/image/qrcode.jpg'
+                    ]);
+                } else {
+                    Log::info($data);
+                    $data = get_object_vars($data);
+                    $resp = new Link([
+                        'title' => $data['title'],
+                        'description' => $data['description'],
+                        'thumb_url' => $domain . $data['thumb_url'],
+                        'url' => $domain . $data['url']
+                    ]);
+                }
             } else {
                 $data = get_object_vars($data);
                 switch ($data['type']) {

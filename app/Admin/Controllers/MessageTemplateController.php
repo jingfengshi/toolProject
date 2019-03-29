@@ -81,27 +81,38 @@ class MessageTemplateController extends Controller
     {
         $grid = new Grid(new MessageTemplate);
 
-        $grid->id('Id');
-        $grid->gh_id('Gh id');
-        $grid->type('Type');
-        $grid->content('Content');
-        $grid->media_id('Media id');
-        $grid->title('Title');
-        $grid->description('Description');
-        $grid->url('Url');
-        $grid->thumb_url('Thumb url');
-        $grid->pagepath('Pagepath');
+//        $grid->id('Id');
+//        $grid->gh_id('Gh id');
+//        $grid->type('Type');
+//        $grid->content('Content');
+//        $grid->media_id('Media id');
+        $grid->title('标题');
+        $grid->description('描述');
+        $grid->url('跳转图片');
+        $grid->thumb_url('缩略图');
+//        $grid->pagepath('Pagepath');
 //        $grid->created_at('Created at');
 //        $grid->updated_at('Updated at');
-        $grid->status('启用')->display(
-            function ($status) {
-                if ($status) {
-                    return '是';
-                } else {
-                    return '否';
-                }
-            }
-        );
+//        $grid->status('启用')->display(
+//            function ($status) {
+//                if ($status) {
+//                    return '是';
+//                } else {
+//                    return '否';
+//                }
+//            }
+//        );
+        $grid->actions(function ($actions) {
+            $actions->disableDelete();
+//            $actions->disableEdit();
+            $actions->disableView();
+        });
+        $grid->disableCreateButton();
+        $grid->disablePagination();
+        $grid->disableFilter();
+        $grid->disableExport();
+        $grid->disableRowSelector();
+        $grid->model()->orderBy('id', 'desc');
         return $grid;
     }
 
@@ -149,19 +160,27 @@ class MessageTemplateController extends Controller
     {
         $form = new Form(new MessageTemplate);
 
-        $form->text('gh_id', 'Gh id')->required(true);
+//        $form->text('gh_id', 'Gh id')->required(true);
+        $form->hidden('gh_id');
 
-        $options=array('text'=>'文本消息', 'image'=>'图片消息', 'link'=>'图文链接', 'miniprogrampage'=>'卡片消息');
-        $form->select('type', 'Type')->options($options)->required(true);
+//        $options=array('text'=>'文本消息', 'image'=>'图片消息', 'link'=>'图文链接', 'miniprogrampage'=>'卡片消息');
+//        $form->select('type', 'Type')->options($options)->required(true);
+        $form->hidden('type');
 
-        $form->text('content', 'Content');
-        $form->text('media_id', 'Media id');
-        $form->text('title', 'Title');
-        $form->text('description', 'Description');
-        $form->url('url', 'Url');
-        $form->text('thumb_url', 'Thumb url');
-        $form->text('pagepath', 'Pagepath');
-        $form->switch('status', '启用');
+//        $form->text('content', 'Content');
+        $form->hidden('content');
+//        $form->text('media_id', 'Media id');
+        $form->hidden('media_id');
+        $form->text('title', '标题');
+        $form->text('description', '描述');
+//        $form->text('thumb_url', '缩略图');
+        $form->image('thumb_url', '缩略图')->uniqueName();
+//        $form->url('url', '跳转图片');
+        $form->image('url', '跳转图片')->uniqueName();
+//        $form->text('pagepath', 'Pagepath');
+        $form->hidden('pagepath');
+//        $form->switch('status', '启用');
+        $form->hidden('status');
 
         return $form;
     }
