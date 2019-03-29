@@ -63,7 +63,9 @@ class DomainRegistrationController extends Controller
         $grid->dns_taskid('解析任务码');
         $grid->created_at('创建时间');
 //        $grid->updated_at('Updated at');
-        $grid->model()->orderBy('id','desc');
+        $grid->disableActions();
+        $grid->disableCreateButton();
+        $grid->model()->orderBy('id', 'desc');
         return $grid;
     }
 
@@ -117,7 +119,7 @@ class DomainRegistrationController extends Controller
                         }
 
                     } else {
-                        break;
+                        continue;
                     }
                 }
 
@@ -155,17 +157,22 @@ class DomainRegistrationController extends Controller
                 DB::table('domain_registration')->insert($insertDatas);
             } else {
                 $error = new MessageBag([
-                    'title'   => '提示',
-                    'message' => '执行失败',
+                    'title' => '提示',
+                    'message' => '执行失败，请重试',
                 ]);
                 return back()->with(compact('error'));
             }
             $success = new MessageBag([
-                'title'   => '提示',
-                'message' => '执行成功，请刷新',
+                'title' => '提示',
+                'message' => '执行成功',
             ]);
             return back()->with(compact('success'));
         });
+        $form->disableEditingCheck();
+
+        $form->disableCreatingCheck();
+
+        $form->disableViewCheck();
         return $form;
     }
 
