@@ -89,7 +89,7 @@ class WechartVerifyController extends Controller
                         'url' => 'https://toolproject.jinhuyingke03.com/image/qrcode.jpg'
                     ]);
                 } else {
-                    Log::info($data);
+//                    Log::info($data);
                     $data = get_object_vars($data);
                     $resp = new Link([
                         'title' => $data['title'],

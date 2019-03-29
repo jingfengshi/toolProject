@@ -182,6 +182,12 @@ class MessageTemplateController extends Controller
 //        $form->switch('status', '启用');
         $form->hidden('status');
 
+        $form->disableEditingCheck();
+
+        $form->disableCreatingCheck();
+
+        $form->disableViewCheck();
+
         return $form;
     }
 }
