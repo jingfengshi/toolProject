@@ -125,7 +125,7 @@ Route::group([
     $router->get('/template/allTemplates','TemplatesController@allTemplates');
     $router->resource('/template','TemplatesController');
 
-    $router->get('/poster/download/{id}','PosterController@download');
+    $router->get('/poster/download','PosterController@download');
     $router->get('/poster/download_package/{id}','PosterController@downloadPackage');
 
 

@@ -204,9 +204,7 @@ class PosterController extends Controller
 
     public function download(Request $request)
     {
-
-
-        return Storage::disk('qiniu')->download($request->id);
+        return Storage::disk('qiniu')->download($request->url);
     }
 
 
@@ -284,7 +282,7 @@ class PosterController extends Controller
          })       
          $('.poster_button').on('click',function(){
             var url =$(this).data('url');
-            window.location.href='/admin/poster/download/'+url
+            window.location.href='/admin/poster/download/?url='+url
          }) 
          
          
