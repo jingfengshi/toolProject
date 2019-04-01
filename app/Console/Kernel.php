@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\FillMiniProData;
 use App\Console\Commands\ImportGames;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -14,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        ImportGames::class
+        ImportGames::class,
+        FillMiniProData::class
     ];
 
     /**
@@ -28,6 +30,8 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->command('CZadmin:sendWechatMessage')->everyMinute();
+//        $schedule->command('command:fillminiprodata')->daily();
+        $schedule->command('command:fillminiprodata')->everyMinute();
     }
 
     /**

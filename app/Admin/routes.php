@@ -139,5 +139,6 @@ Route::group([
     $router->get('domainregistration', 'DomainRegistrationController@domainRegistration');
     $router->post('domainregistration', 'DomainRegistrationController@store');
 
-
+    //小程序数据
+    $router->get('dailysummary', 'DailySummaryController@index');
 });

@@ -102,7 +102,7 @@ class WechatAppletController extends Controller
         );
         $grid->expandFilter();
 //        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+        $grid->updated_at('更新时间');
         $grid->filter(function($filter){
 
             // 去掉默认的id过滤器
@@ -121,7 +121,7 @@ class WechatAppletController extends Controller
             ]);
 
         });
-
+        $grid->model()->orderBy('id', 'desc');
 
         return $grid;
     }
