@@ -84,13 +84,13 @@ class WechatAppletController extends Controller
         $grid->id('Id');
         $grid->gh_id('Ghid');
         $grid->appid('Appid');
-        $grid->appsecret('Appsecret');
-        $grid->aeskey('Aeskey');
-        $grid->token('Token');
+//        $grid->appsecret('Appsecret');
+//        $grid->aeskey('Aeskey');
+//        $grid->token('Token');
 
         $grid->name('名字');
         $grid->alias('别名');
-        $grid->domain('域名');
+//        $grid->domain('域名');
         $grid->status('过审')->display(
             function ($status) {
                 if ($status) {
@@ -102,7 +102,7 @@ class WechatAppletController extends Controller
         );
         $grid->expandFilter();
 //        $grid->created_at('Created at');
-//        $grid->updated_at('Updated at');
+        $grid->updated_at('Updated at');
         $grid->filter(function($filter){
 
             // 去掉默认的id过滤器
@@ -175,7 +175,7 @@ class WechatAppletController extends Controller
         $form->text('token', 'Token')->required(true);
         $form->text('name', '名字')->required(true);
         $form->text('alias', '别名')->required(true);
-        $form->text('domain', '域名')->required(true);
+        $form->text('domain', '域名')->required(true)->default('https://toolproject.jinhuyingke03.com');
         $form->switch('status', 'Status');
 
         return $form;
