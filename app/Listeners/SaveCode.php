@@ -32,7 +32,6 @@ class SaveCode
 
         $codeToUrl=new DomainsToCode($code->urls);
         $res=$codeToUrl->formatUrls()->urlToCode();
-        \Log::error(json_encode($res));
         $codes=trim($res['codes'],',');
         DB::table('codes')->where('id',$code->id)->update([
             'code_images'=>$codes

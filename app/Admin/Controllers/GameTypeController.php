@@ -157,6 +157,8 @@ class GameTypeController extends Controller
      */
     public function update($id, Request $request)
     {
+
+
         $this->form()->update($id, $request->all());
         return redirect('/admin/gametype');
     }
