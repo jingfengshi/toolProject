@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\DailySummary;
 use EasyWeChat\Factory;
+use EasyWeChat\Kernel\Exceptions\HttpException;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -54,7 +55,13 @@ class FillMiniProData extends Command
                 ];
                 Log::info('$config', $config);
                 $app = Factory::miniProgram($config);
-                $this->getAnalysisDailySummary($app, $value['gh_id']);
+                try{
+                    $this->getAnalysisDailySummary($app, $value['gh_id']);
+                } catch (HttpException $httpException) {
+                    Log::error($httpException->getMessage());
+                } catch (\Exception $exception) {
+                    Log::error($exception->getMessage());
+                }
             }
         }
     }
