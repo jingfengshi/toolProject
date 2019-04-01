@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DailySummary extends Model
 {
     protected $table = 'daily_summary';
-    protected $fillable = ['ref_date','visit_total', 'share_pv', 'share_uv', 'created_at'];
+    protected $fillable = ['gh_id', 'ref_date','visit_total', 'share_pv', 'share_uv', 'created_at'];
 
     public function wechat_applet()
     {

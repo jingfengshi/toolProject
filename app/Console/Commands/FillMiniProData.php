@@ -71,6 +71,7 @@ class FillMiniProData extends Command
         Log::info('$result:', $result);
         if ($result && $result['list'] && $result['list'][0]) {
             $insertData = $result['list'][0];
+            $insertData['gh_id'] = $gh_id;
             DailySummary::updateOrCreate(['gh_id' => $gh_id], $insertData);
         }
     }
