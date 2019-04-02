@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Models\DailySummary;
+use App\Models\DailyVisitTrend;
+use App\Models\WeeklyVisitTrend;
 use EasyWeChat\Factory;
 use EasyWeChat\Kernel\Exceptions\HttpException;
 use Illuminate\Console\Command;
@@ -43,7 +45,8 @@ class FillMiniProData extends Command
     public function handle()
     {
         $select = ['gh_id', 'appid', 'appsecret', 'token', 'aeskey'];
-        $data = DB::table('wechat_applet')->select($select)->get();
+        $where = ['status'=>1];
+        $data = DB::table('wechat_applet')->select($select)->where($where)->get();
         if ($data->isNotEmpty()) {
             foreach ($data as $value) {
                 $value = get_object_vars($value);
@@ -57,6 +60,8 @@ class FillMiniProData extends Command
                 $app = Factory::miniProgram($config);
                 try{
                     $this->getAnalysisDailySummary($app, $value['gh_id']);
+                    $this->getAnalysisDailyVisitTrend($app, $value['gh_id']);
+                    $this->getAnalysisWeeklyVisitTrend($app, $value['gh_id']);
                 } catch (HttpException $httpException) {
                     Log::error($httpException->getMessage());
                 } catch (\Exception $exception) {
@@ -76,11 +81,17 @@ class FillMiniProData extends Command
         $dateStr = date("Ymd", strtotime("-1 day"));
         $result = $app->data_cube->summaryTrend($dateStr, $dateStr);
         Log::info('$result:', $result);
-        if ($result && $result['list'] && $result['list'][0]) {
+        if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
             $insertData = $result['list'][0];
             $insertData['gh_id'] = $gh_id;
-            DailySummary::updateOrCreate(['gh_id' => $gh_id], $insertData);
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
+        } else {
+            $insertData = [];
+            $insertData['gh_id'] = $gh_id;
+            $insertData['ref_date'] = $dateStr;
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
         }
+        DailySummary::updateOrCreate(['gh_id' => $gh_id], $insertData);
     }
 
     /**
@@ -93,9 +104,40 @@ class FillMiniProData extends Command
         $dateStr = date("Ymd", strtotime("-1 day"));
         $result = $app->data_cube->dailyVisitTrend($dateStr, $dateStr);
         Log::info('$result:', $result);
-        if ($result && $result['list'] && $result['list'][0]) {
+        if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
             $insertData = $result['list'][0];
-            DailySummary::updateOrCreate(['gh_id' => $gh_id], $insertData);
+            $insertData['gh_id'] = $gh_id;
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
+        } else {
+            $insertData = [];
+            $insertData['gh_id'] = $gh_id;
+            $insertData['ref_date'] = $dateStr;
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
         }
+        DailyVisitTrend::updateOrInsert(['gh_id' => $gh_id], $insertData);
+    }
+
+    /**
+     * 获取用户访问小程序数据周趋势
+     * @param $app
+     * @param $gh_id
+     */
+    private function getAnalysisWeeklyVisitTrend($app, $gh_id)
+    {
+        $lastMonday= date('Ymd', strtotime('-2 monday', time()));
+        $lastSunday= date('Ymd', strtotime('-1 sunday', time()));
+        $result = $app->data_cube->weeklyVisitTrend($lastMonday, $lastSunday);
+        Log::info('$result:', $result);
+        if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
+            $insertData = $result['list'][0];
+            $insertData['gh_id'] = $gh_id;
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
+        } else {
+            $insertData = [];
+            $insertData['gh_id'] = $gh_id;
+            $insertData['ref_date'] = $lastMonday . '-' . $lastSunday;
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
+        }
+        WeeklyVisitTrend::updateOrInsert(['gh_id' => $gh_id], $insertData);
     }
 }

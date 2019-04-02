@@ -30,8 +30,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->command('CZadmin:sendWechatMessage')->everyMinute();
-        $schedule->command('command:fillminiprodata')->daily();
-//        $schedule->command('command:fillminiprodata')->everyMinute();
+        $schedule->command('command:fillminiprodata')->dailyAt('03:00');
     }
 
     /**

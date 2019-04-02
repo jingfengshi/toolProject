@@ -140,5 +140,10 @@ Route::group([
     $router->post('domainregistration', 'DomainRegistrationController@store');
 
     //小程序数据
+    //概况
     $router->get('dailysummary', 'DailySummaryController@index');
+    //日趋势
+    $router->get('dailyvisittrend', 'DailyVisitTrendController@index');
+    //周趋势
+    $router->get('weeklyvisittrend', 'WeeklyVisitTrendController@index');
 });
