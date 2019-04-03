@@ -64,6 +64,7 @@ class FillMiniProData extends Command
                     $this->getAnalysisDailyVisitTrend($app, $value['gh_id']);
                     $this->getAnalysisWeeklyVisitTrend($app, $value['gh_id']);
                     $this->getMonthlyVisitTrend($app, $value['gh_id']);
+                    $this->getVisitPage($app, $value['gh_id']);
                 } catch (HttpException $httpException) {
                     Log::error($httpException->getMessage());
                 } catch (\Exception $exception) {
@@ -165,5 +166,32 @@ class FillMiniProData extends Command
             $insertData['updated_at'] = date('Y-m-d H:i:s');
         }
         MonthlyVisitTrend::updateOrInsert(['gh_id' => $gh_id], $insertData);
+    }
+
+    /**
+     * 获取用户访问小程序数据访问页面
+     * @param $app
+     * @param $gh_id
+     */
+    private function getVisitPage($app, $gh_id)
+    {
+        $dateStr = date("Ymd", strtotime("-1 day"));
+        $result = $app->data_cube->visitPage($dateStr, $dateStr);
+        Log::info('$result:', $result);
+        if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
+            foreach ($result['list'] as $data) {
+                $insertData = $data;
+                $insertData['gh_id'] = $gh_id;
+                $insertData['ref_date'] = $dateStr;
+                $insertData['updated_at'] = date('Y-m-d H:i:s');
+                DB::table('visit_page')->insert($insertData);
+            }
+        } else {
+            $insertData = [];
+            $insertData['gh_id'] = $gh_id;
+            $insertData['ref_date'] = $dateStr;
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
+            DB::table('visit_page')->insert($insertData);
+        }
     }
 }

@@ -148,4 +148,6 @@ Route::group([
     $router->get('weeklyvisittrend', 'WeeklyVisitTrendController@index');
     //月趋势
     $router->get('monthlyvisittrend', 'MonthlyVisitTrendController@index');
+    //访问页面
+    $router->get('visitpage', 'VisitPageController@index');
 });
