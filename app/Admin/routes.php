@@ -146,4 +146,6 @@ Route::group([
     $router->get('dailyvisittrend', 'DailyVisitTrendController@index');
     //周趋势
     $router->get('weeklyvisittrend', 'WeeklyVisitTrendController@index');
+    //月趋势
+    $router->get('monthlyvisittrend', 'MonthlyVisitTrendController@index');
 });

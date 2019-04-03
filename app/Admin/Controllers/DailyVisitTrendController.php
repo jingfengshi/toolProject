@@ -98,6 +98,11 @@ class DailyVisitTrendController extends Controller
         $grid->disableRowSelector();
         $grid->disableCreateButton();
 
+//        $grid->filter(function($filter){
+//            $filter->disableIdFilter();
+//            $filter->equal('ref_date')->datetime(['format' => 'YYYYMM']);
+//        });
+
         return $grid;
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\DailySummary;
+use App\Models\MonthlyVisitTrend;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -10,7 +10,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
-class DailySummaryController extends Controller
+class MonthlyVisitTrendController extends Controller
 {
     use HasResourceActions;
 
@@ -23,8 +23,8 @@ class DailySummaryController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('概况')
-            ->description('小程序概况')
+            ->header('Index')
+            ->description('获取用户访问小程序数据月趋势')
             ->body($this->grid());
     }
 
@@ -38,8 +38,8 @@ class DailySummaryController extends Controller
     public function show($id, Content $content)
     {
         return $content
-            ->header('概况')
-            ->description('小程序概况')
+            ->header('Detail')
+            ->description('获取用户访问小程序数据月趋势')
             ->body($this->detail($id));
     }
 
@@ -53,8 +53,8 @@ class DailySummaryController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('编辑')
-            ->description('小程序概况')
+            ->header('Edit')
+            ->description('获取用户访问小程序数据月趋势')
             ->body($this->form()->edit($id));
     }
 
@@ -67,8 +67,8 @@ class DailySummaryController extends Controller
     public function create(Content $content)
     {
         return $content
-            ->header('创建')
-            ->description('小程序概况')
+            ->header('Create')
+            ->description('获取用户访问小程序数据月趋势')
             ->body($this->form());
     }
 
@@ -79,26 +79,24 @@ class DailySummaryController extends Controller
      */
     protected function grid()
     {
-        $grid = new Grid(new DailySummary);
+        $grid = new Grid(new MonthlyVisitTrend);
 
         $grid->id('Id');
 //        $grid->gh_id('Ghid');
         $grid->column('wechat_applet.name', '名字');
         $grid->ref_date('日期');
-        $grid->visit_total('累计用户数');
-        $grid->share_pv('转发次数');
-        $grid->share_uv('转发人数');
+        $grid->session_cnt('打开次数');
+        $grid->visit_pv('访问次数');
+        $grid->visit_uv('访问人数');
+        $grid->visit_uv_new('新用户数');
+        $grid->stay_time_uv('人均停留时长(秒)');
+        $grid->stay_time_session('次均停留时长(秒)');
+        $grid->visit_depth('平均访问深度');
 //        $grid->created_at('Created at');
-//        $grid->updated_at('Updated at');
-
+        $grid->updated_at('更新时间');
         $grid->disableActions();
         $grid->disableRowSelector();
         $grid->disableCreateButton();
-
-//        $grid->filter(function($filter){
-//            $filter->disableIdFilter();
-//            $filter->equal('ref_date')->datetime(['format' => 'YYYYMMDD']);
-//        });
 
         return $grid;
     }
@@ -111,14 +109,18 @@ class DailySummaryController extends Controller
      */
     protected function detail($id)
     {
-        $show = new Show(DailySummary::findOrFail($id));
+        $show = new Show(MonthlyVisitTrend::findOrFail($id));
 
         $show->id('Id');
         $show->gh_id('Gh id');
         $show->ref_date('Ref date');
-        $show->visit_total('Visit total');
-        $show->share_pv('Share pv');
-        $show->share_uv('Share uv');
+        $show->session_cnt('Session cnt');
+        $show->visit_pv('Visit pv');
+        $show->visit_uv('Visit uv');
+        $show->visit_uv_new('Visit uv new');
+        $show->stay_time_uv('Stay time uv');
+        $show->stay_time_session('Stay time session');
+        $show->visit_depth('Visit depth');
         $show->created_at('Created at');
         $show->updated_at('Updated at');
 
@@ -132,13 +134,17 @@ class DailySummaryController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new DailySummary);
+        $form = new Form(new MonthlyVisitTrend);
 
         $form->text('gh_id', 'Gh id');
         $form->text('ref_date', 'Ref date');
-        $form->number('visit_total', 'Visit total');
-        $form->number('share_pv', 'Share pv');
-        $form->number('share_uv', 'Share uv');
+        $form->number('session_cnt', 'Session cnt');
+        $form->number('visit_pv', 'Visit pv');
+        $form->number('visit_uv', 'Visit uv');
+        $form->number('visit_uv_new', 'Visit uv new');
+        $form->decimal('stay_time_uv', 'Stay time uv')->default(0.00);
+        $form->decimal('stay_time_session', 'Stay time session')->default(0.00);
+        $form->decimal('visit_depth', 'Visit depth')->default(0.00);
 
         return $form;
     }

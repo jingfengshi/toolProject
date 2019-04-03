@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\DailySummary;
 use App\Models\DailyVisitTrend;
+use App\Models\MonthlyVisitTrend;
 use App\Models\WeeklyVisitTrend;
 use EasyWeChat\Factory;
 use EasyWeChat\Kernel\Exceptions\HttpException;
@@ -62,6 +63,7 @@ class FillMiniProData extends Command
                     $this->getAnalysisDailySummary($app, $value['gh_id']);
                     $this->getAnalysisDailyVisitTrend($app, $value['gh_id']);
                     $this->getAnalysisWeeklyVisitTrend($app, $value['gh_id']);
+                    $this->getMonthlyVisitTrend($app, $value['gh_id']);
                 } catch (HttpException $httpException) {
                     Log::error($httpException->getMessage());
                 } catch (\Exception $exception) {
@@ -139,5 +141,29 @@ class FillMiniProData extends Command
             $insertData['updated_at'] = date('Y-m-d H:i:s');
         }
         WeeklyVisitTrend::updateOrInsert(['gh_id' => $gh_id], $insertData);
+    }
+
+    /**
+     * 获取用户访问小程序数据月趋势
+     * @param $app
+     * @param $gh_id
+     */
+    private function getMonthlyVisitTrend($app, $gh_id)
+    {
+        $beginDate= date('Ymd', strtotime('-1 month', strtotime(date('Y-m', time()) . '-01 00:00:00')));
+        $endDate= date('Ymd', strtotime(date('Y-m', time()) . '-01 00:00:00') - 86400);
+        $result = $app->data_cube->monthlyVisitTrend($beginDate, $endDate);
+        Log::info('$result:', $result);
+        if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
+            $insertData = $result['list'][0];
+            $insertData['gh_id'] = $gh_id;
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
+        } else {
+            $insertData = [];
+            $insertData['gh_id'] = $gh_id;
+            $insertData['ref_date'] = date('Ym', strtotime('-1 month'));
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
+        }
+        MonthlyVisitTrend::updateOrInsert(['gh_id' => $gh_id], $insertData);
     }
 }
