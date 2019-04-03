@@ -115,6 +115,15 @@ Route::group([
     $router->put('messagetemplate/{id}', 'MessageTemplateController@update');
     $router->delete('messagetemplate/{id}', 'MessageTemplateController@destroy');
 
+    //小程序内容管理
+    $router->get('wechatcontent', 'WechatContentController@index');
+    $router->post('wechatcontent', 'WechatContentController@store');
+    $router->get('wechatcontent/create', 'WechatContentController@create');
+    $router->get('wechatcontent/{id}', 'WechatContentController@show');
+    $router->get('wechatcontent/{id}/edit', 'WechatContentController@edit');
+    $router->put('wechatcontent/{id}', 'WechatContentController@update');
+    $router->delete('wechatcontent/{id}', 'WechatContentController@destroy');
+
     //微信短连接
     $router->get('wxshortdomain', 'WxShortDomainController@wxShortDomain');
     $router->post('wxshortdomain', 'WxShortDomainController@store');

@@ -41,8 +41,13 @@ class WechatAppletController extends Controller
             }
 
             if ($data['status']) {
-                $data['url'] = 'https://m.zhenzumei.com/detail/4779/1135310/9578/1.html';
-                $data['imgUrl'] = 'https://toolproject.jinhuyingke03.com/image/xiaoshuo02.jpg';
+//                $data['url'] = 'https://m.zhenzumei.com/detail/4779/1135310/9578/1.html';
+//                $data['imgUrl'] = 'https://toolproject.jinhuyingke03.com/image/xiaoshuo02.jpg';
+                $wechatContent = DB::table('wechat_content')->select()->first();
+                $wechatContent = get_object_vars($wechatContent);
+                $data['url'] = $wechatContent['url'];
+                $data['imgUrl'] = $wechatContent['domain'] . '/upload/' . $wechatContent['imgUrl'];
+                $data['alias'] = $wechatContent['alias'];
             }
         } else {
             $data = array(
