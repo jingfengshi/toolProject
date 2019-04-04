@@ -85,10 +85,10 @@ class WeeklyVisitTrendController extends Controller
 //        $grid->gh_id('Ghid');
         $grid->column('wechat_applet.name', '名字');
         $grid->ref_date('日期');
+        $grid->visit_uv_new('新用户数')->sortable();
         $grid->session_cnt('打开次数')->sortable();
         $grid->visit_pv('访问次数')->sortable();
         $grid->visit_uv('访问人数')->sortable();
-        $grid->visit_uv_new('新用户数')->sortable();
         $grid->stay_time_uv('人均停留时长(秒)')->sortable();
         $grid->stay_time_session('次均停留时长(秒)')->sortable();
         $grid->visit_depth('平均访问深度');
@@ -97,7 +97,7 @@ class WeeklyVisitTrendController extends Controller
         $grid->disableActions();
         $grid->disableRowSelector();
         $grid->disableCreateButton();
-
+        $grid->model()->orderBy('visit_uv_new', 'desc');
         return $grid;
     }
 

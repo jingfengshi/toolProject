@@ -99,7 +99,7 @@ class DailySummaryController extends Controller
 //            $filter->disableIdFilter();
 //            $filter->equal('ref_date')->datetime(['format' => 'YYYYMMDD']);
 //        });
-
+        $grid->model()->orderBy('visit_total', 'desc');
         return $grid;
     }
 
