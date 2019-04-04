@@ -12,7 +12,7 @@ class GameFakerController extends Controller
     {
 
         $arr = ['id', 'appletId', 'banner_images', 'content_images'];
-        $data = DB::table('game_fakers')->where('appletId', $appletId)->select($arr)->get();
+        $data = DB::table('game_fakers')->where('appletId', $appletId)->select($arr)->first();
         return response()->json($data);
 
     }
