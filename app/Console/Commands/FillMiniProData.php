@@ -62,8 +62,6 @@ class FillMiniProData extends Command
                 try {
                     $this->getAnalysisDailySummary($app, $value['gh_id']);
                     $this->getAnalysisDailyVisitTrend($app, $value['gh_id']);
-                    $this->getAnalysisWeeklyVisitTrend($app, $value['gh_id']);
-                    $this->getMonthlyVisitTrend($app, $value['gh_id']);
                     $this->getVisitPage($app, $value['gh_id']);
                     $this->getUserPortrait($app, $value['gh_id']);
                 } catch (HttpException $httpException) {
@@ -95,7 +93,7 @@ class FillMiniProData extends Command
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
         }
-        DailySummary::updateOrCreate(['gh_id' => $gh_id], $insertData);
+        DailySummary::insert($insertData);
     }
 
     /**
@@ -118,55 +116,7 @@ class FillMiniProData extends Command
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
         }
-        DailyVisitTrend::updateOrInsert(['gh_id' => $gh_id], $insertData);
-    }
-
-    /**
-     * 获取用户访问小程序数据周趋势
-     * @param $app
-     * @param $gh_id
-     */
-    private function getAnalysisWeeklyVisitTrend($app, $gh_id)
-    {
-        $lastMonday = date('Ymd', strtotime('-2 monday', time()));
-        $lastSunday = date('Ymd', strtotime('-1 sunday', time()));
-        $result = $app->data_cube->weeklyVisitTrend($lastMonday, $lastSunday);
-        Log::info('$result:', $result);
-        if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
-            $insertData = $result['list'][0];
-            $insertData['gh_id'] = $gh_id;
-            $insertData['updated_at'] = date('Y-m-d H:i:s');
-        } else {
-            $insertData = [];
-            $insertData['gh_id'] = $gh_id;
-            $insertData['ref_date'] = $lastMonday . '-' . $lastSunday;
-            $insertData['updated_at'] = date('Y-m-d H:i:s');
-        }
-        WeeklyVisitTrend::updateOrInsert(['gh_id' => $gh_id], $insertData);
-    }
-
-    /**
-     * 获取用户访问小程序数据月趋势
-     * @param $app
-     * @param $gh_id
-     */
-    private function getMonthlyVisitTrend($app, $gh_id)
-    {
-        $beginDate = date('Ymd', strtotime('-1 month', strtotime(date('Y-m', time()) . '-01 00:00:00')));
-        $endDate = date('Ymd', strtotime(date('Y-m', time()) . '-01 00:00:00') - 86400);
-        $result = $app->data_cube->monthlyVisitTrend($beginDate, $endDate);
-        Log::info('$result:', $result);
-        if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
-            $insertData = $result['list'][0];
-            $insertData['gh_id'] = $gh_id;
-            $insertData['updated_at'] = date('Y-m-d H:i:s');
-        } else {
-            $insertData = [];
-            $insertData['gh_id'] = $gh_id;
-            $insertData['ref_date'] = date('Ym', strtotime('-1 month'));
-            $insertData['updated_at'] = date('Y-m-d H:i:s');
-        }
-        MonthlyVisitTrend::updateOrInsert(['gh_id' => $gh_id], $insertData);
+        DailyVisitTrend::insert($insertData);
     }
 
     /**

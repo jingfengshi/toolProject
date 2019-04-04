@@ -176,8 +176,8 @@ Route::group([
 
     //活跃用户画像-性别
     $router->get('userportraitgenderuv', 'UserPortraitGenderUVController@index');
-    //新用户画像-平台
+    //活跃用户画像-平台
     $router->get('userportraitplatformsuv', 'UserPortraitPlatformsUVController@index');
-    //新用户画像-年龄
+    //活跃用户画像-年龄
     $router->get('userportraitagesuv', 'UserPortraitAgesUVController@index');
 });
