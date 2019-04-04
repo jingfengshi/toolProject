@@ -148,6 +148,13 @@ Route::group([
     $router->get('domainregistration', 'DomainRegistrationController@domainRegistration');
     $router->post('domainregistration', 'DomainRegistrationController@store');
 
+
+
+
+    $router->resource('/gameFaker','GameFakersController');
+
+
+
     //小程序数据
     //概况
     $router->get('dailysummary', 'DailySummaryController@index');
@@ -159,4 +166,5 @@ Route::group([
     $router->get('monthlyvisittrend', 'MonthlyVisitTrendController@index');
     //访问页面
     $router->get('visitpage', 'VisitPageController@index');
+
 });
