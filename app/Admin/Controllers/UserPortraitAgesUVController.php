@@ -116,7 +116,7 @@ class UserPortraitAgesUVController extends Controller
 
             $doughnut = view('admin.chart.ages', compact('ages'));
 
-            return new Box('性别比例', $doughnut);
+            return new Box('年龄分布', $doughnut);
         });
 
         $grid->filter(function($filter){
