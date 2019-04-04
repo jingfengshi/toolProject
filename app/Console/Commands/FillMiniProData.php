@@ -60,10 +60,11 @@ class FillMiniProData extends Command
                 Log::info('$config', $config);
                 $app = Factory::miniProgram($config);
                 try {
-                    $this->getAnalysisDailySummary($app, $value['gh_id']);
-                    $this->getAnalysisDailyVisitTrend($app, $value['gh_id']);
-                    $this->getVisitPage($app, $value['gh_id']);
-                    $this->getUserPortrait($app, $value['gh_id']);
+                    $dateStr = date("Ymd", strtotime("-1 day"));
+                    $this->getAnalysisDailySummary($app, $value['gh_id'], $dateStr);
+                    $this->getAnalysisDailyVisitTrend($app, $value['gh_id'], $dateStr);
+                    $this->getVisitPage($app, $value['gh_id'], $dateStr);
+                    $this->getUserPortrait($app, $value['gh_id'], $dateStr);
                 } catch (HttpException $httpException) {
                     Log::error($httpException->getMessage());
                 } catch (\Exception $exception) {
@@ -78,9 +79,8 @@ class FillMiniProData extends Command
      * @param $app
      * @param $gh_id
      */
-    private function getAnalysisDailySummary($app, $gh_id)
+    private function getAnalysisDailySummary($app, $gh_id, $dateStr)
     {
-        $dateStr = date("Ymd", strtotime("-1 day"));
         $result = $app->data_cube->summaryTrend($dateStr, $dateStr);
         Log::info('$result:', $result);
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
@@ -101,9 +101,8 @@ class FillMiniProData extends Command
      * @param $app
      * @param $gh_id
      */
-    private function getAnalysisDailyVisitTrend($app, $gh_id)
+    private function getAnalysisDailyVisitTrend($app, $gh_id, $dateStr)
     {
-        $dateStr = date("Ymd", strtotime("-1 day"));
         $result = $app->data_cube->dailyVisitTrend($dateStr, $dateStr);
         Log::info('$result:', $result);
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
@@ -124,9 +123,8 @@ class FillMiniProData extends Command
      * @param $app
      * @param $gh_id
      */
-    private function getVisitPage($app, $gh_id)
+    private function getVisitPage($app, $gh_id, $dateStr)
     {
-        $dateStr = date("Ymd", strtotime("-1 day"));
         $result = $app->data_cube->visitPage($dateStr, $dateStr);
         Log::info('$result:', $result);
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
@@ -151,9 +149,8 @@ class FillMiniProData extends Command
      * @param $app
      * @param $gh_id
      */
-    private function getUserPortrait($app, $gh_id)
+    private function getUserPortrait($app, $gh_id, $dateStr)
     {
-        $dateStr = date("Ymd", strtotime("-1 day"));
         $result = $app->data_cube->userPortrait($dateStr, $dateStr);
         Log::info('$result:', $result);
         $this->getUserPortraitGenderNew($result, $gh_id, $dateStr);

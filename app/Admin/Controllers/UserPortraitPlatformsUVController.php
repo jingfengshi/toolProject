@@ -114,6 +114,11 @@ class UserPortraitPlatformsUVController extends Controller
             return new Box('平台分布', $doughnut);
         });
 
+        $grid->filter(function($filter){
+            $filter->disableIdFilter();
+            $filter->equal('ref_date', '日期')->datetime(['format' => 'YYYYMMDD']);
+        });
+
         return $grid;
     }
 

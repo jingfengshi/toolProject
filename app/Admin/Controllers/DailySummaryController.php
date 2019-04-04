@@ -95,10 +95,10 @@ class DailySummaryController extends Controller
         $grid->disableRowSelector();
         $grid->disableCreateButton();
 
-//        $grid->filter(function($filter){
-//            $filter->disableIdFilter();
-//            $filter->equal('ref_date')->datetime(['format' => 'YYYYMMDD']);
-//        });
+        $grid->filter(function($filter){
+            $filter->disableIdFilter();
+            $filter->equal('ref_date', '日期')->datetime(['format' => 'YYYYMMDD']);
+        });
         $grid->model()->orderBy('visit_total', 'desc');
         return $grid;
     }

@@ -98,6 +98,12 @@ class MonthlyVisitTrendController extends Controller
         $grid->disableRowSelector();
         $grid->disableCreateButton();
         $grid->model()->orderBy('visit_uv_new', 'desc');
+
+        $grid->filter(function($filter){
+            $filter->disableIdFilter();
+            $filter->equal('ref_date', '月份')->datetime(['format' => 'YYYYMM']);
+        });
+
         return $grid;
     }
 
