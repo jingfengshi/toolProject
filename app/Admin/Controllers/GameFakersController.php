@@ -152,7 +152,7 @@ class GameFakersController extends Controller
             $content_images=[];
             foreach ($form->model()->ori_content_images as $key=>$content_image){
 
-                $co=Image::make(public_path('upload').DIRECTORY_SEPARATOR.$content_image)->resize('60','60');
+                $co=Image::make(public_path('upload').DIRECTORY_SEPARATOR.$content_image)->resize('100','100');
                 $image_name=date('YmdHis').uniqid().'.png';
                 $co->save(public_path('upload').DIRECTORY_SEPARATOR.$image_name);
                 $content_images[]=[
