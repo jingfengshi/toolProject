@@ -30,6 +30,7 @@ class DomainRegistrationController extends Controller
 
     public function store(Request $request)
     {
+        set_time_limit(0);
         $this->form($request)->store();
         return redirect('/admin/domainregistration');
     }

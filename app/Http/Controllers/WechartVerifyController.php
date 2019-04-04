@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use EasyWeChat\Factory;
+use EasyWeChat\Kernel\Exceptions\InvalidArgumentException;
 use EasyWeChat\Kernel\Messages\Image;
 use EasyWeChat\Kernel\Messages\MiniProgramPage;
 use Illuminate\Http\Request;
@@ -127,7 +128,11 @@ class WechartVerifyController extends Controller
         });
 
         // 在 laravel 中：
-        $response = $app->server->serve();
-        return $response;
+        try {
+            $app->server->serve();
+        } catch (InvalidArgumentException $invalidArgumentException) {
+            Log::error($invalidArgumentException->getMessage());
+        }
+//        return $response;
     }
 }

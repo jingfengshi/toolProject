@@ -112,7 +112,7 @@ class MessageTemplateController extends Controller
         $grid->disableFilter();
         $grid->disableExport();
         $grid->disableRowSelector();
-        $grid->model()->orderBy('id', 'desc');
+//        $grid->model()->orderBy('id', 'desc');
         return $grid;
     }
 

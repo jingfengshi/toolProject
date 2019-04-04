@@ -115,6 +115,15 @@ Route::group([
     $router->put('messagetemplate/{id}', 'MessageTemplateController@update');
     $router->delete('messagetemplate/{id}', 'MessageTemplateController@destroy');
 
+    //小程序内容管理
+    $router->get('wechatcontent', 'WechatContentController@index');
+    $router->post('wechatcontent', 'WechatContentController@store');
+    $router->get('wechatcontent/create', 'WechatContentController@create');
+    $router->get('wechatcontent/{id}', 'WechatContentController@show');
+    $router->get('wechatcontent/{id}/edit', 'WechatContentController@edit');
+    $router->put('wechatcontent/{id}', 'WechatContentController@update');
+    $router->delete('wechatcontent/{id}', 'WechatContentController@destroy');
+
     //微信短连接
     $router->get('wxshortdomain', 'WxShortDomainController@wxShortDomain');
     $router->post('wxshortdomain', 'WxShortDomainController@store');
@@ -141,7 +150,21 @@ Route::group([
 
 
 
+
     $router->resource('/gameFaker','gameFakersController');
 
+
+
+    //小程序数据
+    //概况
+    $router->get('dailysummary', 'DailySummaryController@index');
+    //日趋势
+    $router->get('dailyvisittrend', 'DailyVisitTrendController@index');
+    //周趋势
+    $router->get('weeklyvisittrend', 'WeeklyVisitTrendController@index');
+    //月趋势
+    $router->get('monthlyvisittrend', 'MonthlyVisitTrendController@index');
+    //访问页面
+    $router->get('visitpage', 'VisitPageController@index');
 
 });
