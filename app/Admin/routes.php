@@ -140,4 +140,8 @@ Route::group([
     $router->post('domainregistration', 'DomainRegistrationController@store');
 
 
+
+    $router->resource('/gameFaker','gameFakersController');
+
+
 });
