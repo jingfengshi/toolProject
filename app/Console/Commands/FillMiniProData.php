@@ -93,7 +93,7 @@ class FillMiniProData extends Command
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
         }
-        DailySummary::insert($insertData);
+        DailySummary::updateOrCreate(['gh_id' => $gh_id], $insertData);
     }
 
     /**
