@@ -205,10 +205,13 @@ class FillMiniProData extends Command
     {
         $dateStr = date("Ymd", strtotime("-1 day"));
         $result = $app->data_cube->userPortrait($dateStr, $dateStr);
-//        Log::info('$result:', $result);
+        Log::info('$result:', $result);
         $this->getUserPortraitGenderNew($result, $gh_id, $dateStr);
         $this->getUserPortraitGenderPlatforms($result, $gh_id, $dateStr);
         $this->getUserPortraitGenderAges($result, $gh_id, $dateStr);
+        $this->getUserPortraitGenderUV($result, $gh_id, $dateStr);
+        $this->getUserPortraitGenderPlatformsUV($result, $gh_id, $dateStr);
+        $this->getUserPortraitGenderAgesUV($result, $gh_id, $dateStr);
     }
 
     /**
@@ -332,6 +335,127 @@ class FillMiniProData extends Command
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
             DB::table('wechat_user_portrait_ages')->insert($insertData);
+        }
+    }
+
+    /**
+     * 获取用户访问小程序数据活跃用户性别分布
+     * @param $result
+     * @param $gh_id
+     * @param $dateStr
+     */
+    private function getUserPortraitGenderUV($result, $gh_id, $dateStr)
+    {
+        if ($result && isset($result['visit_uv']['genders']) && $result['visit_uv']['genders']) {
+            $insertData = [];
+            $insertData['gh_id'] = $gh_id;
+            foreach ($result['visit_uv']['genders'] as $data) {
+                switch ($data['name']) {
+                    case '未知':
+                        $insertData['unknown'] = $data['value'];
+                        break;
+                    case '男':
+                        $insertData['male'] = $data['value'];
+                        break;
+                    case '女':
+                        $insertData['female'] = $data['value'];
+                        break;
+                }
+            }
+            $insertData['ref_date'] = $dateStr;
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
+            DB::table('wechat_user_portrait_genderuv')->insert($insertData);
+        } else {
+            $insertData = [];
+            $insertData['gh_id'] = $gh_id;
+            $insertData['ref_date'] = $dateStr;
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
+            DB::table('wechat_user_portrait_genderuv')->insert($insertData);
+        }
+    }
+
+    /**
+     * 获取用户访问小程序数据活跃用户平台分布
+     * @param $result
+     * @param $gh_id
+     * @param $dateStr
+     */
+    private function getUserPortraitGenderPlatformsUV($result, $gh_id, $dateStr)
+    {
+        if ($result && isset($result['visit_uv']['platforms']) && $result['visit_uv']['platforms']) {
+            $insertData = [];
+            $insertData['gh_id'] = $gh_id;
+            foreach ($result['visit_uv']['platforms'] as $data) {
+                switch ($data['name']) {
+                    case '其他':
+                        $insertData['other'] = $data['value'];
+                        break;
+                    case 'iPhone':
+                        $insertData['iphone'] = $data['value'];
+                        break;
+                    case 'Android':
+                        $insertData['android'] = $data['value'];
+                        break;
+                }
+            }
+            $insertData['ref_date'] = $dateStr;
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
+            Log::info('$insertData:', $insertData);
+            DB::table('wechat_user_portrait_platformsuv')->insert($insertData);
+        } else {
+            $insertData = [];
+            $insertData['gh_id'] = $gh_id;
+            $insertData['ref_date'] = $dateStr;
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
+            DB::table('wechat_user_portrait_platformsuv')->insert($insertData);
+        }
+    }
+
+    /**
+     * 获取用户访问小程序数据活跃用户年龄分布
+     * @param $result
+     * @param $gh_id
+     * @param $dateStr
+     */
+    private function getUserPortraitGenderAgesUV($result, $gh_id, $dateStr)
+    {
+        if ($result && isset($result['visit_uv']['ages']) && $result['visit_uv']['ages']) {
+            $insertData = [];
+            $insertData['gh_id'] = $gh_id;
+            foreach ($result['visit_uv']['ages'] as $data) {
+                switch ($data['name']) {
+                    case '未知':
+                        $insertData['unknown'] = $data['value'];
+                        break;
+                    case '17岁以下':
+                        $insertData['under17'] = $data['value'];
+                        break;
+                    case '18-24岁':
+                        $insertData['age18_24'] = $data['value'];
+                        break;
+                    case '25-29岁':
+                        $insertData['age25_29'] = $data['value'];
+                        break;
+                    case '30-39岁':
+                        $insertData['age30_39'] = $data['value'];
+                        break;
+                    case '40-49岁':
+                        $insertData['age40_49'] = $data['value'];
+                        break;
+                    case '50岁以上':
+                        $insertData['over50'] = $data['value'];
+                        break;
+                }
+            }
+            $insertData['ref_date'] = $dateStr;
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
+            DB::table('wechat_user_portrait_agesuv')->insert($insertData);
+        } else {
+            $insertData = [];
+            $insertData['gh_id'] = $gh_id;
+            $insertData['ref_date'] = $dateStr;
+            $insertData['updated_at'] = date('Y-m-d H:i:s');
+            DB::table('wechat_user_portrait_agesuv')->insert($insertData);
         }
     }
 

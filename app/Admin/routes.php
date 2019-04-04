@@ -173,4 +173,11 @@ Route::group([
     $router->get('userportraitplatformsnew', 'UserPortraitPlatformsController@index');
     //新用户画像-年龄
     $router->get('userportraitagesnew', 'UserPortraitAgesController@index');
+
+    //活跃用户画像-性别
+    $router->get('userportraitgenderuv', 'UserPortraitGenderUVController@index');
+    //新用户画像-平台
+    $router->get('userportraitplatformsuv', 'UserPortraitPlatformsUVController@index');
+    //新用户画像-年龄
+    $router->get('userportraitagesuv', 'UserPortraitAgesUVController@index');
 });
