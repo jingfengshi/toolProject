@@ -85,9 +85,9 @@ class DailySummaryController extends Controller
 //        $grid->gh_id('Ghid');
         $grid->column('wechat_applet.name', '名字');
         $grid->ref_date('日期');
-        $grid->visit_total('累计用户数');
-        $grid->share_pv('转发次数');
-        $grid->share_uv('转发人数');
+        $grid->visit_total('累计用户数')->sortable();
+        $grid->share_pv('转发次数')->sortable();
+        $grid->share_uv('转发人数')->sortable();
 //        $grid->created_at('Created at');
 //        $grid->updated_at('Updated at');
 

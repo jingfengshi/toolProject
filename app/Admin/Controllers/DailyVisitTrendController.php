@@ -85,12 +85,12 @@ class DailyVisitTrendController extends Controller
 //        $grid->gh_id('Ghid');
         $grid->column('wechat_applet.name', '名字');
         $grid->ref_date('日期');
-        $grid->session_cnt('打开次数');
-        $grid->visit_pv('访问次数');
-        $grid->visit_uv('访问人数');
-        $grid->visit_uv_new('新用户数');
-        $grid->stay_time_uv('人均停留时长(秒)');
-        $grid->stay_time_session('次均停留时长(秒)');
+        $grid->session_cnt('打开次数')->sortable();
+        $grid->visit_pv('访问次数')->sortable();
+        $grid->visit_uv('访问人数')->sortable();
+        $grid->visit_uv_new('新用户数')->sortable();
+        $grid->stay_time_uv('人均停留时长(秒)')->sortable();
+        $grid->stay_time_session('次均停留时长(秒)')->sortable();
         $grid->visit_depth('平均访问深度');
 //        $grid->created_at('Created at');
         $grid->updated_at('更新时间');
