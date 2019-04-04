@@ -96,6 +96,9 @@ class UserPortraitAgesController extends Controller
         $grid->over50('50岁以上');
 //        $grid->created_at('Created at');
         $grid->updated_at('更新时间');
+        $grid->disableActions();
+        $grid->disableRowSelector();
+        $grid->disableCreateButton();
 
         $grid->header(function ($query) {
 

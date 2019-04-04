@@ -97,6 +97,10 @@ class UserPortraitAgesUVController extends Controller
 //        $grid->created_at('Created at');
         $grid->updated_at('更新时间');
 
+        $grid->disableActions();
+        $grid->disableRowSelector();
+        $grid->disableCreateButton();
+
         $grid->header(function ($query) {
 
 //            $gender = $query->select(DB::raw('SUM(man) as m, wechat_user_portrait_gender'))

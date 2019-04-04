@@ -96,6 +96,10 @@ class UserPortraitGenderUVController extends Controller
         $grid->disableRowSelector();
         $grid->disableCreateButton();
 
+        $grid->disableActions();
+        $grid->disableRowSelector();
+        $grid->disableCreateButton();
+
         $grid->header(function ($query) {
 
 //            $gender = $query->select(DB::raw('SUM(man) as m, wechat_user_portrait_gender'))
