@@ -167,4 +167,10 @@ Route::group([
     //访问页面
     $router->get('visitpage', 'VisitPageController@index');
 
+    //新用户画像-性别
+    $router->get('userportraitgendernew', 'UserPortraitGenderController@index');
+    //新用户画像-平台
+    $router->get('userportraitplatformsnew', 'UserPortraitPlatformsController@index');
+    //新用户画像-年龄
+    $router->get('userportraitagesnew', 'UserPortraitAgesController@index');
 });
