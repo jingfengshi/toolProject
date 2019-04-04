@@ -151,7 +151,7 @@ Route::group([
 
 
 
-    $router->resource('/gameFaker','gameFakersController');
+    $router->resource('/gameFaker','GameFakersController');
 
 
 
