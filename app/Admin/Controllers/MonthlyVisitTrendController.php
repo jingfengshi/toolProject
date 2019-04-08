@@ -97,6 +97,7 @@ class MonthlyVisitTrendController extends Controller
         $grid->disableActions();
         $grid->disableRowSelector();
         $grid->disableCreateButton();
+        $grid->model()->orderBy('ref_date', 'desc');
         $grid->model()->orderBy('visit_uv_new', 'desc');
 
         $grid->filter(function($filter){

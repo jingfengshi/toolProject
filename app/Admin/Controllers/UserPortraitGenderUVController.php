@@ -25,8 +25,8 @@ class UserPortraitGenderUVController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('数据分析')
+            ->description('活跃用户画像-性别')
             ->body($this->grid());
     }
 
@@ -105,23 +105,27 @@ class UserPortraitGenderUVController extends Controller
 //            $gender = $query->select(DB::raw('SUM(man) as m, wechat_user_portrait_gender'))
 //                ->groupBy('gender')->get()->pluck('count', 'gender')->toArray();
 
-            $gender = $query->first(
-                array(
-                    \DB::raw('SUM(male) as m'),
-                    \DB::raw('SUM(female) as f'),
-                    \DB::raw('SUM(unknown) as u')
-                )
-            )->toArray();
-            Log::info($gender);
-
+//            $gender = $query->first(
+//                array(
+//                    \DB::raw('SUM(male) as m'),
+//                    \DB::raw('SUM(female) as f'),
+//                    \DB::raw('SUM(unknown) as u')
+//                )
+//            )->toArray();
+            $gender = [];
+            $gender['m'] = $query->sum('male');
+            $gender['f'] = $query->sum('female');
+            $gender['u'] = $query->sum('unknown');
             $doughnut = view('admin.chart.gender', compact('gender'));
 
             return new Box('性别比例', $doughnut);
         });
+
         $grid->filter(function($filter){
             $filter->disableIdFilter();
             $filter->equal('ref_date', '日期')->datetime(['format' => 'YYYYMMDD']);
         });
+        $grid->model()->orderBy('ref_date', 'desc');
 
         return $grid;
     }

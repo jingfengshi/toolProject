@@ -25,8 +25,8 @@ class UserPortraitAgesController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('数据分析')
+            ->description('新用户画像-年龄')
             ->body($this->grid());
     }
 
@@ -105,18 +105,25 @@ class UserPortraitAgesController extends Controller
 //            $gender = $query->select(DB::raw('SUM(man) as m, wechat_user_portrait_gender'))
 //                ->groupBy('gender')->get()->pluck('count', 'gender')->toArray();
 
-            $ages = $query->first(
-                array(
-                    \DB::raw('SUM(unknown) as unknown'),
-                    \DB::raw('SUM(under17) as under17'),
-                    \DB::raw('SUM(age18_24) as age18_24'),
-                    \DB::raw('SUM(age25_29) as age25_29'),
-                    \DB::raw('SUM(age30_39) as age30_39'),
-                    \DB::raw('SUM(age40_49) as age40_49'),
-                    \DB::raw('SUM(over50) as over50')
-                )
-            )->toArray();
-            Log::info($ages);
+//            $ages = $query->first(
+//                array(
+//                    \DB::raw('SUM(unknown) as unknown'),
+//                    \DB::raw('SUM(under17) as under17'),
+//                    \DB::raw('SUM(age18_24) as age18_24'),
+//                    \DB::raw('SUM(age25_29) as age25_29'),
+//                    \DB::raw('SUM(age30_39) as age30_39'),
+//                    \DB::raw('SUM(age40_49) as age40_49'),
+//                    \DB::raw('SUM(over50) as over50')
+//                )
+//            )->toArray();
+            $ages = [];
+            $ages['unknown'] = $query->sum('unknown');
+            $ages['under17'] = $query->sum('under17');
+            $ages['age18_24'] = $query->sum('age18_24');
+            $ages['age25_29'] = $query->sum('age25_29');
+            $ages['age30_39'] = $query->sum('age30_39');
+            $ages['age40_49'] = $query->sum('age40_49');
+            $ages['over50'] = $query->sum('over50');
 
             $doughnut = view('admin.chart.ages', compact('ages'));
 
@@ -127,7 +134,7 @@ class UserPortraitAgesController extends Controller
             $filter->disableIdFilter();
             $filter->equal('ref_date', '日期')->datetime(['format' => 'YYYYMMDD']);
         });
-
+        $grid->model()->orderBy('ref_date', 'desc');
         return $grid;
     }
 

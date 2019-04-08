@@ -25,8 +25,8 @@ class UserPortraitPlatformsController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('平台统计')
+            ->header('数据分析')
+            ->description('新用户画像-平台')
             ->body($this->grid());
     }
 
@@ -102,13 +102,17 @@ class UserPortraitPlatformsController extends Controller
 //            $gender = $query->select(DB::raw('SUM(man) as m, wechat_user_portrait_gender'))
 //                ->groupBy('gender')->get()->pluck('count', 'gender')->toArray();
 
-            $platforms = $query->first(
-                array(
-                    \DB::raw('SUM(android) as android'),
-                    \DB::raw('SUM(iphone) as iphone'),
-                    \DB::raw('SUM(other) as other')
-                )
-            )->toArray();
+//            $platforms = $query->first(
+//                array(
+//                    \DB::raw('SUM(android) as android'),
+//                    \DB::raw('SUM(iphone) as iphone'),
+//                    \DB::raw('SUM(other) as other')
+//                )
+//            )->toArray();
+            $platforms = [];
+            $platforms['android'] = $query->sum('android');
+            $platforms['iphone'] = $query->sum('iphone');
+            $platforms['other'] = $query->sum('other');
 
             $doughnut = view('admin.chart.platforms', compact('platforms'));
 
@@ -119,7 +123,7 @@ class UserPortraitPlatformsController extends Controller
             $filter->disableIdFilter();
             $filter->equal('ref_date', '日期')->datetime(['format' => 'YYYYMMDD']);
         });
-
+        $grid->model()->orderBy('ref_date', 'desc');
         return $grid;
     }
 
