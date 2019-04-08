@@ -65,10 +65,10 @@ class WechartVerifyController extends Controller
         }
         //获取小程序标识
         $ghid = $postArr['ToUserName'];
-        $arr = array('appid', 'appsecret', 'aeskey', 'token');
+        $arr = array('appid', 'appsecret', 'aeskey', 'token', 'name');
         $data = DB::table('wechat_applet')->where('gh_id', $ghid)->select($arr)->first();
         $data = get_object_vars($data);
-        Log::info($data);
+        Log::info('WechartVerifyController' . $data['name'], $data);
         $config = [
             'app_id' => $data['appid'],
             'secret' => $data['appsecret'],

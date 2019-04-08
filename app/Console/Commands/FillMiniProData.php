@@ -45,7 +45,7 @@ class FillMiniProData extends Command
      */
     public function handle()
     {
-        $select = ['gh_id', 'appid', 'appsecret', 'token', 'aeskey'];
+        $select = ['gh_id', 'appid', 'appsecret', 'token', 'aeskey', 'name'];
         $where = ['status' => 1];
         $data = DB::table('wechat_applet')->select($select)->where($where)->get();
         if ($data->isNotEmpty()) {
@@ -57,7 +57,7 @@ class FillMiniProData extends Command
                     'token' => trim($value['token']),
                     'aes_key' => trim($value['aeskey']),
                 ];
-                Log::info('$config', $config);
+                Log::info('FillMiniProData' . $value['name'] . ' config:', $config);
                 $app = Factory::miniProgram($config);
                 try {
                     $dateStr = date("Ymd", strtotime("-1 day"));
@@ -82,7 +82,7 @@ class FillMiniProData extends Command
     private function getAnalysisDailySummary($app, $gh_id, $dateStr)
     {
         $result = $app->data_cube->summaryTrend($dateStr, $dateStr);
-        Log::info('$result:', $result);
+        Log::info('FillMiniProData' . 'getAnalysisDailySummary result:', $result);
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
             $insertData = $result['list'][0];
             $insertData['gh_id'] = $gh_id;
@@ -104,7 +104,7 @@ class FillMiniProData extends Command
     private function getAnalysisDailyVisitTrend($app, $gh_id, $dateStr)
     {
         $result = $app->data_cube->dailyVisitTrend($dateStr, $dateStr);
-        Log::info('$result:', $result);
+        Log::info('FillMiniProData' . 'getAnalysisDailyVisitTrend result:', $result);
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
             $insertData = $result['list'][0];
             $insertData['gh_id'] = $gh_id;
@@ -126,7 +126,7 @@ class FillMiniProData extends Command
     private function getVisitPage($app, $gh_id, $dateStr)
     {
         $result = $app->data_cube->visitPage($dateStr, $dateStr);
-        Log::info('$result:', $result);
+        Log::info('FillMiniProData' . 'getVisitPage result:', $result);
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
             foreach ($result['list'] as $data) {
                 $insertData = $data;
@@ -152,7 +152,7 @@ class FillMiniProData extends Command
     private function getUserPortrait($app, $gh_id, $dateStr)
     {
         $result = $app->data_cube->userPortrait($dateStr, $dateStr);
-        Log::info('$result:', $result);
+        Log::info('FillMiniProData' . 'getUserPortrait result:', $result);
         $this->getUserPortraitGenderNew($result, $gh_id, $dateStr);
         $this->getUserPortraitGenderPlatforms($result, $gh_id, $dateStr);
         $this->getUserPortraitGenderAges($result, $gh_id, $dateStr);

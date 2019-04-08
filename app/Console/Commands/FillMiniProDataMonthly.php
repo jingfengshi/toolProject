@@ -42,7 +42,7 @@ class FillMiniProDataMonthly extends Command
      */
     public function handle()
     {
-        $select = ['gh_id', 'appid', 'appsecret', 'token', 'aeskey'];
+        $select = ['gh_id', 'appid', 'appsecret', 'token', 'aeskey', 'name'];
         $where = ['status' => 1];
         $data = DB::table('wechat_applet')->select($select)->where($where)->get();
         if ($data->isNotEmpty()) {
@@ -54,7 +54,7 @@ class FillMiniProDataMonthly extends Command
                     'token' => trim($value['token']),
                     'aes_key' => trim($value['aeskey']),
                 ];
-                Log::info('$config', $config);
+                Log::info($value['name'] . '$config', $config);
                 $app = Factory::miniProgram($config);
                 try {
                     $this->getMonthlyVisitTrend($app, $value['gh_id']);
@@ -77,7 +77,7 @@ class FillMiniProDataMonthly extends Command
         $beginDate = date('Ymd', strtotime('-1 month', strtotime(date('Y-m', time()) . '-01 00:00:00')));
         $endDate = date('Ymd', strtotime(date('Y-m', time()) . '-01 00:00:00') - 86400);
         $result = $app->data_cube->monthlyVisitTrend($beginDate, $endDate);
-        Log::info('$result:', $result);
+        Log::info('FillMiniProDataMonthly$getMonthlyVisitTrend$result:', $result);
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
             $insertData = $result['list'][0];
             $insertData['gh_id'] = $gh_id;

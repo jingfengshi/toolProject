@@ -42,7 +42,7 @@ class FillMiniProDataWeekly extends Command
      */
     public function handle()
     {
-        $select = ['gh_id', 'appid', 'appsecret', 'token', 'aeskey'];
+        $select = ['gh_id', 'appid', 'appsecret', 'token', 'aeskey', 'name'];
         $where = ['status' => 1];
         $data = DB::table('wechat_applet')->select($select)->where($where)->get();
         if ($data->isNotEmpty()) {
@@ -54,7 +54,7 @@ class FillMiniProDataWeekly extends Command
                     'token' => trim($value['token']),
                     'aes_key' => trim($value['aeskey']),
                 ];
-                Log::info('$config', $config);
+                Log::info($value['name'] . 'config', $config);
                 $app = Factory::miniProgram($config);
                 try {
                     $this->getAnalysisWeeklyVisitTrend($app, $value['gh_id']);
@@ -77,7 +77,7 @@ class FillMiniProDataWeekly extends Command
         $lastMonday = date('Ymd', strtotime('-2 monday', time()));
         $lastSunday = date('Ymd', strtotime('-1 sunday', time()));
         $result = $app->data_cube->weeklyVisitTrend($lastMonday, $lastSunday);
-        Log::info('$result:', $result);
+        Log::info('FillMiniProDataWeekly getAnalysisWeeklyVisitTrend result:', $result);
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
             $insertData = $result['list'][0];
             $insertData['gh_id'] = $gh_id;
