@@ -82,7 +82,7 @@ class FillMiniProData extends Command
     private function getAnalysisDailySummary($app, $gh_id, $dateStr)
     {
         $result = $app->data_cube->summaryTrend($dateStr, $dateStr);
-        Log::info('FillMiniProData' . 'getAnalysisDailySummary result:', $result);
+        Log::info('FillMiniProData getAnalysisDailySummary result:', $result);
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
             $insertData = $result['list'][0];
             $insertData['gh_id'] = $gh_id;
@@ -104,7 +104,7 @@ class FillMiniProData extends Command
     private function getAnalysisDailyVisitTrend($app, $gh_id, $dateStr)
     {
         $result = $app->data_cube->dailyVisitTrend($dateStr, $dateStr);
-        Log::info('FillMiniProData' . 'getAnalysisDailyVisitTrend result:', $result);
+        Log::info('FillMiniProData getAnalysisDailyVisitTrend result:', $result);
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
             $insertData = $result['list'][0];
             $insertData['gh_id'] = $gh_id;
@@ -126,7 +126,7 @@ class FillMiniProData extends Command
     private function getVisitPage($app, $gh_id, $dateStr)
     {
         $result = $app->data_cube->visitPage($dateStr, $dateStr);
-        Log::info('FillMiniProData' . 'getVisitPage result:', $result);
+        Log::info('FillMiniProData getVisitPage result:', $result);
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
             foreach ($result['list'] as $data) {
                 $insertData = $data;
@@ -152,7 +152,7 @@ class FillMiniProData extends Command
     private function getUserPortrait($app, $gh_id, $dateStr)
     {
         $result = $app->data_cube->userPortrait($dateStr, $dateStr);
-        Log::info('FillMiniProData' . 'getUserPortrait result:', $result);
+        Log::info('FillMiniProData getUserPortrait result:', $result);
         $this->getUserPortraitGenderNew($result, $gh_id, $dateStr);
         $this->getUserPortraitGenderPlatforms($result, $gh_id, $dateStr);
         $this->getUserPortraitGenderAges($result, $gh_id, $dateStr);
@@ -208,7 +208,6 @@ class FillMiniProData extends Command
         if ($result && isset($result['visit_uv_new']['platforms']) && $result['visit_uv_new']['platforms']) {
             $insertData = [];
             $insertData['gh_id'] = $gh_id;
-            Log::info('visit_uv_new_platforms:', $result['visit_uv_new']['platforms']);
             foreach ($result['visit_uv_new']['platforms'] as $data) {
                 switch ($data['name']) {
                     case '其他':
@@ -224,7 +223,6 @@ class FillMiniProData extends Command
             }
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            Log::info('$insertData:', $insertData);
             DB::table('wechat_user_portrait_platforms')->insert($insertData);
         } else {
             $insertData = [];
@@ -246,7 +244,6 @@ class FillMiniProData extends Command
         if ($result && isset($result['visit_uv_new']['ages']) && $result['visit_uv_new']['ages']) {
             $insertData = [];
             $insertData['gh_id'] = $gh_id;
-            Log::info('visit_uv_new_platforms:', $result['visit_uv_new']['platforms']);
             foreach ($result['visit_uv_new']['ages'] as $data) {
                 switch ($data['name']) {
                     case '未知':
@@ -274,7 +271,6 @@ class FillMiniProData extends Command
             }
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            Log::info('$insertData:', $insertData);
             DB::table('wechat_user_portrait_ages')->insert($insertData);
         } else {
             $insertData = [];
@@ -347,7 +343,6 @@ class FillMiniProData extends Command
             }
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            Log::info('$insertData:', $insertData);
             DB::table('wechat_user_portrait_platformsuv')->insert($insertData);
         } else {
             $insertData = [];

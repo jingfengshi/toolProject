@@ -77,7 +77,7 @@ class FillMiniProDataMonthly extends Command
         $beginDate = date('Ymd', strtotime('-1 month', strtotime(date('Y-m', time()) . '-01 00:00:00')));
         $endDate = date('Ymd', strtotime(date('Y-m', time()) . '-01 00:00:00') - 86400);
         $result = $app->data_cube->monthlyVisitTrend($beginDate, $endDate);
-        Log::info('FillMiniProDataMonthly$getMonthlyVisitTrend$result:', $result);
+        Log::info('FillMiniProDataMonthly getMonthlyVisitTrend result:', $result);
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
             $insertData = $result['list'][0];
             $insertData['gh_id'] = $gh_id;

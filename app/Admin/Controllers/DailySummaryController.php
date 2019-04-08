@@ -95,9 +95,12 @@ class DailySummaryController extends Controller
         $grid->disableRowSelector();
         $grid->disableCreateButton();
 
-        $grid->filter(function($filter){
-            $filter->disableIdFilter();
-            $filter->equal('ref_date', '日期')->datetime(['format' => 'YYYYMMDD']);
+        $grid->header(function ($query) {
+            $visitTotal = $query->sum('visit_total');
+            $sharepv = $query->sum('share_pv');
+            $shareuv = $query->sum('share_uv');
+
+            return "<div style='padding: 10px;color:red;font-weight:bold;'>总用户数 ： $visitTotal<span style='margin-left: 20px;'></span>总转发次数：$sharepv<span style='margin-left: 20px;'></span>总转发人数：$shareuv</div>";
         });
         $grid->model()->orderBy('visit_total', 'desc');
         return $grid;
