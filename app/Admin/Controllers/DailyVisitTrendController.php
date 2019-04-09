@@ -2,13 +2,14 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\DailyVisitTrend;
 use App\Http\Controllers\Controller;
+use App\Models\DailyVisitTrend;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\Request;
 
 class DailyVisitTrendController extends Controller
 {
@@ -80,7 +81,11 @@ class DailyVisitTrendController extends Controller
     protected function grid()
     {
         $grid = new Grid(new DailyVisitTrend);
-
+        $ref_date = Request::get('ref_date', 0);
+        if (!$ref_date) {
+            $dateStr = trim(date("Ymd", strtotime("-1 day")));
+            $grid->model()->select()->where('ref_date', $dateStr);
+        }
         $grid->id('Id');
 //        $grid->gh_id('Ghid');
         $grid->column('wechat_applet.name', '名字');
@@ -98,7 +103,7 @@ class DailyVisitTrendController extends Controller
         $grid->disableRowSelector();
         $grid->disableCreateButton();
 
-        $grid->filter(function($filter){
+        $grid->filter(function ($filter) {
             $filter->disableIdFilter();
             $filter->equal('ref_date', '日期')->datetime(['format' => 'YYYYMMDD']);
         });
