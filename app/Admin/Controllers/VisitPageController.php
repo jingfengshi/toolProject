@@ -98,6 +98,12 @@ class VisitPageController extends Controller
         $grid->disableRowSelector();
         $grid->disableCreateButton();
 
+        $grid->filter(function ($filter) {
+            $filter->disableIdFilter();
+            $filter->equal('ref_date', '日期')->datetime(['format' => 'YYYYMMDD']);
+        });
+        $grid->model()->orderBy('ref_date', 'desc');
+
         $grid->filter(function($filter){
             $filter->disableIdFilter();
             $filter->equal('ref_date', '日期')->datetime(['format' => 'YYYYMMDD']);
