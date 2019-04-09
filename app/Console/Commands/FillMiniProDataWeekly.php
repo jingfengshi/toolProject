@@ -74,7 +74,7 @@ class FillMiniProDataWeekly extends Command
      */
     private function getAnalysisWeeklyVisitTrend($app, $gh_id)
     {
-        $lastMonday = date('Ymd', strtotime('-2 monday', time()));
+        $lastMonday = date('Ymd', strtotime('-1 monday', time()));
         $lastSunday = date('Ymd', strtotime('-1 sunday', time()));
         $result = $app->data_cube->weeklyVisitTrend($lastMonday, $lastSunday);
         Log::info('FillMiniProDataWeekly getAnalysisWeeklyVisitTrend result:', $result);
