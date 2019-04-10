@@ -121,11 +121,14 @@ class WeChat
      * @param string $token_file_path
      * @return bool|false|string
      */
-    private function get_accessToken($ghid, $token_file_path = './access_token/')
+    private function get_accessToken($ghid, $token_file_path = './access_token')
     {
         // 考虑过期问题，将获取的access_token存储到某个文件中
         $life_time = 7100;
-        $token_file = $token_file_path . $ghid;
+        if (!file_exists($token_file_path)) {
+            mkdir($token_file_path, 0777, true);
+        }
+        $token_file = $token_file_path . DIRECTORY_SEPARATOR . $ghid;
         if (file_exists($token_file) && time() - filemtime($token_file) < $life_time) {
             // 存在有效的access_token
             return file_get_contents($token_file);
