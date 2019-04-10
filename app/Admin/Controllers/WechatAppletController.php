@@ -90,6 +90,7 @@ class WechatAppletController extends Controller
 
         $grid->name('名字');
         $grid->alias('别名');
+        $grid->type('类别')->using([1 => '小说', 2 => '盒子']);
 //        $grid->domain('域名');
         $grid->status('过审')->display(
             function ($status) {
@@ -142,6 +143,7 @@ class WechatAppletController extends Controller
         $show->aeskey('Aeskey');
         $show->token('Token');
         $show->alias('别名');
+        $show->type('类别')->using([1 => '小说', 2 => '盒子']);
         $show->domain('域名');
         $show->name('名字');
         $show->status('过审')->as(
@@ -175,6 +177,7 @@ class WechatAppletController extends Controller
         $form->text('token', 'Token')->required(true);
         $form->text('name', '名字')->required(true);
         $form->text('alias', '别名')->required(true);
+        $form->select('type','类别')->options([1 => '小说', 2 => '盒子'])->required();
         $form->text('domain', '域名')->required(true)->default('https://toolproject.jinhuyingke03.com');
         $form->switch('status', 'Status');
 
