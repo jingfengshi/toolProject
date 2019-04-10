@@ -38,7 +38,7 @@ class WeChat
             $domain = 'https://toolproject.jinhuyingke03.com/upload/';
             $fromUsername = $postArr['FromUserName'];
             if (!$data) {
-                Log::info('111111111111111');
+                Log::info('默认消息');
                 $data = array(
                     "touser" => $fromUsername,
                     "msgtype" => "link",
@@ -50,7 +50,7 @@ class WeChat
                 $json = json_encode($data, JSON_UNESCAPED_UNICODE);
                 $this->requestAPI($json, $ghid);
             } else {
-                Log::info('111111111111111');
+                Log::info('模板消息');
                 $data = get_object_vars($data);
                 $data = array(
                     "touser" => $fromUsername,

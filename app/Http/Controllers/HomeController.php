@@ -60,7 +60,7 @@ class HomeController extends Controller
     public function getGamesByType($typeId)
     {
         $gameArr = ['location_index', 'id', 'ghId', 'typeId', 'jumpId', 'jumpAppId', 'clickNub', 'introduce', 'logo'
-            , 'jumpName', 'aliasName', 'jumpType', 'extraData', 'jumpGhId'];
+            , 'jumpName', 'aliasName', 'jumpType', 'extraData', 'jumpGhId', 'jumpUrl'];
         $gameDatas = DB::table('games')->where('type', $typeId)->select($gameArr)->get();
         return $gameDatas;
     }

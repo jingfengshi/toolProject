@@ -87,6 +87,7 @@ class GamesController extends Controller
         $grid->type('Type');
         $grid->ghId('GhId');
         $grid->jumpId('JumpId');
+        $grid->jumpUrl('jumpUrl');
         $grid->typeId('TypeId');
         $grid->jumpAppId('JumpAppId');
         $grid->clickNub('ClickNub');
@@ -137,6 +138,7 @@ class GamesController extends Controller
         $show->jumpId('JumpId');
         $show->typeId('TypeId');
         $show->jumpAppId('JumpAppId');
+        $show->jumpUrl('jumpUrl');
         $show->clickNub('ClickNub');
         $show->introduce('Introduce');
         $show->logo('Logo');
@@ -164,6 +166,7 @@ class GamesController extends Controller
         $form->select('type')->options(['1' => '小游戏精选', '2' => '热门小游戏', '3' => '独家代理', '4' => '热门游戏推荐'])->required(true);
         $form->text('ghId', 'GhId')->required(true);
         $form->text('jumpId', 'JumpId')->required(true);
+        $form->text('jumpUrl', 'jumpUrl')->required(true);
         $form->text('typeId','TypeId')->required(true);
         $form->text('jumpAppId', 'JumpAppId')->required(true);
         $form->text('clickNub', 'ClickNub')->required(true);
