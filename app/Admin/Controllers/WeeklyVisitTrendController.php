@@ -99,6 +99,7 @@ class WeeklyVisitTrendController extends Controller
         $grid->disableCreateButton();
         $grid->model()->orderBy('ref_date', 'desc');
         $grid->model()->orderBy('visit_uv_new', 'desc');
+        $grid->model()->orderBy('id', 'desc');
         return $grid;
     }
 

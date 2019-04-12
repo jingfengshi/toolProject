@@ -103,6 +103,7 @@ class DailySummaryController extends Controller
             return "<div style='padding: 10px;color:red;font-weight:bold;'>总用户数 ： $visitTotal<span style='margin-left: 20px;'></span>总转发次数：$sharepv<span style='margin-left: 20px;'></span>总转发人数：$shareuv</div>";
         });
         $grid->model()->orderBy('visit_total', 'desc');
+        $grid->model()->orderBy('id', 'desc');
         return $grid;
     }
 

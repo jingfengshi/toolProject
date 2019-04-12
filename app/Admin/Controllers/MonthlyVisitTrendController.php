@@ -80,6 +80,11 @@ class MonthlyVisitTrendController extends Controller
     protected function grid()
     {
         $grid = new Grid(new MonthlyVisitTrend);
+        $ref_date = Request::get('ref_date', 0);
+        if (!$ref_date) {
+            $dateStr = trim(date("Ym", strtotime("-1 month")));
+            $grid->model()->select()->where('ref_date', $dateStr);
+        }
 
         $grid->id('Id');
 //        $grid->gh_id('Ghid');
@@ -97,8 +102,8 @@ class MonthlyVisitTrendController extends Controller
         $grid->disableActions();
         $grid->disableRowSelector();
         $grid->disableCreateButton();
-        $grid->model()->orderBy('ref_date', 'desc');
         $grid->model()->orderBy('visit_uv_new', 'desc');
+        $grid->model()->orderBy('id', 'desc');
 
         $grid->filter(function($filter){
             $filter->disableIdFilter();
