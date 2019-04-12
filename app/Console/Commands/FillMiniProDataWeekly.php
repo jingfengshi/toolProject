@@ -81,11 +81,13 @@ class FillMiniProDataWeekly extends Command
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
             $insertData = $result['list'][0];
             $insertData['gh_id'] = $gh_id;
+            $insertData['created_at'] = date('Y-m-d H:i:s');
             $insertData['updated_at'] = date('Y-m-d H:i:s');
         } else {
             $insertData = [];
             $insertData['gh_id'] = $gh_id;
             $insertData['ref_date'] = $lastMonday . '-' . $lastSunday;
+            $insertData['created_at'] = date('Y-m-d H:i:s');
             $insertData['updated_at'] = date('Y-m-d H:i:s');
         }
         WeeklyVisitTrend::insert($insertData);

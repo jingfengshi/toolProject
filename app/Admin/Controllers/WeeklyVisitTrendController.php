@@ -9,6 +9,8 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class WeeklyVisitTrendController extends Controller
 {
@@ -17,15 +19,16 @@ class WeeklyVisitTrendController extends Controller
     /**
      * Index interface.
      *
+     * @param Request $request
      * @param Content $content
      * @return Content
      */
-    public function index(Content $content)
+    public function index(Request $request, Content $content)
     {
         return $content
             ->header('Index')
             ->description('获取用户访问小程序数据周趋势')
-            ->body($this->grid());
+            ->body($this->grid($request));
     }
 
     /**
@@ -75,14 +78,25 @@ class WeeklyVisitTrendController extends Controller
     /**
      * Make a grid builder.
      *
+     * @param $request
      * @return Grid
      */
-    protected function grid()
+    protected function grid($request)
     {
         $grid = new Grid(new WeeklyVisitTrend);
-
+        if (strpos($request->getQueryString(),'created_at') === false) {
+            $weekDay = date('w');
+            $lastSunday = date('Ymd', strtotime('-1 sunday', time()));
+            if ($weekDay == 1) {
+                $lastMonday = date('Ymd', strtotime('-1 monday', time()));
+            } else {
+                $lastMonday = date('Ymd', strtotime('-2 monday', time()));
+            }
+            $dateStr = $lastMonday . '-' . $lastSunday;
+            Log::info($dateStr);
+            $grid->model()->select()->where('ref_date', $dateStr);
+        }
         $grid->id('Id');
-//        $grid->gh_id('Ghid');
         $grid->column('wechat_applet.name', '名字');
         $grid->ref_date('日期');
         $grid->visit_uv_new('新用户数')->sortable();
@@ -92,14 +106,24 @@ class WeeklyVisitTrendController extends Controller
         $grid->stay_time_uv('人均停留时长(秒)')->sortable();
         $grid->stay_time_session('次均停留时长(秒)')->sortable();
         $grid->visit_depth('平均访问深度');
-//        $grid->created_at('Created at');
         $grid->updated_at('更新时间');
         $grid->disableActions();
         $grid->disableRowSelector();
         $grid->disableCreateButton();
-        $grid->model()->orderBy('ref_date', 'desc');
+//        $grid->model()->orderBy('ref_date', 'desc');
         $grid->model()->orderBy('visit_uv_new', 'desc');
         $grid->model()->orderBy('id', 'desc');
+        $grid->filter(function ($filter) {
+            $filter->disableIdFilter();
+            $filter->between('created_at', '时间')->datetime(['format' => 'YYYY-MM-DD']);
+//            $filter->column(1/2, function ($filter) {
+//                $filter->between('created_at', '时间')->datetime(['format' => 'YYYYMMDD']);
+////                $filter->where(function ($query) {
+////                    $query->where('ref_date', 'like', "%{$this->input}%");
+////                }, '周一-周日');
+//            });
+        });
+
         return $grid;
     }
 
