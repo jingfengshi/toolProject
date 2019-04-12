@@ -9,6 +9,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 
 class DailyVisitTrendController extends Controller
@@ -97,7 +98,22 @@ class DailyVisitTrendController extends Controller
         $grid->stay_time_uv('人均停留时长(秒)')->sortable();
         $grid->stay_time_session('次均停留时长(秒)')->sortable();
         $grid->visit_depth('平均访问深度');
-//        $grid->created_at('Created at');
+        $grid->column('进入次数')->display(function () {
+            $data = DB::table('daily_wechat_mini_visit')->where(['gh_id'=>$this->gh_id, 'ref_date'=>$this->ref_date])->select(['enter_times'])->first();
+            if ($data) {
+                return $data->enter_times;
+            } else {
+                return 0;
+            }
+        });
+        $grid->column('回复次数')->display(function () {
+            $data = DB::table('daily_wechat_mini_visit')->where(['gh_id'=>$this->gh_id, 'ref_date'=>$this->ref_date])->select(['reply_times'])->first();
+            if ($data) {
+                return $data->reply_times;
+            } else {
+                return 0;
+            }
+        });
         $grid->updated_at('更新时间');
         $grid->disableActions();
         $grid->disableRowSelector();

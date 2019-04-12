@@ -19,11 +19,30 @@ class WeChat
         $postStr = file_get_contents('php://input');
         if (!empty($postStr) && is_string($postStr)) {
             $postArr = json_decode($postStr, true);
+            Log::info($postStr);
         } else {
             return "empty";
         }
+
         //获取小程序标识
         $ghid = $postArr['ToUserName'];
+        $today = date('Ymd');
+        $where = ['gh_id' => $ghid, 'ref_date' => $today];
+        if (!empty($postArr['MsgType']) && $postArr['MsgType'] == 'event') {   //用户发送文本消息
+            if (DB::table('daily_wechat_mini_visit')->where($where)->first()) {
+                DB::table('daily_wechat_mini_visit')->where($where)->increment('enter_times', 1, ['updated_at'=>date('Y-m-d H:i:s')]);
+            } else {
+                DB::table('daily_wechat_mini_visit')->insert(['gh_id' => $ghid, 'ref_date' => $today, 'enter_times' => 1, 'updated_at' => date('Y-m-d H:i:s'), 'created_at' => date('Y-m-d H:i:s')]);
+            }
+        } else {
+            if (DB::table('daily_wechat_mini_visit')->where($where)->first()) {
+                DB::table('daily_wechat_mini_visit')->where($where)->increment('reply_times', 1, ['updated_at'=>date('Y-m-d H:i:s')]);
+            } else {
+                DB::table('daily_wechat_mini_visit')->insert(['gh_id' => $ghid, 'ref_date' => $today, 'reply_times' => 1, 'updated_at' => date('Y-m-d H:i:s'), 'created_at' => date('Y-m-d H:i:s')]);
+            }
+        }
+
+
         $arr = array('appid', 'appsecret', 'aeskey', 'token', 'name');
         $configdata = DB::table('wechat_applet')->where('gh_id', $ghid)->select($arr)->first();
         $configdata = get_object_vars($configdata);
