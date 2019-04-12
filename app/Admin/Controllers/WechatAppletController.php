@@ -121,6 +121,7 @@ class WechatAppletController extends Controller
                 1    => '已过审',
             ]);
 
+            $filter->equal('type', '类别')->select([1 => '小说', 2=>'盒子']);
         });
         $grid->model()->orderBy('id', 'desc');
 
