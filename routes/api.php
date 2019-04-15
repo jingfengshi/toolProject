@@ -33,7 +33,6 @@ Route::post('/wechatapplet/getitem','WechatAppletController@getItemByAppid');
 Route::any('/wechatverify','WechartVerifyController@valid');
 
 //小游戏伪装页
-
 Route::get('/gameFaker/{appletId}','GameFakerController@show');
 
 Route::get('/statistics/{appid}/{status}','WechatAppletController@countEnter');

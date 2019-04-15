@@ -167,6 +167,9 @@ Route::group([
     //访问页面
     $router->get('visitpage', 'VisitPageController@index');
 
+    //单个小程序日趋势
+    $router->get('dailyvisittrenddetail', 'DailyVisitTrendDetailController@index');
+
     //新用户画像-性别
     $router->get('userportraitgendernew', 'UserPortraitGenderController@index');
     //新用户画像-平台
