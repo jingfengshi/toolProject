@@ -48,6 +48,8 @@ class WechatAppletController extends Controller
                 $data['url'] = $wechatContent['url'];
                 $data['imgUrl'] = $wechatContent['domain'] . '/upload/' . $wechatContent['imgUrl'];
                 $data['alias'] = $wechatContent['alias'];
+                $data['path'] = 'pages/index/index?from=89';
+                $data['contenturl'] = '	https://wxf4da08c7e6b59e8b.yanyuzhuishu.com/read/7561/498734/2203/2';
             }
         } else {
             $data = array(
