@@ -9,6 +9,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\Request;
 
 class VisitPageController extends Controller
 {
@@ -81,6 +82,11 @@ class VisitPageController extends Controller
     {
         $grid = new Grid(new VisitPage);
 
+        $ref_date = Request::get('ref_date', 0);
+        if (!$ref_date) {
+            $dateStr = trim(date("Ymd", strtotime("-1 day")));
+            $grid->model()->select()->where('ref_date', $dateStr);
+        }
         $grid->id('Id');
         $grid->gh_id('Ghid');
         $grid->column('wechat_applet.name', '名字');
@@ -103,6 +109,7 @@ class VisitPageController extends Controller
             $filter->equal('ref_date', '日期')->datetime(['format' => 'YYYYMMDD']);
         });
         $grid->model()->orderBy('ref_date', 'desc');
+        $grid->model()->orderBy('id', 'desc');
         return $grid;
     }
 

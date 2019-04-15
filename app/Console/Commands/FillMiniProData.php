@@ -5,6 +5,13 @@ namespace App\Console\Commands;
 use App\Models\DailySummary;
 use App\Models\DailyVisitTrend;
 use App\Models\MonthlyVisitTrend;
+use App\Models\UserPortraitAges;
+use App\Models\UserPortraitAgesUV;
+use App\Models\UserPortraitGender;
+use App\Models\UserPortraitGenderUV;
+use App\Models\UserPortraitPlatforms;
+use App\Models\UserPortraitPlatformsUV;
+use App\Models\VisitPage;
 use App\Models\WeeklyVisitTrend;
 use EasyWeChat\Factory;
 use EasyWeChat\Kernel\Exceptions\HttpException;
@@ -115,7 +122,8 @@ class FillMiniProData extends Command
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
         }
-        DailyVisitTrend::insert($insertData);
+//        DailyVisitTrend::insert($insertData);
+        DailyVisitTrend::updateOrCreate(['gh_id' => $gh_id, 'ref_date'=> $dateStr], $insertData);
     }
 
     /**
@@ -133,14 +141,15 @@ class FillMiniProData extends Command
                 $insertData['gh_id'] = $gh_id;
                 $insertData['ref_date'] = $dateStr;
                 $insertData['updated_at'] = date('Y-m-d H:i:s');
-                DB::table('visit_page')->insert($insertData);
+//                DB::table('visit_page')->insert($insertData);
+                VisitPage::updateOrCreate(['gh_id' => $gh_id, 'ref_date'=> $dateStr], $insertData);
             }
         } else {
             $insertData = [];
             $insertData['gh_id'] = $gh_id;
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            DB::table('visit_page')->insert($insertData);
+            VisitPage::updateOrCreate(['gh_id' => $gh_id, 'ref_date'=> $dateStr], $insertData);
         }
     }
 
@@ -187,14 +196,14 @@ class FillMiniProData extends Command
             }
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            DB::table('wechat_user_portrait_gender')->insert($insertData);
+//            DB::table('wechat_user_portrait_gender')->insert($insertData);
         } else {
             $insertData = [];
             $insertData['gh_id'] = $gh_id;
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            DB::table('wechat_user_portrait_gender')->insert($insertData);
         }
+        UserPortraitGender::updateOrCreate(['gh_id' => $gh_id, 'ref_date'=> $dateStr], $insertData);
     }
 
     /**
@@ -223,14 +232,14 @@ class FillMiniProData extends Command
             }
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            DB::table('wechat_user_portrait_platforms')->insert($insertData);
+//            DB::table('wechat_user_portrait_platforms')->insert($insertData);
         } else {
             $insertData = [];
             $insertData['gh_id'] = $gh_id;
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            DB::table('wechat_user_portrait_platforms')->insert($insertData);
         }
+        UserPortraitPlatforms::updateOrCreate(['gh_id' => $gh_id, 'ref_date'=> $dateStr], $insertData);
     }
 
     /**
@@ -271,14 +280,14 @@ class FillMiniProData extends Command
             }
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            DB::table('wechat_user_portrait_ages')->insert($insertData);
+//            DB::table('wechat_user_portrait_ages')->insert($insertData);
         } else {
             $insertData = [];
             $insertData['gh_id'] = $gh_id;
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            DB::table('wechat_user_portrait_ages')->insert($insertData);
         }
+        UserPortraitAges::updateOrCreate(['gh_id' => $gh_id, 'ref_date'=> $dateStr], $insertData);
     }
 
     /**
@@ -307,14 +316,14 @@ class FillMiniProData extends Command
             }
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            DB::table('wechat_user_portrait_genderuv')->insert($insertData);
+//            DB::table('wechat_user_portrait_genderuv')->insert($insertData);
         } else {
             $insertData = [];
             $insertData['gh_id'] = $gh_id;
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            DB::table('wechat_user_portrait_genderuv')->insert($insertData);
         }
+        UserPortraitGenderUV::updateOrCreate(['gh_id' => $gh_id, 'ref_date'=> $dateStr], $insertData);
     }
 
     /**
@@ -343,14 +352,14 @@ class FillMiniProData extends Command
             }
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            DB::table('wechat_user_portrait_platformsuv')->insert($insertData);
+//            DB::table('wechat_user_portrait_platformsuv')->insert($insertData);
         } else {
             $insertData = [];
             $insertData['gh_id'] = $gh_id;
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            DB::table('wechat_user_portrait_platformsuv')->insert($insertData);
         }
+        UserPortraitPlatformsUV::updateOrCreate(['gh_id' => $gh_id, 'ref_date'=> $dateStr], $insertData);
     }
 
     /**
@@ -391,14 +400,14 @@ class FillMiniProData extends Command
             }
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            DB::table('wechat_user_portrait_agesuv')->insert($insertData);
+//            DB::table('wechat_user_portrait_agesuv')->insert($insertData);
         } else {
             $insertData = [];
             $insertData['gh_id'] = $gh_id;
             $insertData['ref_date'] = $dateStr;
             $insertData['updated_at'] = date('Y-m-d H:i:s');
-            DB::table('wechat_user_portrait_agesuv')->insert($insertData);
         }
+        UserPortraitAgesUV::updateOrCreate(['gh_id' => $gh_id, 'ref_date'=> $dateStr], $insertData);
     }
 
 
