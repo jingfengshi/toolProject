@@ -6,6 +6,7 @@ use App\Models\WechatApplet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Log;
 
 class WechatAppletController extends Controller
 {
@@ -77,5 +78,37 @@ class WechatAppletController extends Controller
         }
         $stringToSign .= $accessSecret;
         return md5($stringToSign, false);
+    }
+
+    /**
+     * 统计小说跳转情况
+     * @param $appid
+     * @param $status
+     * @return string
+     */
+    public function countEnter($appid, $status)
+    {
+        $data = DB::table('wechat_applet')->where(['appid' => $appid])->select(['gh_id'])->first();
+        if (!$data) {
+            Log::error('WechatAppletController countEnter appid:' . $appid);
+            return;
+        }
+        //获取小程序标识
+//        $ghid = $data->gh_id;
+//        $today = date('Ymd');
+//        $where = ['gh_id' => $ghid, 'ref_date' => $today];
+//        if ($status == 1) {   //用户发送文本消息
+//            if (DB::table('daily_wechat_mini_visit')->where($where)->first()) {
+//                DB::table('daily_wechat_mini_visit')->where($where)->increment('enter_times', 1, ['updated_at' => date('Y-m-d H:i:s')]);
+//            } else {
+//                DB::table('daily_wechat_mini_visit')->insert(['gh_id' => $ghid, 'ref_date' => $today, 'enter_times' => 1, 'updated_at' => date('Y-m-d H:i:s'), 'created_at' => date('Y-m-d H:i:s')]);
+//            }
+//        } else if ($status == 2) {
+//            if (DB::table('daily_wechat_mini_visit')->where($where)->first()) {
+//                DB::table('daily_wechat_mini_visit')->where($where)->increment('reply_times', 1, ['updated_at' => date('Y-m-d H:i:s')]);
+//            } else {
+//                DB::table('daily_wechat_mini_visit')->insert(['gh_id' => $ghid, 'ref_date' => $today, 'reply_times' => 1, 'updated_at' => date('Y-m-d H:i:s'), 'created_at' => date('Y-m-d H:i:s')]);
+//            }
+//        }
     }
 }
