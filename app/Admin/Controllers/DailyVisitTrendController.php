@@ -123,6 +123,14 @@ class DailyVisitTrendController extends Controller
             $filter->disableIdFilter();
             $filter->equal('ref_date', '日期')->datetime(['format' => 'YYYYMMDD']);
         });
+        $grid->header(function ($query) {
+            $visit_uv_new = $query->sum('visit_uv_new');
+            $session_cnt = $query->sum('session_cnt');
+            $visit_pv = $query->sum('visit_pv');
+            $visit_uv = $query->sum('visit_uv');
+
+            return "<div style='padding: 10px;color:red;font-weight:bold;'>总新用户数 ： $visit_uv_new<span style='margin-left: 20px;'></span>总打开次数：$session_cnt<span style='margin-left: 20px;'></span>总访问次数：$visit_pv<span style='margin-left: 20px;'></span>总访问人数：$visit_uv</div>";
+        });
         $grid->model()->orderBy('visit_uv_new', 'desc');
         $grid->model()->orderBy('id', 'desc');
         return $grid;
