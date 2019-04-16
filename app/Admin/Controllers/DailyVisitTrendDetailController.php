@@ -101,7 +101,7 @@ class DailyVisitTrendDetailController extends Controller
         $grid->disableCreateButton();
         $grid->header(function ($query) {
             $data = $query->select(DB::raw('visit_uv_new, ref_date'))
-                ->orderBy('ref_date')->limit(10)->get()->pluck('visit_uv_new', 'ref_date')->toArray();
+                ->orderBy('ref_date', 'desc')->limit(10)->get()->pluck('visit_uv_new', 'ref_date')->toArray();
 
             $doughnut = view('admin.chart.dailyvisittrenddetail', compact('data'));
 
