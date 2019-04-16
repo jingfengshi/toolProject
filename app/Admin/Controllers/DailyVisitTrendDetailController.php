@@ -9,7 +9,10 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Encore\Admin\Widgets\Box;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Log;
 
 class DailyVisitTrendDetailController extends Controller
 {
@@ -92,26 +95,18 @@ class DailyVisitTrendDetailController extends Controller
         $grid->stay_time_uv('人均停留时长(秒)')->sortable();
         $grid->stay_time_session('次均停留时长(秒)')->sortable();
         $grid->visit_depth('平均访问深度');
-//        $grid->column('进入次数')->display(function () {
-//            $data = DB::table('daily_wechat_mini_visit')->where(['gh_id' => $this->gh_id, 'ref_date' => $this->ref_date])->select(['enter_times'])->first();
-//            if ($data) {
-//                return $data->enter_times;
-//            } else {
-//                return 0;
-//            }
-//        });
-//        $grid->column('回复次数')->display(function () {
-//            $data = DB::table('daily_wechat_mini_visit')->where(['gh_id' => $this->gh_id, 'ref_date' => $this->ref_date])->select(['reply_times'])->first();
-//            if ($data) {
-//                return $data->reply_times;
-//            } else {
-//                return 0;
-//            }
-//        });
         $grid->updated_at('更新时间');
         $grid->disableActions();
         $grid->disableRowSelector();
         $grid->disableCreateButton();
+        $grid->header(function ($query) {
+            $data = $query->select(DB::raw('visit_uv_new, ref_date'))
+                ->orderBy('ref_date')->limit(10)->get()->pluck('visit_uv_new', 'ref_date')->toArray();
+
+            $doughnut = view('admin.chart.dailyvisittrenddetail', compact('data'));
+
+            return new Box('新用户数', $doughnut);
+        });
 
         return $grid;
     }

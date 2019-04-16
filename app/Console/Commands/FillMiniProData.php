@@ -68,10 +68,10 @@ class FillMiniProData extends Command
                 $app = Factory::miniProgram($config);
                 try {
                     $dateStr = date("Ymd", strtotime("-1 day"));
-                    $this->getAnalysisDailySummary($app, $value['gh_id'], $dateStr);
+//                    $this->getAnalysisDailySummary($app, $value['gh_id'], $dateStr);
                     $this->getAnalysisDailyVisitTrend($app, $value['gh_id'], $dateStr);
-                    $this->getVisitPage($app, $value['gh_id'], $dateStr);
-                    $this->getUserPortrait($app, $value['gh_id'], $dateStr);
+//                    $this->getVisitPage($app, $value['gh_id'], $dateStr);
+//                    $this->getUserPortrait($app, $value['gh_id'], $dateStr);
                 } catch (HttpException $httpException) {
                     Log::error($httpException->getMessage());
                 } catch (\Exception $exception) {
