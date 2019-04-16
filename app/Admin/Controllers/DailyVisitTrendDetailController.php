@@ -102,6 +102,7 @@ class DailyVisitTrendDetailController extends Controller
         $grid->header(function ($query) {
             $data = $query->select(DB::raw('visit_uv_new, ref_date'))
                 ->orderBy('ref_date', 'desc')->limit(10)->get()->pluck('visit_uv_new', 'ref_date')->toArray();
+            $data = array_reverse($data, true);
 
             $doughnut = view('admin.chart.dailyvisittrenddetail', compact('data'));
 
