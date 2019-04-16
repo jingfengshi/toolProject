@@ -68,10 +68,10 @@ class FillMiniProData extends Command
                 $app = Factory::miniProgram($config);
                 try {
                     $dateStr = date("Ymd", strtotime("-1 day"));
-//                    $this->getAnalysisDailySummary($app, $value['gh_id'], $dateStr);
+                    $this->getVisitPage($app, $value['gh_id'], $dateStr);
+                    $this->getUserPortrait($app, $value['gh_id'], $dateStr);
+                    $this->getAnalysisDailySummary($app, $value['gh_id'], $dateStr);
                     $this->getAnalysisDailyVisitTrend($app, $value['gh_id'], $dateStr);
-//                    $this->getVisitPage($app, $value['gh_id'], $dateStr);
-//                    $this->getUserPortrait($app, $value['gh_id'], $dateStr);
                 } catch (HttpException $httpException) {
                     Log::error($httpException->getMessage());
                 } catch (\Exception $exception) {
@@ -90,6 +90,9 @@ class FillMiniProData extends Command
     {
         $result = $app->data_cube->summaryTrend($dateStr, $dateStr);
         Log::info('FillMiniProData getAnalysisDailySummary result:', $result);
+        if ($result && isset($result['errcode'])) {
+            time_sleep_until(time()+600);
+        }
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
             $insertData = $result['list'][0];
             $insertData['gh_id'] = $gh_id;
@@ -112,6 +115,9 @@ class FillMiniProData extends Command
     {
         $result = $app->data_cube->dailyVisitTrend($dateStr, $dateStr);
         Log::info('FillMiniProData getAnalysisDailyVisitTrend result:', $result);
+        if ($result && isset($result['errcode'])) {
+            time_sleep_until(time()+600);
+        }
         if ($result && isset($result['list']) && $result['list'] && $result['list'][0]) {
             $insertData = $result['list'][0];
             $insertData['gh_id'] = $gh_id;

@@ -108,7 +108,8 @@ class DailyVisitTrendDetailController extends Controller
 
             return new Box('新用户数', $doughnut);
         });
-
+        $grid->model()->orderBy('ref_date', 'desc');
+        $grid->model()->orderBy('id', 'desc');
         return $grid;
     }
 
