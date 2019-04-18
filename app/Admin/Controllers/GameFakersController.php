@@ -93,6 +93,18 @@ class GameFakersController extends Controller
             $actions->actions=['edit'];
 
         });
+
+        $grid->filter(function($filter){
+
+            // 去掉默认的id过滤器
+            $filter->disableIdFilter();
+
+            // 在这里添加字段过滤器
+            $filter->like('appletId', 'appletId');
+
+
+        });
+        $grid->model()->orderBy('id','desc');
         return $grid;
     }
 

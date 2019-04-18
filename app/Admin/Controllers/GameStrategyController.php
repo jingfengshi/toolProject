@@ -86,6 +86,8 @@ class GameStrategyController extends Controller
      */
     protected function grid()
     {
+
+
         $grid = new Grid(new GameStrategy);
 
         $grid->id('Id')->sortable();
@@ -114,6 +116,8 @@ class GameStrategyController extends Controller
             $filter->like('appletId', 'appletId');
         });
         $grid->model()->orderBy('id','desc');
+
+
         return $grid;
     }
 
