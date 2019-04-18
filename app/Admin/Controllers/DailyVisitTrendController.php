@@ -90,6 +90,7 @@ class DailyVisitTrendController extends Controller
         $grid->id('Id');
 //        $grid->gh_id('Ghid');
         $grid->column('wechat_applet.name', '名字');
+        $grid->column('wechat_applet.type', '类别')->using([1 => '小说', 2 => '盒子']);
         $grid->ref_date('日期');
         $grid->visit_uv_new('新用户数')->sortable();
         $grid->session_cnt('打开次数')->sortable();
@@ -152,6 +153,7 @@ class DailyVisitTrendController extends Controller
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
             $filter->equal('ref_date', '日期')->datetime(['format' => 'YYYYMMDD']);
+            $filter->equal('wechat_applet.type', '类别')->select([1 => '小说', 2 => '盒子']);
         });
         $grid->header(function ($query) {
             $visit_uv_new = $query->sum('visit_uv_new');
