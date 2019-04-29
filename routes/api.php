@@ -38,3 +38,6 @@ Route::get('/gameFaker/{appletId}','GameFakerController@show');
 Route::get('/statistics/{appid}/{status}','WechatAppletController@countEnter');
 
 
+Route::get('/getdailywwechatminivisit/{day}','WechatAppletController@getDailyWechatMiniVisit');
+
+
