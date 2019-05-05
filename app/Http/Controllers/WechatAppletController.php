@@ -114,8 +114,8 @@ class WechatAppletController extends Controller
 
     public function getDailyWechatMiniVisit($day)
     {
-        $visitData = DB::table('daily_wechat_mini_visit')->select(['gh_id', 'ref_date', 'jump_success', 'jump_fail'])
-            ->where(['ref_date' => $day])->get();;
+        $visitData = DB::table('daily_wechat_mini_visit')->select(['appid','gh_id', 'ref_date', 'jump_success', 'jump_fail'])
+            ->where(['ref_date' => $day])->get()->toArray();
         return response()->json($visitData);
     }
 }
