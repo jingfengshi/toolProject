@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\DailyWechatMiniVisit;
 use App\Models\GameBanner;
 use App\Models\Games;
 use App\Models\GameType;
@@ -41,11 +42,18 @@ class ImportGames extends Command
      */
     public function handle()
     {
-        $url = 'https://hundunxcx.com:808/v3/xcx/jump/get/all';
-        $data = '{"ghId":"gh_4df546c7e919"}';
-        $arr = $this->postUrlData($url, $data);
-
-        $this->insertDatas($arr);
+//        $url = 'https://hundunxcx.com:808/v3/xcx/jump/get/all';
+//        $data = '{"ghId":"gh_4df546c7e919"}';
+//        $arr = $this->postUrlData($url, $data);
+//
+//        $this->insertDatas($arr);
+        $data = DB::table('wechat_applet')->select(['gh_id', 'appid'])->get()->toArray();
+        if ($data) {
+            foreach ($data as $value) {
+//                DB::table('daily_visit_trend')->update(['appid'=>$value->appid])->where(['gh_id'=>$value->gh_id]);
+                DailyWechatMiniVisit::where(['gh_id'=>$value->gh_id])->update(['appid'=>$value->appid]);
+            }
+        }
 
     }
 

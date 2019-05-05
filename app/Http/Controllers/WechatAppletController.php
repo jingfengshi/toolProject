@@ -101,20 +101,20 @@ class WechatAppletController extends Controller
             if (DB::table('daily_wechat_mini_visit')->where($where)->first()) {
                 DB::table('daily_wechat_mini_visit')->where($where)->increment('jump_success', 1, ['updated_at' => date('Y-m-d H:i:s')]);
             } else {
-                DB::table('daily_wechat_mini_visit')->insert(['gh_id' => $ghid, 'ref_date' => $today, 'jump_success' => 1, 'updated_at' => date('Y-m-d H:i:s'), 'created_at' => date('Y-m-d H:i:s')]);
+                DB::table('daily_wechat_mini_visit')->insert(['gh_id' => $ghid, 'appid' => $appid, 'ref_date' => $today, 'jump_success' => 1, 'updated_at' => date('Y-m-d H:i:s'), 'created_at' => date('Y-m-d H:i:s')]);
             }
         } else if ($status == 2) {
             if (DB::table('daily_wechat_mini_visit')->where($where)->first()) {
                 DB::table('daily_wechat_mini_visit')->where($where)->increment('jump_fail', 1, ['updated_at' => date('Y-m-d H:i:s')]);
             } else {
-                DB::table('daily_wechat_mini_visit')->insert(['gh_id' => $ghid, 'ref_date' => $today, 'jump_fail' => 1, 'updated_at' => date('Y-m-d H:i:s'), 'created_at' => date('Y-m-d H:i:s')]);
+                DB::table('daily_wechat_mini_visit')->insert(['gh_id' => $ghid, 'appid' => $appid, 'ref_date' => $today, 'jump_fail' => 1, 'updated_at' => date('Y-m-d H:i:s'), 'created_at' => date('Y-m-d H:i:s')]);
             }
         }
     }
 
     public function getDailyWechatMiniVisit($day)
     {
-        $visitData = DB::table('daily_wechat_mini_visit')->select(['appid','gh_id', 'ref_date', 'jump_success', 'jump_fail'])
+        $visitData = DB::table('daily_wechat_mini_visit')->select(['appid', 'gh_id', 'ref_date', 'jump_success', 'jump_fail'])
             ->where(['ref_date' => $day])->get()->toArray();
         return response()->json($visitData);
     }
