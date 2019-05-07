@@ -144,6 +144,8 @@ Route::group([
 
     $router->resource('/code','CodesController');
 
+    $router->resource('/largeShortUrl','LargeShortUrlController');
+
     //域名购买
     $router->get('domainregistration', 'DomainRegistrationController@domainRegistration');
     $router->post('domainregistration', 'DomainRegistrationController@store');

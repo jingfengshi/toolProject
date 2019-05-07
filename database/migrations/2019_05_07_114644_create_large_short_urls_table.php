@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddJumpurlToGamesTable extends Migration
+class CreateLargeShortUrlsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddJumpurlToGamesTable extends Migration
      */
     public function up()
     {
-        Schema::table('games', function (Blueprint $table) {
-          //  $table->string('jumpUrl', 150)->default('pages/index/index?from=87');
+        Schema::create('large_short_urls', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('url');
+            $table->string('to_url');
+            $table->string('short_url');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddJumpurlToGamesTable extends Migration
      */
     public function down()
     {
-        Schema::table('games', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('large_short_urls');
     }
 }
