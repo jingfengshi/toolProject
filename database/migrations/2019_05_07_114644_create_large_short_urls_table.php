@@ -17,7 +17,7 @@ class CreateLargeShortUrlsTable extends Migration
             $table->increments('id');
             $table->string('url');
             $table->string('to_url');
-            $table->string('short_url');
+            $table->longText('short_url');
             $table->timestamps();
         });
     }

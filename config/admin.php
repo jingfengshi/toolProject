@@ -328,4 +328,8 @@ return [
             'enable' => true,
         ]
     ],
+    'fangfeng'=>[
+        'username'=>env('FANGFENG_USERNAME'),
+        'apiKey'=>env('FANGFENG_KEY')
+    ]
 ];
