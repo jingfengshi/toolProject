@@ -10,6 +10,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 
 class LargeShortUrlsController extends Controller
@@ -115,6 +116,12 @@ class LargeShortUrlsController extends Controller
         $show->updated_at('Updated at');
 
         return $show;
+    }
+
+    public function store(Request $request)
+    {
+        $this->form($request)->store();
+        return redirect('/admin/largeShortUrl');
     }
 
     /**
