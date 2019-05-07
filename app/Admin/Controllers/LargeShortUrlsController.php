@@ -95,6 +95,7 @@ class LargeShortUrlsController extends Controller
         $grid->disableCreateButton();
         $grid->disableExport();
         $grid->disableActions();
+        $grid->model()->orderBy('id','desc');
         return $grid;
     }
 
@@ -134,7 +135,7 @@ class LargeShortUrlsController extends Controller
         $form = new Form(new LargeShortUrl);
         $form->setAction('/admin/largeShortUrl');
         $form->url('url', '原始域名')->rules('required|url');
-        $form->number('number', '生成数量')->rules('required')->min(1)->max(20);
+        $form->number('number', '生成数量')->rules('required')->min(1)->max(50);
         $form->disableViewCheck();
         $form->disableEditingCheck();
         $form->disableCreatingCheck();
