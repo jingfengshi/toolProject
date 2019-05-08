@@ -26,6 +26,7 @@ class FangFengHandler
                 "username"     => $username,
                 "apiKey"  => $key,
                 "url"    => $url,
+                'QRcode'=>true
             ]
         ]);
 
