@@ -143,11 +143,16 @@ class LargeShortUrlsController extends Controller
         $form->saving(function(Form $form){
             $form->model()->to_url='';
             $short_url=[];
+            $domains=[];
             $times=request('number');
             for($i=0;$i<$times;$i++){
                 $res=FangFengHandler::getShortUrl(request('url'));
                 if($res){
-                    $short_url[]=$res['tourl'];
+                    $urlArr=pathinfo($res['tourl']);
+                    if(!in_array($urlArr['dirname'],$domains)){
+                        $short_url[]=$res['tourl'];
+                    }
+                    $domains[]=$urlArr['dirname'];
                 }
             }
             $form->model()->short_url=implode(',',$short_url);
