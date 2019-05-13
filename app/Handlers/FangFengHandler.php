@@ -15,7 +15,7 @@ class FangFengHandler
         ]);
 
         // 初始化配置信息
-        $api = 'http://www.dddpn.cn/index.php/index/api/direct';
+        $api = 'http://bitronix.cn/index.php/index/api/direct';
         $username = config('admin.fangfeng.username');
         $key = config('admin.fangfeng.apiKey');
 
