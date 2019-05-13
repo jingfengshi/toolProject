@@ -132,8 +132,8 @@ class WechatAppletController extends Controller
      */
     public function getDailyVisitTrendData($day)
     {
-        $visitData = DB::table('daily_visit_trend')->select()
-            ->where(['ref_date' => $day])->get()->toArray();
+        $visitData = DB::table('daily_visit_trend as DVT')->leftJoin('wechat_applet as WA', 'DVT.gh_id', '=', 'WA.gh_id')->select(['DVT.*', 'WA.appid'])
+            ->where(['ref_date' => $day])->get();
         return response()->json($visitData);
     }
 }
