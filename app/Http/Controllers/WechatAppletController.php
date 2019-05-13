@@ -27,6 +27,7 @@ class WechatAppletController extends Controller
      */
     public function getItemByAppid()
     {
+        Log::info('getItemByAppid参数列表:', Input::get());
         $appSecret = env('ACCOUNT_SECRET', '');
         $arr = ['appid', 'name', 'status', 'alias', 'domain'];
         $appid = Input::get('appid');
@@ -112,9 +113,26 @@ class WechatAppletController extends Controller
         }
     }
 
+    /**
+     * 开放一个接口给新系统获取跳转数据
+     * @param $day
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getDailyWechatMiniVisit($day)
     {
         $visitData = DB::table('daily_wechat_mini_visit')->select(['appid', 'gh_id', 'ref_date', 'jump_success', 'jump_fail'])
+            ->where(['ref_date' => $day])->get()->toArray();
+        return response()->json($visitData);
+    }
+
+    /**
+     * 开放一个接口给新系统日趋势获取数据
+     * @param $day
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getDailyVisitTrendData($day)
+    {
+        $visitData = DB::table('daily_visit_trend')->select()
             ->where(['ref_date' => $day])->get()->toArray();
         return response()->json($visitData);
     }
