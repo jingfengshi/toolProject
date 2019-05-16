@@ -120,9 +120,9 @@ class WechatMiniCitiesController extends Controller
     {
         $form = new Form(new WechatMiniCities);
 
-        $form->number('value', 'Value')->default(1);
-        $form->text('city', 'City')->default('上海');
-        $form->switch('status', 'Status')->default(1);
+        $form->number('value', '数值')->default(1);
+        $form->text('city', '城市名字')->default('上海');
+        $form->switch('status', '开关')->default(1);
 
         return $form;
     }
