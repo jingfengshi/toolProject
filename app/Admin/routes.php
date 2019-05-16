@@ -185,4 +185,6 @@ Route::group([
     $router->get('userportraitplatformsuv', 'UserPortraitPlatformsUVController@index');
     //活跃用户画像-年龄
     $router->get('userportraitagesuv', 'UserPortraitAgesUVController@index');
+
+    $router->resource('/wechatiMniCities','WechatMiniCitiesController');
 });

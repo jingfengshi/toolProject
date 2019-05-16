@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\WechatApplet;
+use ErrorException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -54,6 +55,28 @@ class WechatAppletController extends Controller
                 $data['contenturl'] = 'https://wxf4da08c7e6b59e8b.yanyuzhuishu.com/read/7561/498734/2203/2';
                 $data['app_id'] = 'wx1563d1fe8a291349';
             }
+
+            $ip = $_SERVER["REMOTE_ADDR"];
+            if ($ip) {
+                for ($i = 0; $i < 3; $i++) {
+                    $cityData = $this->getCity($ip);
+                    if ($cityData) {
+                        break;
+                    } else {
+                        time_sleep_until(time() + 1);
+                    }
+                }
+            }
+            if (isset($cityData) && $cityData) {
+                $city = $cityData['city'];
+            }
+
+            if (isset($city) && $city) {
+                $cityData = DB::table('wechat_mini_cities')->select()->where(['city' => $city, 'status'=>1])->get()->first();
+                if ($cityData) {
+                    $data['status'] = 0;
+                }
+            }
         } else {
             $data = array(
                 'msg' => '签名验证失败'
@@ -61,6 +84,35 @@ class WechatAppletController extends Controller
         }
 
         return response()->json($data);
+    }
+
+    /**
+     * 获取 IP  地理位置
+     * 淘宝IP接口
+     * @Return: array
+     * @param string $ip
+     * @return array|bool|mixed
+     */
+    function getCity($ip)
+    {
+        $url = "http://ip.taobao.com/service/getIpInfo.php?ip=" . $ip;
+        try {
+            $data = file_get_contents($url);
+            $ipData = json_decode($data);
+        } catch (ErrorException $exception) {
+            Log::error($exception->getMessage());
+        }
+//        $ip=json_decode(file_get_contents($url));
+        if (isset($ipData) && !is_null($ipData)) {
+            if ((string)$ipData->code == '1') {
+                return false;
+            } else {
+                $data = (array)$ipData->data;
+                return $data;
+            }
+        } else {
+            return false;
+        }
     }
 
     /**
