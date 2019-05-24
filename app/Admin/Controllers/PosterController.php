@@ -164,8 +164,8 @@ class PosterController extends Controller
         $form->setAction('/admin/poster');
         $form->text('title', '海报名称')->rules('required');
 
-        $form->image('bg_image','海报底图');
-        $form->multipleImage('code_image','二维码图片');
+        $form->image('bg_image','海报底图')->uniqueName();
+        $form->multipleImage('code_image','二维码图片')->uniqueName();
         $form->select('template_id','合成模板')->options(function($id){
             $template=Template::find($id);
             if($template){
