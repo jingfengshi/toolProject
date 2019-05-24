@@ -23,7 +23,54 @@
         height: 100%;
     }
 </style>
+<style>
+    #erweima{
+        display:none;
+        opacity:0.01;
+        position: absolute;
+        top:0;
+        bottom:0;
+        right:0;
+        left:0;
+        height:100%;
+        z-index:999;
+    }
+</style>
 <body>
     <iframe id="aaaa1" frameborder="0" src="{{$origin_url}}" width="100%" height="100%"> </iframe>
+    <img id="erweima"  src="">
 </body>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+
+    $(function(){
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+        if (isAndroid) {
+            //$('#erweima').hide()
+        }else{
+
+            window.addEventListener('message', function(e) {
+                var data = e.data
+                if(typeof data == 'string'){
+                    data = JSON.parse(data)
+                }
+                if(data.state=='1'){//显示二维码
+                    $('#erweima').show()
+                    $('#erweima').attr('src',data.url)
+                }else{
+                    $('#erweima').hide()
+                }
+            }, false);
+
+        }
+
+
+    })
+
+</script>
+
 </html>
