@@ -67,14 +67,14 @@ return [
             'driver'     => 'local',
             'root' => storage_path('app/public'),
             'visibility' => 'public',
-            'url' => env('APP_URL').'/upload/',
+            'url' => env('APP_URL').'/storage',
         ],
         'sites' => [
             'driver'     => 'local',
             //'root'       => public_path('upload').'/sites',
             'root' => storage_path('app/public').'/sites',
             'visibility' => 'public',
-            'url' => env('APP_URL').'/upload/sites/',
+            'url' => env('APP_URL').'/storage/sites/',
         ],
 
         'qiniu' => [
