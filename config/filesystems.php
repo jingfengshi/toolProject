@@ -65,13 +65,14 @@ return [
         ],
         'admin' => [
             'driver'     => 'local',
-            'root'       => public_path('upload'),
+            'root' => storage_path('app/public'),
             'visibility' => 'public',
             'url' => env('APP_URL').'/upload/',
         ],
         'sites' => [
             'driver'     => 'local',
-            'root'       => public_path('upload').'/sites',
+            //'root'       => public_path('upload').'/sites',
+            'root' => storage_path('app/public').'/sites',
             'visibility' => 'public',
             'url' => env('APP_URL').'/upload/sites/',
         ],
