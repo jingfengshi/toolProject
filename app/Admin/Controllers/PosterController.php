@@ -188,8 +188,8 @@ class PosterController extends Controller
                 $co=Image::make($item)->resize($template->code_width,$template->code_height);
                 $bg->insert($co,'top-left',$template->code_start_x,$template->code_start_y);
                 $image_name=date('YmdHis').uniqid().'.png';
-                $bg->save(storage_path('app/public/upload').DIRECTORY_SEPARATOR.$image_name);
-                Storage::disk('qiniu')->put($image_name,file_get_contents(public_path('upload').DIRECTORY_SEPARATOR.$image_name));
+                $bg->save(storage_path('app/public/images').DIRECTORY_SEPARATOR.$image_name);
+                Storage::disk('qiniu')->put($image_name,file_get_contents(storage_path('app/public/images').DIRECTORY_SEPARATOR.$image_name));
                 $poster_image[]=$image_name;
             }
             $form->model()->poster_image=json_encode($poster_image);
