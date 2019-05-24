@@ -93,7 +93,7 @@ class PosterController extends Controller
         $grid->column('title','海报名称');
         $grid->column('bg_image','背景图片')->display(function($bg_image){
 
-            return '<img class="bg" src="/storage/app/public/images'.$bg_image.'" height="50px" width="50px"> ';
+            return '<img class="bg" src="/storage/app/public/'.$bg_image.'" height="50px" width="50px"> ';
         });;
         $grid->column('code_image','二维码')->display(function($code_image){
            // $url=Storage::disk('qiniu')->url($code_image);
@@ -104,7 +104,7 @@ class PosterController extends Controller
             foreach ($code_images->chunk(3) as $images){
 
                 foreach ($images as $image){
-                    $div.='<img src="/storage/app/public/images'.$image.'" height="50px" width="50px">  ';
+                    $div.='<img src="/storage/app/public/'.$image.'" height="50px" width="50px">  ';
                 }
                 $div.='<hr>';
             }
