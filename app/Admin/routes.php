@@ -186,7 +186,7 @@ Route::group([
     //活跃用户画像-年龄
     $router->get('userportraitagesuv', 'UserPortraitAgesUVController@index');
 
-<<<<<<< HEAD
+
 
 
     //域名池管理
@@ -204,7 +204,7 @@ Route::group([
 
     $router->get('/ipblock/{location}','LocationsController@block');
 
-=======
+
     $router->resource('/wechatiMniCities','WechatMiniCitiesController');
->>>>>>> ae34b88842e6b5cee7bfbaff5da742f182fee6aa
+
 });
