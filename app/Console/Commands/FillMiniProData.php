@@ -55,6 +55,7 @@ class FillMiniProData extends Command
         $select = ['gh_id', 'appid', 'appsecret', 'token', 'aeskey', 'name'];
         $where = ['status' => 1];
         $data = DB::table('wechat_applet')->select($select)->where($where)->get();
+//        $data = DB::table('wechat_applet')->select($select)->get();
         if ($data->isNotEmpty()) {
             foreach ($data as $value) {
                 $value = get_object_vars($value);

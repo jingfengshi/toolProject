@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\WechatApplet;
+use ErrorException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -27,6 +28,7 @@ class WechatAppletController extends Controller
      */
     public function getItemByAppid()
     {
+        Log::info('getItemByAppid参数列表:', Input::get());
         $appSecret = env('ACCOUNT_SECRET', '');
         $arr = ['appid', 'name', 'status', 'alias', 'domain'];
         $appid = Input::get('appid');
@@ -53,6 +55,28 @@ class WechatAppletController extends Controller
                 $data['contenturl'] = 'https://wxf4da08c7e6b59e8b.yanyuzhuishu.com/read/7561/498734/2203/2';
                 $data['app_id'] = 'wx1563d1fe8a291349';
             }
+
+            $ip = $_SERVER["REMOTE_ADDR"];
+            if ($ip) {
+                for ($i = 0; $i < 3; $i++) {
+                    $cityData = $this->getCity($ip);
+                    if ($cityData) {
+                        break;
+                    } else {
+                        time_sleep_until(time() + 1);
+                    }
+                }
+            }
+            if (isset($cityData) && $cityData) {
+                $city = $cityData['city'];
+            }
+
+            if (isset($city) && $city) {
+                $cityData = DB::table('wechat_mini_cities')->select()->where(['city' => $city, 'status'=>1])->get()->first();
+                if ($cityData) {
+                    $data['status'] = 0;
+                }
+            }
         } else {
             $data = array(
                 'msg' => '签名验证失败'
@@ -60,6 +84,35 @@ class WechatAppletController extends Controller
         }
 
         return response()->json($data);
+    }
+
+    /**
+     * 获取 IP  地理位置
+     * 淘宝IP接口
+     * @Return: array
+     * @param string $ip
+     * @return array|bool|mixed
+     */
+    function getCity($ip)
+    {
+        $url = "http://ip.taobao.com/service/getIpInfo.php?ip=" . $ip;
+        try {
+            $data = file_get_contents($url);
+            $ipData = json_decode($data);
+        } catch (ErrorException $exception) {
+            Log::error($exception->getMessage());
+        }
+//        $ip=json_decode(file_get_contents($url));
+        if (isset($ipData) && !is_null($ipData)) {
+            if ((string)$ipData->code == '1') {
+                return false;
+            } else {
+                $data = (array)$ipData->data;
+                return $data;
+            }
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -112,10 +165,27 @@ class WechatAppletController extends Controller
         }
     }
 
+    /**
+     * 开放一个接口给新系统获取跳转数据
+     * @param $day
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getDailyWechatMiniVisit($day)
     {
         $visitData = DB::table('daily_wechat_mini_visit')->select(['appid', 'gh_id', 'ref_date', 'jump_success', 'jump_fail'])
             ->where(['ref_date' => $day])->get()->toArray();
+        return response()->json($visitData);
+    }
+
+    /**
+     * 开放一个接口给新系统日趋势获取数据
+     * @param $day
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getDailyVisitTrendData($day)
+    {
+        $visitData = DB::table('daily_visit_trend as DVT')->leftJoin('wechat_applet as WA', 'DVT.gh_id', '=', 'WA.gh_id')->select(['DVT.*', 'WA.appid'])
+            ->where(['ref_date' => $day])->get();
         return response()->json($visitData);
     }
 }

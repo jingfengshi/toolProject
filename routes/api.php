@@ -40,4 +40,6 @@ Route::get('/statistics/{appid}/{status}','WechatAppletController@countEnter');
 
 Route::get('/getdailywwechatminivisit/{day}','WechatAppletController@getDailyWechatMiniVisit');
 
+Route::get('/getDailyVisitTrendData/{day}','WechatAppletController@getDailyVisitTrendData');
+
 
