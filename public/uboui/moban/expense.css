@@ -1,0 +1,123 @@
+﻿body,ul,p,h1,h2,h3,h4,dl,dd,form,input,textarea,select { padding:0; margin:0; font-family:arial; overflow: hidden;
+  }
+li { list-style:none; }
+img { border:none; }
+a { text-decoration:none; }
+a:hover { text-decoration:none; }
+
+.clear { zoom:1; }
+.clear:after { content:''; display:block; clear:both; }
+input{outline:none;}
+/*生成图片页面样式*/
+#content{width:100%;position: relative; overflow: hidden;
+ }
+.head{width:100%;height:40px;background:#000; filter:alpha(opacity:30); opacity:0.3;position:absolute;top:0;z-index: 2;}
+.head a{display:block;color:#fff;text-align: center;line-height:30px;font-weight: bold;font-size:18px;}
+.head ul{width:80%;height:30px;margin:0 auto; border: 1px solid #fff;z-index: 3;position: absolute;top:5px;border-radius: 50px;left:10%;}
+.high{width:50%;height:30px;position:absolute;z-index: 3;border-right:1px solid #fff;text-align: center;line-height:30px;}
+.low{width:50%;height:30px;position:absolute;right:0;z-index: 3;line-height:30px;}
+.head .high a:hover{background:#ccc;border-top-left-radius:10px 10px;border-bottom-left-radius:10px 10px;text-decoration: none;color:#000;}
+.head .low a:hover{background:#ccc;border-top-right-radius:10px 10px;border-bottom-right-radius:10px 10px;text-decoration: none;color:#000;}
+.images{width:100%;position: relative;z-index: 1;}
+.images img{width:100%;}
+.images p{position: absolute;font-size:20px;top:40px;left:5px;color:#fff;}
+
+.images .set{width:100%;height:60px;z-index: 2;background:#000; filter:alpha(opacity:50); opacity:0.5;position: absolute;bottom:0;}
+.images .set .money{position: absolute;top:5px;right:20%;z-index: 3;color:#fff;font-size:18px;}
+.images .set .time{position: absolute;top:25px;right:20%;z-index: 3;color:#fff;font-size:18px}
+.images .set .gong{position:absolute;right:10px;top:5px;background: url(_/home/images/12123.png) no-repeat;z-index: 3;height:40px;width:40px;background-size:40px 40px;}
+.images .set .gong a{display:block;width:40px;height:40px;}
+/*生成图片样式*/
+/*打赏页面*/
+#content{width:100%;height:100%;position: relative;text-align: center;margin:0 auto;}
+#nav{width:300px;height:300px;margin:100px auto;z-index: 2;position: absolute; top: 0; left: 0; bottom: 0; right: 0;}
+#nav img{width:300px;height:300px;z-index: 2;margin:0 auto;}
+#nav p{width:100%;z-index: 3;position: absolute;top:2%;color:#ffdeb3;text-align: center;}
+#nav .tou{width:50px;height:50px;border-radius: 50%;background: #ffdeb3;position: absolute;top:35px;left:42%;z-index: 3;}
+#nav .tou img{width:50px;height:50px;border-radius: 50%;position: absolute;top:0;left:0;z-index: 3;}
+#nav span{color:#ffdeb3;position: absolute;top:36%;left:30%;z-index: 3;font-size: 30px;width:40%;}
+#nav .sui{color:#ffdeb3;font-size: 13px;z-index: 3;position: absolute;top:50%;left:22%;}
+#nav ul li a{color:#ffdeb3;text-decoration: none;}
+#nav .reward{width:100%;height:50px;position: absolute;top:10%;}
+#nav .reward .submit{width:100%;height:40px;border:none;background:#19ad17;color:#fff;font-size:15px;}
+#nav .reward .submit:hover{background:#f9f7cd;}
+#nav .build{width:80%;position: absolute;top:85%;left:10%;background: url(../images/weixin.png) no-repeat left 0;background-size: 20px 20px;z-index: 3;}
+#nav .build a{color:#ffdeb3;font-size:13px;}
+/*
+打赏页面*/
+/*打赏看原图页面*/
+#header{width:100%;height:40px;background: #000;}
+#header p{color:#fff;font-size:20px;text-align: center;line-height:40px;}
+#nickname{width:100%;height:50px;position:relative;}
+#nickname .tou{width:50px;height:50px;border:1px solid #fff;background: #ffdeb3;position: absolute;top:20%;left:30%;z-index: 3;}
+#nickname .tou img{width:50px;height:50px;position: absolute;left:0;z-index: 3;}
+#nickname p{color:#fff;z-index: 2;width:80px;margin-left:10px; position:absolute;top:30%;left:100%;font-size: 13px;}
+#content1{width:100%;height:400px;position: relative;text-align: center;margin:0 auto;margin-bottom:20px;}
+#nav1{width:300px;height:300px;margin:60px auto;z-index: 2;position: absolute; top: 0; left: 0; bottom: 0; right: 0;box-shadow:0px 0px 50px #fff;}
+#nav1 img{width:300px;height:300px;z-index: 2;margin:0 auto;}
+
+#nav1 .delete{width:100%;height:40px;z-index: 3;  top: 10px;  left: 20px;}
+#nav1 .delete img{width:20px;height:20px;position: absolute;top:10px;left:20px;z-index: 3;}
+#nav1 .tixian{width:60%; height:50px;position: absolute;top:50px;left:20%;z-index: 3;color:#ffdeb3;}
+#nav1 .reward1{width:100%;height:65px;position: absolute;top:55%;}
+#nav1 .reward1 p{width:100%;height:50px;position: absolute;top:0;font-size:12px;color:#ffdeb3;}
+#nav1 .reward1 a{display:block;width:100%;height:100%;}
+#nav1 .reward1 img{width:100%;height:0;}
+#nav1 .reward1 .dashang1{width:80%;height:40px;position: absolute;top:50%;left:10%;background:none;border:none;background:#fae2b2;color:#d35b4d;border-radius:10px;font-size:15px;}
+#nav1 .reward1 .dashang1:hover{background:#f9f7cd;}
+#nav1 .reward1 .dashang2{width:80%;height:40px;border:1px solid #ffdeb3;;position: absolute;top:120%;left:10%;border-radius:10px;background:none;color:#ffdeb3;}
+#nav1 .reward1 .dashang2:hover{color:#f9f7cd;}
+#footer{width:90%;height:50px; z-index: 3;bottom:0;margin:0 auto;}
+
+#footer p{width:30%;float:left;text-align: center;display: inline-block;}
+#footer .good{text-align: center;height:30px;}
+#footer .saomiao{width:35%;height:30px;line-height:30px;}
+#footer .bad{height:30px;}
+#footer p img{width:20px;height:20px;    padding-right: 3px;}
+#footer p a{color:#fff;font-size: 14px;line-height:30px;}
+/*打赏看原图页面*/
+
+/* 页面通用 */
+#background {
+    position:absolute;z-index:-1;width:100%;height:100%;top:0px;left:0px;
+}
+#nav {
+    top:80%;position:relative;
+}
+.erwei {
+    width: 100%;
+    height: 100%;
+    background: rgba(120, 120, 120, 0.7);
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+.erwei .erweima {
+    width: 160px;
+    height: 160px;
+    background: #fff;
+}
+
+.erwei .erweima img {
+    width: 150px;
+    height: 150px;
+}
+.price {
+    color:#a42b18;font-size:30px;position:absolute;top:250px;text-align:center;background:#fff;border-radius:5px;width:80%;display:block;margin-left:-20%;opacity:0.8;
+}
+.reward {
+    position:absolute;top:300px;width:50%;margin-left:25%;
+}
+.is_pay {
+    color:#fff;top:0px;font-size:20px;border-radius:6px;
+}
+.title {
+    color:#a42b18;top:190px;font-size:20px;font-weight:bold;width:80%;margin-left:10%;background:#fff;border-radius:5px;height:40px;line-height:40px;opacity:0.8;
+}
+.pay_now {
+    color:#fff;top:0px;font-size:20px;border-radius:6px;
+}
+.join {
+    background:#a42b18;color:#fff;top:0px;font-size:20px;border-radius:20px;margin-top:15px;
+}

@@ -185,4 +185,22 @@ Route::group([
     $router->get('userportraitplatformsuv', 'UserPortraitPlatformsUVController@index');
     //活跃用户画像-年龄
     $router->get('userportraitagesuv', 'UserPortraitAgesUVController@index');
+
+
+
+    //域名池管理
+    //入口域名池
+    $router->resource('spreadDomains','SpreadDomainsController');
+    //落地域名池
+    $router->resource('landDomains','LandDomainsController');
+
+    //防封管理
+    //防封域名管理
+    $router->resource('unBlockDomains','UnBlockDomainsController');
+
+    $router->resource('location','LocationsController');
+
+
+    $router->get('/ipblock/{location}','LocationsController@block');
+
 });

@@ -1,0 +1,825 @@
+.koko input[type=range]:focus,
+.koko:focus {
+    outline: 0
+}
+
+.koko .koko__video-embed iframe,
+.koko__tooltip {
+    pointer-events: none
+}
+
+@keyframes koko-progress {
+    to {
+        background-position: 25px 0
+    }
+}
+
+.koko {
+    position: relative;
+    max-width: 100%;
+    min-width: 200px;
+    font-family: Avenir, 'Avenir Next', 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+    direction: ltr
+}
+
+.koko,
+.koko *,
+.koko::after,
+.koko::before {
+    box-sizing: border-box
+}
+
+.koko a,
+.koko button,
+.koko input,
+.koko label {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation
+}
+
+.koko audio,
+.koko video {
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border-radius: inherit
+}
+
+.koko input[type=range] {
+    display: block;
+    height: 20px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    border: none;
+    background: 0 0
+}
+
+.koko input[type=range]::-webkit-slider-runnable-track {
+    height: 8px;
+    background: 0 0;
+    border: 0;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    user-select: none
+}
+
+.koko input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    margin-top: -4px;
+    position: relative;
+    height: 16px;
+    width: 16px;
+    background: #fff;
+    border: 2px solid transparent;
+    border-radius: 100%;
+    transition: background .2s ease, border .2s ease, transform .2s ease;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15), 0 0 0 1px rgba(0, 0, 0, .15);
+    box-sizing: border-box
+}
+
+.koko input[type=range]::-moz-range-track {
+    height: 8px;
+    background: 0 0;
+    border: 0;
+    border-radius: 4px;
+    -moz-user-select: none;
+    user-select: none
+}
+
+.koko input[type=range]::-moz-range-thumb {
+    position: relative;
+    height: 16px;
+    width: 16px;
+    background: #fff;
+    border: 2px solid transparent;
+    border-radius: 100%;
+    transition: background .2s ease, border .2s ease, transform .2s ease;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15), 0 0 0 1px rgba(0, 0, 0, .15);
+    box-sizing: border-box
+}
+
+.koko input[type=range]::-ms-track {
+    height: 8px;
+    background: 0 0;
+    border: 0;
+    color: transparent
+}
+
+.koko input[type=range]::-ms-fill-upper {
+    height: 8px;
+    background: 0 0;
+    border: 0;
+    border-radius: 4px;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.koko input[type=range]::-ms-fill-lower {
+    height: 8px;
+    border: 0;
+    border-radius: 4px;
+    -ms-user-select: none;
+    user-select: none;
+    background: #49b956
+}
+
+.koko input[type=range]::-ms-thumb {
+    position: relative;
+    height: 16px;
+    width: 16px;
+    background: #fff;
+    border: 2px solid transparent;
+    border-radius: 100%;
+    transition: background .2s ease, border .2s ease, transform .2s ease;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15), 0 0 0 1px rgba(0, 0, 0, .15);
+    box-sizing: border-box;
+    margin-top: 0
+}
+
+.koko input[type=range]::-ms-tooltip {
+    display: none
+}
+
+.koko input[type=range]::-moz-focus-outer {
+    border: 0
+}
+
+.koko input[type=range].tab-focus:focus {
+    outline-offset: 3px
+}
+
+.koko input[type=range]:active::-webkit-slider-thumb {
+    background: #49b956;
+    border-color: #fff;
+    transform: scale(1.25)
+}
+
+.koko input[type=range]:active::-moz-range-thumb {
+    background: #49b956;
+    border-color: #fff;
+    transform: scale(1.25)
+}
+
+.koko input[type=range]:active::-ms-thumb {
+    background: #49b956;
+    border-color: #fff;
+    transform: scale(1.25)
+}
+
+.koko--video input[type=range].tab-focus:focus {
+    outline: rgba(255, 255, 255, .5) dotted 1px
+}
+
+.koko--audio input[type=range].tab-focus:focus {
+    outline: rgba(86, 93, 100, .5) dotted 1px
+}
+
+.koko__sr-only {
+    clip: rect(1px, 1px, 1px, 1px);
+    overflow: hidden;
+    position: absolute !important;
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important
+}
+
+.koko__video-wrapper {
+    position: relative;
+    background: #000;
+    border-radius: inherit
+}
+
+.koko__video-embed {
+    padding-bottom: 56.25%;
+    height: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    z-index: 0
+}
+
+.koko__video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.koko__video-embed>div {
+    position: relative;
+    padding-bottom: 200%;
+    transform: translateY(-35.95%)
+}
+
+.koko video::-webkit-media-text-track-container {
+    display: none
+}
+
+.koko__captions {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    transform: translateY(-40px);
+    transition: transform .3s ease;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 400
+}
+
+.koko__captions span {
+    border-radius: 2px;
+    padding: 3px 10px;
+    background: rgba(0, 0, 0, .7);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    line-height: 150%
+}
+
+.koko__captions span:empty {
+    display: none
+}
+
+@media (min-width:768px) {
+    .koko__captions {
+        font-size: 24px
+    }
+}
+
+.koko--captions-active .koko__captions {
+    display: block
+}
+
+.koko--hide-controls .koko__captions {
+    transform: translateY(-15px)
+}
+
+@media (min-width:1024px) {
+    .koko--fullscreen-active .koko__captions {
+        font-size: 32px
+    }
+}
+
+.koko::-webkit-media-controls {
+    display: none
+}
+
+.koko__controls {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    line-height: 1;
+    text-align: center
+}
+
+.koko__controls .koko__progress,
+.koko__controls .koko__time,
+.koko__controls>button {
+    margin-left: 5px
+}
+
+.koko__controls .koko__progress:first-child,
+.koko__controls .koko__time:first-child,
+.koko__controls>button:first-child {
+    margin-left: 0
+}
+
+.koko__controls .koko__volume {
+    margin-left: 5px
+}
+
+.koko__controls [data-koko=pause] {
+    margin-left: 0
+}
+
+.koko__controls button {
+    position: relative;
+    display: inline-block;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    overflow: visible;
+    vertical-align: middle;
+    padding: 7px;
+    border: 0;
+    background: 0 0;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background .3s ease, color .3s ease, opacity .3s ease;
+    color: inherit
+}
+
+.koko__controls button svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+    fill: currentColor
+}
+
+.koko__controls button:focus {
+    outline: 0
+}
+
+.koko__controls .icon--captions-on,
+.koko__controls .icon--exit-fullscreen,
+.koko__controls .icon--muted {
+    display: none
+}
+
+@media (min-width:480px) {
+    .koko__controls .koko__progress,
+    .koko__controls .koko__time,
+    .koko__controls>button {
+        margin-left: 10px
+    }
+}
+
+.koko--hide-controls .koko__controls {
+    opacity: 0;
+    pointer-events: none
+}
+
+.koko--video .koko__controls {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 50px 10px 10px;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .5));
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+    color: #fff;
+    transition: opacity .3s ease
+}
+
+.koko--video .koko__controls button.tab-focus:focus,
+.koko--video .koko__controls button:hover {
+    background: #49b956;
+    color: #fff
+}
+
+.koko--audio .koko__controls {
+    padding: 10px;
+    border-radius: inherit;
+    background: #fff;
+    border: 1px solid #dbe3e8;
+    color: #565D64
+}
+
+.koko--audio .koko__controls button.tab-focus:focus,
+.koko--audio .koko__controls button:hover {
+    background: #49b956;
+    color: #fff
+}
+
+.koko__play-large {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    border: none;
+    transition: all .3s ease;
+    background: transparent;
+    cursor: pointer;
+}
+
+.koko__play-large svg {
+    position: relative;
+    left: 2px;
+    width: 64px;
+    height: 64px;
+    display: block;
+    fill: currentColor
+}
+
+.koko__play-large:focus {
+    outline: rgba(255, 255, 255, .5) dotted 1px
+}
+
+.koko .koko__play-large {
+    display: inline-block
+}
+
+.koko--audio .koko__play-large,
+.koko--playing .koko__controls [data-koko=play],
+.koko__controls [data-koko=pause] {
+    display: none
+}
+
+.koko--playing .koko__play-large {
+    opacity: 0;
+    visibility: hidden
+}
+
+.koko--playing .koko__controls [data-koko=pause] {
+    display: inline-block
+}
+
+.koko--captions-active .koko__controls .icon--captions-on,
+.koko--fullscreen-active .icon--exit-fullscreen,
+.koko--muted .koko__controls .icon--muted {
+    display: block
+}
+
+.koko [data-koko=captions],
+.koko [data-koko=fullscreen],
+.koko--captions-active .koko__controls .icon--captions-on+svg,
+.koko--fullscreen-active .icon--exit-fullscreen+svg,
+.koko--muted .koko__controls .icon--muted+svg {
+    display: none
+}
+
+.koko--captions-enabled [data-koko=captions],
+.koko--fullscreen-enabled [data-koko=fullscreen] {
+    display: inline-block
+}
+
+.koko__tooltip {
+    position: absolute;
+    z-index: 2;
+    bottom: 100%;
+    margin-bottom: 10px;
+    padding: 5px 7.5px;
+    opacity: 0;
+    background: rgba(0, 0, 0, .7);
+    border-radius: 3px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.3;
+    transform: translate(-50%, 10px) scale(.8);
+    transform-origin: 50% 100%;
+    transition: transform .2s .1s ease, opacity .2s .1s ease;
+    white-space: nowrap;
+}
+
+.koko__tooltip::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -4px;
+    border-right: 4px solid transparent;
+    border-top: 4px solid rgba(0, 0, 0, .7);
+    border-left: 4px solid transparent;
+    z-index: 2
+}
+
+.koko button.tab-focus:focus .koko__tooltip,
+.koko button:hover .koko__tooltip,
+.koko__tooltip--visible {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1)
+}
+
+.koko button:hover .koko__tooltip {
+    z-index: 3
+}
+
+.koko__controls button:first-child .koko__tooltip {
+    left: 0;
+    transform: translate(0, 10px) scale(.8);
+    transform-origin: 0 100%
+}
+
+.koko__controls button:first-child .koko__tooltip::before {
+    left: 16px
+}
+
+.koko__controls button:last-child .koko__tooltip {
+    right: 0;
+    transform: translate(0, 10px) scale(.8);
+    transform-origin: 100% 100%
+}
+
+.koko__controls button:last-child .koko__tooltip::before {
+    left: auto;
+    right: 16px;
+    transform: translateX(50%)
+}
+
+.koko__controls button:first-child .koko__tooltip--visible,
+.koko__controls button:first-child.tab-focus:focus .koko__tooltip,
+.koko__controls button:first-child:hover .koko__tooltip,
+.koko__controls button:last-child .koko__tooltip--visible,
+.koko__controls button:last-child.tab-focus:focus .koko__tooltip,
+.koko__controls button:last-child:hover .koko__tooltip {
+    transform: translate(0, 0) scale(1)
+}
+
+.koko__progress {
+    position: relative;
+    display: none;
+    -ms-flex: 1;
+    flex: 1
+}
+
+.koko__progress input[type=range] {
+    position: relative;
+    z-index: 2
+}
+
+.koko__progress input[type=range]::-webkit-slider-runnable-track {
+    background: 0 0
+}
+
+.koko__progress input[type=range]::-moz-range-track {
+    background: 0 0
+}
+
+.koko__progress input[type=range]::-ms-fill-upper {
+    background: 0 0
+}
+
+.koko__progress .koko__tooltip {
+    left: 0
+}
+
+.koko .koko__progress {
+    display: inline-block
+}
+
+.koko__progress--buffer,
+.koko__progress--played,
+.koko__volume--display {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 8px;
+    margin: -4px 0 0;
+    padding: 0;
+    vertical-align: top;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    border-radius: 100px
+}
+
+.koko__progress--buffer::-webkit-progress-bar,
+.koko__progress--played::-webkit-progress-bar,
+.koko__volume--display::-webkit-progress-bar {
+    background: 0 0
+}
+
+.koko__progress--buffer::-webkit-progress-value,
+.koko__progress--played::-webkit-progress-value,
+.koko__volume--display::-webkit-progress-value {
+    background: currentColor;
+    border-radius: 100px;
+    min-width: 8px
+}
+
+.koko__progress--buffer::-moz-progress-bar,
+.koko__progress--played::-moz-progress-bar,
+.koko__volume--display::-moz-progress-bar {
+    background: currentColor;
+    border-radius: 100px;
+    min-width: 8px
+}
+
+.koko__progress--buffer::-ms-fill,
+.koko__progress--played::-ms-fill,
+.koko__volume--display::-ms-fill {
+    border-radius: 100px
+}
+
+.koko__progress--played,
+.koko__volume--display {
+    z-index: 1;
+    color: #49b956;
+    background: 0 0;
+    transition: none
+}
+
+.koko__progress--played::-webkit-progress-value,
+.koko__volume--display::-webkit-progress-value {
+    min-width: 8px;
+    max-width: 99%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: none
+}
+
+.koko__progress--played::-moz-progress-bar,
+.koko__volume--display::-moz-progress-bar {
+    min-width: 8px;
+    max-width: 99%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: none
+}
+
+.koko__progress--played::-ms-fill,
+.koko__volume--display::-ms-fill {
+    display: none
+}
+
+.koko__progress--buffer::-webkit-progress-value {
+    transition: width .2s ease
+}
+
+.koko__progress--buffer::-moz-progress-bar {
+    transition: width .2s ease
+}
+
+.koko__progress--buffer::-ms-fill {
+    transition: width .2s ease
+}
+
+.koko--video .koko__progress--buffer,
+.koko--video .koko__volume--display {
+    background: rgba(255, 255, 255, .25)
+}
+
+.koko--video .koko__progress--buffer {
+    color: rgba(255, 255, 255, .25)
+}
+
+.koko--audio .koko__progress--buffer,
+.koko--audio .koko__volume--display {
+    background: rgba(198, 214, 219, .66)
+}
+
+.koko--audio .koko__progress--buffer {
+    color: rgba(198, 214, 219, .66)
+}
+
+.koko--loading .koko__progress--buffer {
+    animation: koko-progress 1s linear infinite;
+    background-size: 25px 25px;
+    background-repeat: repeat-x;
+    background-image: linear-gradient(-45deg, rgba(0, 0, 0, .15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, .15) 50%, rgba(0, 0, 0, .15) 75%, transparent 75%, transparent);
+    color: transparent
+}
+
+.koko--video.koko--loading .koko__progress--buffer {
+    background-color: rgba(255, 255, 255, .25)
+}
+
+.koko--audio.koko--loading .koko__progress--buffer {
+    background-color: rgba(198, 214, 219, .66)
+}
+
+.koko__time {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px
+}
+
+.koko__time+.koko__time {
+    display: none
+}
+
+@media (min-width:768px) {
+    .koko__time+.koko__time {
+        display: inline-block
+    }
+}
+
+.koko__time+.koko__time::before {
+    content: '\2044';
+    margin-right: 10px
+}
+
+.koko__volume {
+    display: none
+}
+
+.koko .koko__volume {
+    -ms-flex: 1;
+    flex: 1;
+    position: relative
+}
+
+.koko .koko__volume input[type=range] {
+    position: relative;
+    z-index: 2
+}
+
+@media (min-width:480px) {
+    .koko .koko__volume {
+        display: block;
+        max-width: 60px
+    }
+}
+
+@media (min-width:768px) {
+    .koko .koko__volume {
+        max-width: 100px
+    }
+}
+
+.koko--is-ios .koko__volume,
+.koko--is-ios [data-koko=mute] {
+    display: none !important
+}
+
+.koko--fullscreen-active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10000000;
+    background: #000;
+    border-radius: 0 !important
+}
+
+.koko--fullscreen-active video {
+    height: 100%
+}
+
+.koko--fullscreen-active .koko__video-wrapper {
+    height: 100%;
+    width: 100%
+}
+
+.koko--fullscreen-active .koko__video-embed {
+    overflow: visible
+}
+
+.koko--fullscreen-active .koko__controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0
+}
+
+.koko--fullscreen-active.koko--vimeo .koko__video-wrapper {
+    height: 0;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.koko__playRate,
+.koko__levelSwitch {
+    display: none;
+    position: relative;
+}
+
+.koko__playRate ul,
+.koko__levelSwitch ul {
+    position: absolute;
+    bottom: 25px;
+    text-align: center;
+    list-style-type: none;
+    padding-left: 0;
+    left: -10px;
+    min-width: 60px;
+    min-height: 15px;
+}
+
+.koko__playRate ul li,
+.koko__levelSwitch ul li {
+    padding: 3px 10px 3px 10px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    clear: both;
+    line-height: 30px;
+    cursor: pointer!important;
+    text-decoration: none!important;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+.koko__playRate ul li:hover,
+.koko__levelSwitch ul li:hover {
+    background: rgba(73, 185, 86, 0.6);
+}
+
+.koko__levelSwitch ul li:last-child {
+    border-bottom: none
+}
+
+.koko--playrate-show {
+    display: block !important;
+}
+
+.koko--playrate-item-active {
+    background: rgba(73, 185, 86, 0.6) !important;
+}

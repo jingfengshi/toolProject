@@ -97,10 +97,15 @@ class CompressSitesController extends Controller
         $str = preg_replace('/(https:\/\/mmbiz\.qpic\.cn)/Us', 'http://'.$host.'/wechat_image?url=${1}', $str);
 
         // 引用相对路径的图片
-        $str = preg_replace_callback('/<img (.*) src="(.*)" (.*)>/Us', function ($matches) use ($url, $host) {
+        $str = preg_replace_callback('/<img (.*) src="(.*?)" (.*?)>/Us', function ($matches) use ($url, $host) {
+            \Log::info(json_encode($matches[2]));
             if (stripos($matches[2], 'http') !== 0) {
                 $matches[2] = "http://$host/wechat_image?url=".$url.$matches[2];
+
             }
+
+
+
             return '<img '.$matches[1].' src="'.$matches[2].'" '.$matches[3].'>';
         }, $str);
 
