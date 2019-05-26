@@ -24,7 +24,7 @@ class getUserOpenId
         $appSecret = config('admin.wechat_ff.secret');
         $openId =  new getOpenID($appId,$appSecret);
         $rukou_url =base64_encode($request->url());
-        $url = config('admin.wechat_ff.host').'/wechatRedirect?sbk=$rukou_url';
+        $url = config('admin.wechat_ff.host').'/wechatRedirect?sbk='.$rukou_url;
         $openId->get_authorize_url("snsapi_base", $url);
         return $next($request);
     }
