@@ -18,6 +18,9 @@ class getUserOpenId
     {
 
         //获取openid
+        if($request->openid){
+            return $next($request);
+        }
 
         //用户同意授权,获取code
         $appId = config('admin.wechat_ff.appId');
