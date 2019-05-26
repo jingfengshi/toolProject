@@ -28,7 +28,9 @@ class WeChatRediectController extends Controller
         }else{
             $url =base64_decode(request('sbk'));
             $url=$url.'?openid='.$token['openid'];
-            header("Location:{$url}");
+
+            Log::error(json_encode($url));
+            //header("Location:{$url}");
 
 
         }
