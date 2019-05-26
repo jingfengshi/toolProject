@@ -205,7 +205,7 @@ Route::group([
 
     $router->get('/ipblock/{location}','LocationsController@block');
 
-    $router->get('/openidblock/{OpenId}','OpenIdsController@block');
+    $router->get('/openidblock/{openId}','OpenIdsController@block');
 
     $router->resource('/wechatiMniCities','WechatMiniCitiesController');
 
