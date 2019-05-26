@@ -29,13 +29,15 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('CZadmin:sendWechatMessage')->everyMinute();
-        //每天三点执行
-        $schedule->command('command:fillminiprodata')->dailyAt('07:00');
-        //每周一三点执行
-        $schedule->command('command:fillminiprodataweekly')->weekly()->mondays()->at('08:00');
-        //每月一号三点执行
-        $schedule->command('command:fillminiprodatamonthly')->monthlyOn(1, '09:00');
+//        $schedule->command('CZadmin:sendWechatMessage')->everyMinute();
+//        //每天三点执行
+//        $schedule->command('command:fillminiprodata')->dailyAt('07:00');
+//        //每周一三点执行
+//        $schedule->command('command:fillminiprodataweekly')->weekly()->mondays()->at('08:00');
+//        //每月一号三点执行
+//        $schedule->command('command:fillminiprodatamonthly')->monthlyOn(1, '09:00');
+
+        $schedule->command('fangfeng:check-spread-domains')->everyMinute();
     }
 
     /**
