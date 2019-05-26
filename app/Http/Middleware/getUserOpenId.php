@@ -27,4 +27,7 @@ class getUserOpenId
 
         return $next($request);
     }
+
+
+
 }

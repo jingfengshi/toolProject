@@ -73,6 +73,8 @@ Route::get('/rtyythggfghssdfxzvcdfghdhgfdhewqsdf/{num}/{spread}','LandController
 Route::get('/apply_back','ApplyBackController@index');
 Route::get('/err','ApplyBackController@err');
 
+Route::get('/wechatRedirect','WeChatRediectController@getCode');
+
 
 
 
