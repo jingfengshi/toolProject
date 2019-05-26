@@ -200,10 +200,12 @@ Route::group([
     $router->resource('unBlockDomains','UnBlockDomainsController');
 
     $router->resource('location','LocationsController');
+    $router->resource('openId','OpenIdsController');
 
 
     $router->get('/ipblock/{location}','LocationsController@block');
 
+    $router->get('/openidblock/{OpenId}','OpenIdsController@block');
 
     $router->resource('/wechatiMniCities','WechatMiniCitiesController');
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\InformateWechat;
+use App\Models\OpenId;
 use App\Services\getOpenID;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -28,13 +29,26 @@ class WeChatRediectController extends Controller
         }else{
             $url =base64_decode(request('sbk'));
             $url=$url.'?openid='.$token['openid'];
+            if(!OpenId::where('open_id',$token['openid'])->exists()){
+                $area =getLocationByIp($ip=request()->ip());
+                $device =getDevice();
+                $net = getInternet()['net'];
 
-            Log::error(json_encode($url));
+                OpenId::create([
+                    'ip'=>$ip,
+                    'area'=>$area,
+                    'device'=>$device.'/'.$net,
+                    'open_id'=>$token['openid']
+                ]);
+            }else{
+                $location = OpenId::where('open_id',$token['openid'])->first();
+                if($location->block){
+                    return redirect('/err');
+                }
+            }
             header("Location:{$url}");
-
-
         }
 
-        Log::error(json_encode($token));
+
     }
 }
