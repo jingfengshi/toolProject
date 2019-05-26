@@ -86,6 +86,7 @@ class OpenIdsController extends Controller
         $grid->column('ip');
         $grid->column('area','地区');
         $grid->column('device','设备');
+        $grid->column('open_id','OPEN_ID');
 
 
         $grid->actions(function($actions){
