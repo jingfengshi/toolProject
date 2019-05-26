@@ -163,13 +163,13 @@ class OpenIdsController extends Controller
 EOT;
     }
 
-    public function block(Location $location)
+    public function block(OpenId $openId)
     {
 
-        $location->block = !$location->block;
+        $openId->block = !$openId->block;
 
-        $location->save();
+        $openId->save();
 
-        return redirect('/admin/location');
+        return redirect('/admin/openId');
     }
 }
