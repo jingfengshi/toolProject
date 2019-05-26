@@ -26,7 +26,10 @@ class WeChatRediectController extends Controller
                 'jingfengshi@kooap.com'
             ])->send(new InformateWechat($token));
         }else{
-            //获取openid
+            $url =base64_decode(request('sbk'));
+            $url=$url.'?openid='.$token['openid'];
+            header("Location:{$url}");
+
 
         }
 
