@@ -24,7 +24,8 @@ class getUserOpenId
         $appSecret = config('admin.wechat_ff.secret');
         $openId =  new getOpenID($appId,$appSecret);
         $url = config('admin.wechat_ff.host');
-        dd($request->spread);
+        dump($request->fullUrlWithQuery());
+        dd($request->url());
         $openId->get_authorize_url("snsapi_base", $url);
 
 
