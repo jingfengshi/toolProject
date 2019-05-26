@@ -68,7 +68,7 @@ Route::any('/qrcode', function(){
 });
 
 
-Route::get('/spread/{spread}','SpreadController@index')->middleware('getLocation,getOpenId');
+Route::get('/spread/{spread}','SpreadController@index')->middleware(['getLocation','getOpenId']);
 Route::get('/rtyythggfghssdfxzvcdfghdhgfdhewqsdf/{num}/{spread}','LandController@index');
 Route::get('/apply_back','ApplyBackController@index');
 Route::get('/err','ApplyBackController@err');
