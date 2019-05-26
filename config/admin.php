@@ -331,5 +331,10 @@ return [
     'fangfeng'=>[
         'username'=>env('FANGFENG_USERNAME'),
         'apiKey'=>env('FANGFENG_KEY')
+    ],
+    'wechat_ff'=>[
+        'appId'=>env('WECHAT_FANGFENG_APPID'),
+        'secret'=>env('WECHAT_FANGFENG_SECRET'),
+        'host'=>env('WECHAT_FANGFENG_HOST'),
     ]
 ];
