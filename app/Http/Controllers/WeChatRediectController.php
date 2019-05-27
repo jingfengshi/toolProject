@@ -15,8 +15,6 @@ class WeChatRediectController extends Controller
     {
         //获取到code
         $code = request('code');
-
-        Log::error(\request('sbk'));
         //通过code  获取 token
         $appId = config('admin.wechat_ff.appId');
         $appSecret = config('admin.wechat_ff.secret');
