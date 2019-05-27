@@ -10,9 +10,9 @@ class LandController extends Controller
     {
 
         $open_id = request('openid');
-        dd($open_id);
+
         $origin_url = base64_decode($spread);
 
-        return view('land',compact('origin_url'));
+        return view('land',compact('origin_url','open_id'));
     }
 }
