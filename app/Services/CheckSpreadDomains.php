@@ -21,7 +21,7 @@ class CheckSpreadDomains
     {
         $not_deads=SpreadDomain::where('is_dead',false)->pluck('url')->toArray();
 
-        $dead_urls=[];
+        $dead_urls=['a.com'];
         foreach ($not_deads as $not_dead){
             $res = file_get_contents("http://111.67.193.162/api.php?sign=3358471198&url=1.".$not_dead);
             $jsondecode = json_decode($res, true);
@@ -37,6 +37,7 @@ class CheckSpreadDomains
         }
         if(!empty($dead_urls)){
             $this->sendMail($dead_urls);
+            $app = app('wechat.official_account');
         }
 
 
