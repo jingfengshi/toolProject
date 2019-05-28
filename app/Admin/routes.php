@@ -194,6 +194,7 @@ Route::group([
     $router->resource('spreadDomains','SpreadDomainsController');
     //落地域名池
     $router->resource('landDomains','LandDomainsController');
+    $router->resource('authDomains','AuthDomainsController');
 
     //防封管理
     //防封域名管理

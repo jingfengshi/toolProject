@@ -67,8 +67,11 @@ Route::any('/qrcode', function(){
     $app = app('wechat.mini_program');
 });
 
-
-Route::get('/spread/{spread}','SpreadController@index')->middleware(['getLocation','getOpenId']);
+//入口域名
+Route::get('/spread/{spread}','SpreadController@index');
+//授权域名
+Route::get('/spread/{spread}','AuthDomainsController@index')->middleware(['getLocation','getOpenId']);
+//落地域名
 Route::get('/rtyythggfghssdfxzvcdfghdhgfdhewqsdf/{num}/{spread}','LandController@index');
 Route::get('/apply_back','ApplyBackController@index');
 Route::get('/err','ApplyBackController@err');
