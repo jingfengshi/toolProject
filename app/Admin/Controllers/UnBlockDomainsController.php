@@ -11,6 +11,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class UnBlockDomainsController extends Controller
 {
@@ -87,13 +88,20 @@ class UnBlockDomainsController extends Controller
         $grid->id('Id');
         $grid->origin_url('原始域名');
         $grid->unblock_url('防封域名')->display(function($short_url){
-            return "<textarea>$short_url </textarea>";
+                $short_url=json_decode($short_url,true);
+                $url='';
+                foreach ($short_url as $item){
+                    $url.=$item.',';
+                }
+                $url =rtrim($url,',');
+            return "<textarea>$url</textarea>";
         });
         $grid->created_at('创建时间');
         $grid->disableCreateButton();
         $grid->disableExport();
         $grid->disableActions();
-        $grid->model()->orderBy('id','desc');
+
+
 
 
         return $grid;
@@ -112,6 +120,12 @@ class UnBlockDomainsController extends Controller
 
 
         return $show;
+    }
+
+    public function store(Request $request)
+    {
+        $this->form($request)->store();
+        return redirect('/admin/unBlockDomains');
     }
 
     /**

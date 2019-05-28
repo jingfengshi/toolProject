@@ -107,7 +107,21 @@ class OpenIdsController extends Controller
 
         $grid->disableExport();
 
-        return $grid;
+        $grid->filter(function($filter){
+
+            // 去掉默认的id过滤器
+            $filter->disableIdFilter();
+
+            $filter->like('open_id', 'OPEN_ID');
+            $filter->like('ip', 'IP');
+            $filter->like('area', '地区');
+            $filter->in('block','是否拉黑')->radio([
+                0    =>'拉黑',
+                1    =>'拉白',
+            ]);
+        });
+
+        $grid->model()->orderBy('id','desc');
 
         return $grid;
     }
