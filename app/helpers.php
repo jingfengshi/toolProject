@@ -32,7 +32,7 @@ function getDevice()
     } else if (stripos($user_agent, "vivo")!==false) {
         $brand = 'vivo';
     } else if (stripos($user_agent, "K-Touch")!==false) {
-        $brand = '天语';
+        $brand = 'vivo';
     } else if (stripos($user_agent, "Nubia")!==false || stripos($user_agent, "NX50")!==false || stripos($user_agent, "NX40")!==false) {
         $brand = '努比亚';
     } else if (strpos($user_agent, "M045")!==false || strpos($user_agent, "M032")!==false || strpos($user_agent, "M355")!==false) {

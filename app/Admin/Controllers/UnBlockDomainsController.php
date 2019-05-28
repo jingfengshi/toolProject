@@ -100,6 +100,7 @@ class UnBlockDomainsController extends Controller
         $grid->disableCreateButton();
         $grid->disableExport();
         $grid->disableActions();
+        $grid->model()->orderBy('id','desc');
 
 
 
