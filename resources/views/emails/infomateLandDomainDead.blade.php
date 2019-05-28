@@ -7,7 +7,7 @@
         {{ $url }}
     @endforeach
 
-    ###请及时更替
+    ### 请及时更替
 
     如有疑问请联系管理员24002310@qq.com,<br>
     {{ config('app.name') }}

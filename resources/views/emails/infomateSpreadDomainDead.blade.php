@@ -8,6 +8,6 @@
 @endforeach
 
 
-如有疑问请联系管理员24002310@qq.com,<br>
+如有疑问请联系管理员24002310@qq.com
 {{ config('app.name') }}
 @endcomponent
