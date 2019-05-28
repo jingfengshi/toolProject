@@ -21,7 +21,7 @@ class CheckLandDomains
 
         $dead_urls=[];
         foreach ($not_deads as $not_dead){
-            $res = file_get_contents("http://111.67.193.162/api.php?sign=3358471198&url=1.".$not_dead);
+            $res = file_get_contents("http://111.67.193.162/api.php?sign=3358471198&url=".$not_dead);
             $jsondecode = json_decode($res, true);
             $code = $jsondecode['status'];
             // echo $code."///".$url."<br>";

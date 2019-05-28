@@ -11,6 +11,7 @@ namespace App\Services;
 
 use App\Mail\InformateAuthDomainsDead;
 use App\Models\AuthDomain;
+use Illuminate\Support\Facades\Mail;
 
 class CheckAuthDomains
 {

@@ -38,6 +38,8 @@ class Kernel extends ConsoleKernel
 //        $schedule->command('command:fillminiprodatamonthly')->monthlyOn(1, '09:00');
 
         $schedule->command('fangfeng:check-spread-domains')->everyMinute();
+        $schedule->command('fangfeng:check-land-domains')->everyMinute();
+        $schedule->command('fangfeng:check-auth-domains')->everyMinute();
     }
 
     /**
