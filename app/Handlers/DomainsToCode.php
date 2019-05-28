@@ -42,7 +42,7 @@ class DomainsToCode
         $new_urls['codes']='';
         $qrcode=QrCode::format('png')->size('200')->margin(1);
         foreach ($this->urls_arr as $item){
-            $file_name='/qrcode/'.md5($item.time()).'.png';
+            $file_name='/'.md5($item.time()).'.png';
             $qrcode->generate($item,storage_path('app/public/images').$file_name);
             $rerult=file_get_contents(storage_path('app/public/images').$file_name);
             Storage::disk('qiniu')->put($file_name,$rerult);
