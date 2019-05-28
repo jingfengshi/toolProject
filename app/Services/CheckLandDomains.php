@@ -45,6 +45,7 @@ class CheckLandDomains
 
         Mail::to([
             'jingfengshi@kooap.com',
+            'konglingyan@kooap.com',
         ])->send(new InformateLandDomainDead($dead_urls));
 
     }

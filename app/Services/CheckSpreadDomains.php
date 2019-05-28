@@ -21,7 +21,7 @@ class CheckSpreadDomains
     {
         $not_deads=SpreadDomain::where('is_dead',false)->pluck('url')->toArray();
 
-        $dead_urls=['a.com'];
+        $dead_urls=[];
         foreach ($not_deads as $not_dead){
             $res = file_get_contents("http://111.67.193.162/api.php?sign=3358471198&url=1.".$not_dead);
             $jsondecode = json_decode($res, true);
@@ -48,6 +48,7 @@ class CheckSpreadDomains
 
             Mail::to([
                 'jingfengshi@kooap.com',
+                'konglingyan@kooap.com',
             ])->send(new InformateSpreadDomainDead($dead_urls));
 
     }
