@@ -27,7 +27,7 @@ class CheckLandDomains
             // echo $code."///".$url."<br>";
             if($code == "0"){
                 //如果已经拦截则对数据库进行修改
-                LandDomain::where('url',$not_dead)->update(['is_dead',true]);
+                LandDomain::where('url',$not_dead)->update(['is_dead',1]);
                 $dead_urls[] = $not_dead;
 
 

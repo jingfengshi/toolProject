@@ -27,7 +27,7 @@ class CheckAuthDomains
             // echo $code."///".$url."<br>";
             if($code == "0"){
                 //如果已经拦截则对数据库进行修改
-                AuthDomain::where('url',$not_dead)->update(['is_dead',true]);
+                AuthDomain::where('url',$not_dead)->update(['is_dead',1]);
                 $dead_urls[] = $not_dead;
 
             }
