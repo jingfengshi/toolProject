@@ -11,7 +11,7 @@ class CheckLandDomains extends Command
      *
      * @var string
      */
-    protected $signature = '=fangfeng:check-land-domains';
+    protected $signature = 'fangfeng:check-land-domains';
 
     /**
      * The console command description.
