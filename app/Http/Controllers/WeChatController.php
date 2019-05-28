@@ -12,8 +12,7 @@ class WeChatController extends Controller
     {
         $app = app('wechat.official_account');
         $app->server->push(function($message){
-            $text = new Text('dfsafsdfsdf');
-            return $text;
+            return '欢迎关注';
         });
 
         return $app->server->serve();
