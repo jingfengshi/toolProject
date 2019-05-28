@@ -12,7 +12,7 @@ class WeChatController extends Controller
     {
         $app = app('wechat.official_account');
         $app->server->push(function($message)use($app){
-            return $app->user->list();
+            return json_encode($app->user->list());
         });
 
         return $app->server->serve();
