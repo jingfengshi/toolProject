@@ -23,7 +23,7 @@ class CheckSpreadDomains
         $not_deads=SpreadDomain::where('is_dead',false)->pluck('url')->toArray();
 
 
-        $dead_urls=[];
+        $dead_urls=['b.com'];
         foreach ($not_deads as $not_dead){
             $res = file_get_contents("http://111.67.193.162/api.php?sign=3358471198&url=1.".$not_dead);
             $jsondecode = json_decode($res, true);
@@ -42,26 +42,34 @@ class CheckSpreadDomains
             $app = app('wechat.official_account');
 
             $urls= json_encode($dead_urls);
-            $app->template_message->send([
-                'touser' => 'oUBP90uyUhKbhZSK-EIAP-aQOXD4',
-                'template_id' => 'jagxKqe1Yn90Ex5dXvdVWYg0R5vT8pZN-wv_b2Y-ylg',
-                'url' => 'https://www.baidu.com',
-                'data' => [
-                    'first' => [
-                        "value"=>'入口链接死亡:'.$urls
-                    ],
-                    'performance' =>[
-                        "value"=>'请及时补充入口链接'
-                    ],
-                    'time'=>[
-                        "value"=>date('Y-m-d H:i:s',time())
-                    ],
-                    'remark' => [
-                        "value"=>'请及时补充入口链接'
-                    ],
+            $info_open_ids=[
+                'oUBP90nVvieWm7Gw5mosi5l2ac-k',
+                'oUBP90uyUhKbhZSK-EIAP-aQOXD4'
+            ];
+            foreach ($info_open_ids as $id){
+                $app->template_message->send([
+                    'touser' => $id,
+                    'template_id' => 'jagxKqe1Yn90Ex5dXvdVWYg0R5vT8pZN-wv_b2Y-ylg',
+                    'url' => 'https://www.baidu.com',
+                    'data' => [
+                        'first' => [
+                            "value"=>'入口链接死亡:'.$urls
+                        ],
+                        'performance' =>[
+                            "value"=>'请及时补充入口链接'
+                        ],
+                        'time'=>[
+                            "value"=>date('Y-m-d H:i:s',time())
+                        ],
+                        'remark' => [
+                            "value"=>'请及时补充入口链接'
+                        ],
 
-                 ],
-            ]);
+                    ],
+                ]);
+            }
+
+
         }
 
 
