@@ -44,7 +44,7 @@ class CheckSpreadDomains
             $urls= json_encode($dead_urls);
             $app->template_message->send([
                 'touser' => 'oUBP90uyUhKbhZSK-EIAP-aQOXD4',
-                'template_id' => 'jagxKqe1Yn90Ex5dXvdVWYg0R5vT8pZN-wv_b2Y-ylg-id',
+                'template_id' => 'jagxKqe1Yn90Ex5dXvdVWYg0R5vT8pZN-wv_b2Y-ylg',
                 'url' => 'https://www.baidu.com',
                 'data' => [
                     'first.DATA' => '入口链接死亡:'.$urls,
