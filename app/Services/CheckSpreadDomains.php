@@ -39,8 +39,9 @@ class CheckSpreadDomains
         }
         if(!empty($dead_urls)){
             $this->sendMail($dead_urls);
-            $app = app('wechat.official_account');
 
+
+            $app = app('wechat.official_account');
             $urls= json_encode($dead_urls);
             $info_open_ids=[
                 'oUBP90nVvieWm7Gw5mosi5l2ac-k',
@@ -64,7 +65,6 @@ class CheckSpreadDomains
                         'remark' => [
                             "value"=>'请及时补充入口链接'
                         ],
-
                     ],
                 ]);
             }

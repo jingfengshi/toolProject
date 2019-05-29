@@ -35,6 +35,34 @@ class CheckLandDomains
         }
         if(!empty($dead_urls)){
             $this->sendMail($dead_urls);
+
+            $app = app('wechat.official_account');
+            $urls= json_encode($dead_urls);
+            $info_open_ids=[
+                'oUBP90nVvieWm7Gw5mosi5l2ac-k',
+                'oUBP90uyUhKbhZSK-EIAP-aQOXD4'
+            ];
+            foreach ($info_open_ids as $id){
+                $app->template_message->send([
+                    'touser' => $id,
+                    'template_id' => 'jagxKqe1Yn90Ex5dXvdVWYg0R5vT8pZN-wv_b2Y-ylg',
+                    'url' => 'https://www.baidu.com',
+                    'data' => [
+                        'first' => [
+                            "value"=>'落地链接死亡:'.$urls
+                        ],
+                        'performance' =>[
+                            "value"=>'请及时补充落地链接'
+                        ],
+                        'time'=>[
+                            "value"=>date('Y-m-d H:i:s',time())
+                        ],
+                        'remark' => [
+                            "value"=>'请及时补充落地链接'
+                        ],
+                    ],
+                ]);
+            }
         }
 
 
