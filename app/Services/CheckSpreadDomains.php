@@ -51,7 +51,10 @@ class CheckSpreadDomains
                         "value"=>'入口链接死亡:'.$urls
                     ],
                     'performance' =>[
-                        "value"=> Carbon::now()
+                        "value"=>'请及时补充入口链接'
+                    ],
+                    'time'=>[
+                        "value"=>date('Y-m-d H:i:s',time())
                     ],
                     'remark' => [
                         "value"=>'请及时补充入口链接'
