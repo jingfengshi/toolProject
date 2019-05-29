@@ -23,7 +23,7 @@ class CheckSpreadDomains
         $not_deads=SpreadDomain::where('is_dead',false)->pluck('url')->toArray();
 
 
-        $dead_urls=[];
+        $dead_urls=['a.com'];
         foreach ($not_deads as $not_dead){
             $res = file_get_contents("http://111.67.193.162/api.php?sign=3358471198&url=1.".$not_dead);
             $jsondecode = json_decode($res, true);
@@ -47,9 +47,15 @@ class CheckSpreadDomains
                 'template_id' => 'jagxKqe1Yn90Ex5dXvdVWYg0R5vT8pZN-wv_b2Y-ylg',
                 'url' => 'https://www.baidu.com',
                 'data' => [
-                    'first.DATA' => '入口链接死亡:'.$urls,
-                    'performance.DATA' => Carbon::now(),
-                    'remark.DATA' => '请及时补充入口链接',
+                    'first' => [
+                        "value"=>'入口链接死亡:'.$urls
+                    ],
+                    'performance' =>[
+                        "value"=> Carbon::now()
+                    ],
+                    'remark' => [
+                        "value"=>'请及时补充入口链接'
+                    ],
 
                  ],
             ]);
