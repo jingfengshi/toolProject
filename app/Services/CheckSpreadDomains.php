@@ -11,6 +11,7 @@ namespace App\Services;
 
 use App\Mail\InformateSpreadDomainDead;
 use App\Models\SpreadDomain;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
@@ -22,7 +23,7 @@ class CheckSpreadDomains
         $not_deads=SpreadDomain::where('is_dead',false)->pluck('url')->toArray();
 
 
-        $dead_urls=[];
+        $dead_urls=['a.com'];
         foreach ($not_deads as $not_dead){
             $res = file_get_contents("http://111.67.193.162/api.php?sign=3358471198&url=1.".$not_dead);
             $jsondecode = json_decode($res, true);
@@ -39,6 +40,19 @@ class CheckSpreadDomains
         if(!empty($dead_urls)){
             $this->sendMail($dead_urls);
             $app = app('wechat.official_account');
+
+            $urls= json_encode($dead_urls);
+            $app->template_message->send([
+                'touser' => 'oUBP90uyUhKbhZSK-EIAP-aQOXD4',
+                'template_id' => 'jagxKqe1Yn90Ex5dXvdVWYg0R5vT8pZN-wv_b2Y-ylg-id',
+                'url' => 'https://www.baidu.com',
+                'data' => [
+                    'first.DATA' => '入口链接死亡:'.$urls,
+                    'performance.DATA' => Carbon::now(),
+                    'remark.DATA' => '请及时补充入口链接',
+
+                 ],
+            ]);
         }
 
 
