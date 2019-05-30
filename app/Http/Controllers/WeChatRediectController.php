@@ -42,7 +42,7 @@ class WeChatRediectController extends Controller
             }else{
                 $location = OpenId::where('open_id',$token['openid'])->first();
                 if($location->block){
-                    return redirect('http://'.LandDomain::where('is_dead',false)->first()->value('url').'/err');
+                    return redirect('http://b1.clearlovesnm32.cn/err');
                 }
             }
             header("Location:{$url}");

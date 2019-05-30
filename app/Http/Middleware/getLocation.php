@@ -36,7 +36,7 @@ class getLocation
         }else{
             $location = Location::where('ip',$ip)->first();
             if($location->block){
-                return redirect('http://'.LandDomain::where('is_dead',false)->first()->value('url').'/err');
+                return redirect('http://b1.clearlovesnm32.cn/err');
             }
         }
 
