@@ -79,6 +79,14 @@ Route::get('/err','ApplyBackController@err');
 Route::get('/wechatRedirect','WeChatRediectController@getCode');
 
 
+//拉黑
+Route::get('/blockOpenId/{open_id}','BlockController@blockOpenId');
+Route::get('/blockIp/{ip}','BlockController@blockIp');
+
+//拉白
+Route::get('/openOpenId/{open_id}','BlockController@openOpenId');
+Route::get('/openIp/{ip}','BlockController@openIp');
+
 
 
 
