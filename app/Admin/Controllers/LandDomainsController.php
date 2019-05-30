@@ -90,7 +90,7 @@ class LandDomainsController extends Controller
     {
         $grid = new Grid(new LandDomain);
         $grid->column('id','ID');
-        $grid->column('url','入口域名');
+        $grid->column('url','落地域名');
         $grid->column('is_dead','死亡')->display(function($isDead){
             return  $isDead?'<button class="btn btn-sm btn-danger">是</button>':'<button class="btn btn-sm btn-primary">否</button>';
         });
@@ -139,7 +139,7 @@ class LandDomainsController extends Controller
     {
         $form = new Form(new LandDomain);
         $form->setAction('/admin/landDomains');
-        $form->text('url','落地域名')->help('入口域名格式:<b style="color: red">a</b>.qq.com或者<b style="color: red">a</b>.baidu.com 注<b style="color: red">a</b>可以为任意字母组合')->placeholder('落地域名请保证唯一,且主域名唯一');
+        $form->text('url','落地域名')->help('落地域名格式:<b style="color: red">a</b>.qq.com或者<b style="color: red">a</b>.baidu.com 注<b style="color: red">a</b>可以为任意字母组合')->placeholder('落地域名请保证唯一,且主域名唯一');
         $form->disableViewCheck();
         $form->disableEditingCheck();
         $form->disableCreatingCheck();

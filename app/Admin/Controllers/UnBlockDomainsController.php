@@ -12,6 +12,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UnBlockDomainsController extends Controller
 {
@@ -146,7 +147,7 @@ class UnBlockDomainsController extends Controller
         $form->disableCreatingCheck();
         $form->ignore('number');
         $form->saving(function($form){
-            $spread_urls =SpreadDomain::where('is_dead',false)->pluck('url')->toArray();
+            $spread_urls =SpreadDomain::where('is_dead',false)->orderBy(DB::raw('RAND()'))->pluck('url')->toArray();
             $times = request('number');
             $hit_urls=[];
             for ($i=0;$i<$times;$i++){
