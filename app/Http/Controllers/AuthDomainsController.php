@@ -11,7 +11,7 @@ class AuthDomainsController extends Controller
    {
        if(LandDomain::where('is_dead',false)->exists()){
            $openid=request('openid');
-           $landUrl ='http://'.LandDomain::where('is_dead',false)->first()->value('url');
+           $landUrl ='http://'.LandDomain::where('is_dead',false)->orderBy(DB::raw('RAND()'))->take(1)->value('url');
            $final_url =$landUrl.'/rtyythggfghssdfxzvcdfghdhgfdhewqsdf/'.rand(111111111,999999999).'/'.$spread.'?openid='.$openid;
            header('Location: '.$final_url);//
        }else{

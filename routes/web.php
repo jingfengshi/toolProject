@@ -11,9 +11,11 @@
 |
 */
 
+use App\Models\LandDomain;
 use EasyWeChat\Factory;
 use EasyWeChat\Kernel\Messages\Message;
 use EasyWeChat\Kernel\Messages\Text;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
 
@@ -90,3 +92,6 @@ Route::get('/openIp/{ip}','BlockController@openIp');
 
 
 
+Route::get('/test',function(){
+   echo  $landUrl ='http://'.LandDomain::where('is_dead',false)->orderBy(DB::raw('RAND()'))->take(1)->value('url');
+});
