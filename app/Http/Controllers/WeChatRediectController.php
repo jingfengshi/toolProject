@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\InformateWechat;
+use App\Models\LandDomain;
 use App\Models\OpenId;
 use App\Services\getOpenID;
 use Illuminate\Http\Request;
