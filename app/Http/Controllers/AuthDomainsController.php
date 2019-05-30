@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LandDomain;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AuthDomainsController extends Controller
 {
