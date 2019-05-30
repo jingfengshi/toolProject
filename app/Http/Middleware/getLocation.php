@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\LandDomain;
 use App\Models\Location;
 use Closure;
 
@@ -35,7 +36,7 @@ class getLocation
         }else{
             $location = Location::where('ip',$ip)->first();
             if($location->block){
-                return redirect('/err');
+                return redirect('http://'.LandDomain::where('is_dead',false)->first()->value('url').'/err');
             }
         }
 
