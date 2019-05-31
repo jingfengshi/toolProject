@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AuthDomain;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SpreadController extends Controller
 {
@@ -12,7 +13,7 @@ class SpreadController extends Controller
     {
         if(AuthDomain::where('is_dead',false)->exists()){
 
-            $landUrl ='http://auth.'.AuthDomain::where('is_dead',false)->first()->value('url');
+            $landUrl ='http://auth.'.AuthDomain::where('is_dead',false)->orderBy(DB::raw('RAND()'))->take(1)->value('url');
             $final_url =$landUrl.'/'.$spread;
             header('Location: '.$final_url);//
         }else{

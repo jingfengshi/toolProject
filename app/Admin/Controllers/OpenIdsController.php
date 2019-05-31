@@ -87,7 +87,8 @@ class OpenIdsController extends Controller
         $grid->column('area','地区');
         $grid->column('device','设备');
         $grid->column('open_id','OPEN_ID');
-
+        $grid->created_at('创建时间');
+        $grid->uodated_at('更新时间');
 
         $grid->actions(function($actions){
             $actions->disableDelete();

@@ -87,7 +87,8 @@ class LocationsController extends Controller
         $grid->column('ip');
         $grid->column('location','地区');
         $grid->column('device','设备');
-
+        $grid->created_at('创建时间');
+        $grid->uodated_at('更新时间');
 
         $grid->actions(function($actions){
             $actions->disableDelete();
