@@ -154,9 +154,10 @@ class UnBlockDomainsController extends Controller
                 $hit_urls[]=$spread_urls[array_rand($spread_urls)];
             }
             $orgin_url =base64_encode($form->origin_url);
-            $prefix =$this->randomkeys(8);
+
             $unBlock_url = [];
             foreach ($hit_urls as $hit_url){
+                $prefix =$this->randomkeys(8);
                 $unBlock_url[] ='http://'.$prefix.'.'.$hit_url.'/spread/'.$orgin_url;
             }
             $form->model()->user_id =Admin::user()->id;
